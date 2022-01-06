@@ -11,6 +11,7 @@ specifiers:
   cz-conventional-changelog: 3.3.0
   eslint: ^8.6.0
   eslint-plugin-react: ^7.28.0
+  husky: ^7.0.4
   normalize.css: ^8.0.1
   prettier: ^2.5.1
   react: ^17.0.2
@@ -35,6 +36,7 @@ devDependencies:
   cz-conventional-changelog: registry.npmmirror.com/cz-conventional-changelog/3.3.0_@types+node@17.0.8
   eslint: registry.npmmirror.com/eslint/8.6.0
   eslint-plugin-react: registry.npmmirror.com/eslint-plugin-react/7.28.0_eslint@8.6.0
+  husky: registry.npmmirror.com/husky/7.0.4
   prettier: registry.npmmirror.com/prettier/2.5.1
   sass: registry.npmmirror.com/sass/1.46.0
   typescript: registry.npmmirror.com/typescript/4.5.4
@@ -2942,6 +2944,14 @@ packages:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/download/graceful-fs-4.2.9.tgz}
     name: graceful-fs
     version: 4.2.9
+    dev: true
+
+  registry.npmmirror.com/husky/7.0.4:
+    resolution: {integrity: sha1-JCBIJF3EnI+xvwzHz7mN1yJTFTU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/husky/download/husky-7.0.4.tgz}
+    name: husky
+    version: 7.0.4
+    engines: {node: '>=12'}
+    hasBin: true
     dev: true
 
   registry.npmmirror.com/ignore/4.0.6:

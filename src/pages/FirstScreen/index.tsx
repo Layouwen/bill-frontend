@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC } from 'react'
 
 const FirstScreen: FC = () => {
-  return <div>首屏</div>;
-};
+  return <div>首屏</div>
+}
 
-export default FirstScreen;
+export default FirstScreen
