@@ -1,8 +1,11 @@
 {
   "src/**/*.+(js|jsx|ts|tsx)": [
+    "eslint",
     "prettier --config '.prettierrc.js' --write",
-    "eslint .",
     "git add"
   ],
-  "*.+(json|css|md)": ["prettier --config '.prettierrc.js' --write", "git add"]
+  "*.+(json|css|md)": [
+    "prettier --config '.prettierrc.js' --write",
+    "git add"
+  ]
 }
