@@ -4,8 +4,8 @@
     "git add"
   ],
   "src/**/*.+(js|jsx|ts|tsx)": [
-    "prettier --write",
     "npm run lint",
+    "prettier --write",
     "git add"
   ]
 }
