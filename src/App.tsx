@@ -3,9 +3,7 @@ import FirstScreen from './pages/FirstScreen'
 const App = () => {
   return (
     <div className="App">
-      <div>
-          <FirstScreen />
-        </div>
+      <FirstScreen />
     </div>
   )
 }
