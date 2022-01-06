@@ -4,8 +4,5 @@
     "prettier --config '.prettierrc.js' --write",
     "git add"
   ],
-  "*.+(json|css|md)": [
-    "prettier --config '.prettierrc.js' --write",
-    "git add"
-  ]
+  "*.+(json|css|md)": ["prettier --config '.prettierrc.js' --write", "git add"]
 }
