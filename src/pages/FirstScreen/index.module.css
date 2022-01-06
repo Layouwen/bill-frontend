@@ -1,4 +1,12 @@
-.test {
-  background: red;
-  border: blue 1px solid;
+.bg {
+  background: #AEEEFF;
+}
+
+.logo {
+  margin-bottom: 6px;
+}
+
+.logo-text {
+  font-size: 30px;
+  color: #323334;
 }
