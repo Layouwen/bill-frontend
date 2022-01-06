@@ -6,6 +6,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{tsx,ts,js,jsx}",
+    "prettier": "prettier --config .prettierrc.js --write src/**/*.{tsx,ts,js,jsx}",
     "commit": "cz",
     "postinstall": "husky install"
   },
