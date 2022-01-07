@@ -13,7 +13,7 @@ const FirstScreen: FC = () => {
   const close = () => {
     setTimeout(() => {
       el.current!.remove();
-    }, 4200);
+    }, 1200);
   };
 
   return (

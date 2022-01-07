@@ -1,0 +1,21 @@
+.bw-bill {
+  &-input {
+    height: 100%;
+    outline: none;
+    &::placeholder {
+      color: #ddd;
+    }
+    &-wrapper {
+      display: block;
+      width: 310px;
+      height: 40px;
+      font-size: 22px;
+      color: #333233;
+      border-bottom: #E7E7E7 solid 1px;
+    }
+    &-name {
+      margin-right: 28px;
+      font-size: 15px;
+    }
+  }
+}
