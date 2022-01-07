@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FirstScreen from './pages/FirstScreen';
-import Home from './pages/Home';
-import Login from './pages/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import FirstScreen from './pages/FirstScreen'
+import Home from './pages/Home'
+import Login from './pages/Login'
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>
-  );
-};
+  )
+}
 
-export default App;
+export default App
