@@ -1,12 +1,14 @@
 .bw-bill {
   &-input {
     height: 100%;
+    width: 240px;
     outline: none;
     &::placeholder {
       color: #ddd;
     }
     &-wrapper {
-      display: block;
+      display: flex;
+      align-items: center;
       width: 310px;
       height: 40px;
       font-size: 22px;
@@ -14,7 +16,8 @@
       border-bottom: #E7E7E7 solid 1px;
     }
     &-name {
-      margin-right: 28px;
+      padding-right: 28px;
+      flex-shrink: 0;
       font-size: 15px;
     }
   }
