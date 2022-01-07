@@ -1,15 +1,28 @@
-import { FC } from 'react'
-import classNames from 'classnames'
-import styles from './index.module.css'
-import logo from '../../assets/images/logo.png'
+import { FC, useEffect, useRef } from 'react';
+import classNames from 'classnames';
+import styles from './index.module.css';
+import logo from '../../assets/images/logo.png';
 
 const FirstScreen: FC = () => {
+  const el = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    close();
+  }, []);
+
+  const close = () => {
+    setTimeout(() => {
+      el.current!.remove();
+    }, 4200);
+  };
+
   return (
     <div
       className={classNames([
         styles.bg,
-        'flex flex-col justify-center items-center h-screen',
+        'fixed w-full h-full flex flex-col justify-center items-center',
       ])}
+      ref={el}
     >
       <div
         className={'flex flex-col justify-center items-center -translate-y-1/3'}
@@ -18,7 +31,7 @@ const FirstScreen: FC = () => {
         <span className={styles['logo-text']}>蓝鲸记账</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FirstScreen
+export default FirstScreen;
