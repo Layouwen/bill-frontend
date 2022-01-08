@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    // 参考路径
+    "baseUrl": "./",
+    // 别名
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "noImplicitAny": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -17,5 +23,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src"]
+  // 检查哪些文件
+  "include": ["./src", "./test"]
 }
