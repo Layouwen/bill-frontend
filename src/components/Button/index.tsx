@@ -2,7 +2,7 @@ import { FC } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
-const Button: FC = ({children}) => {
+const Button: FC = ({ children }) => {
   return <button className={classNames('bw-bill-button')}>{children}</button>;
 };
 
