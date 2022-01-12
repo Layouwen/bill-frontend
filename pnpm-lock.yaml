@@ -1,11 +1,13 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@reduxjs/toolkit': ^1.7.1
   '@types/cypress': ^1.1.3
   '@types/jest': ^27.4.0
   '@types/node': '*'
   '@types/react': ^17.0.33
   '@types/react-dom': ^17.0.10
+  '@types/react-redux': ^7.1.22
   '@types/react-test-renderer': ^17.0.1
   '@typescript-eslint/eslint-plugin': ^5.8.1
   '@typescript-eslint/parser': ^5.9.0
@@ -29,6 +31,7 @@ specifiers:
   prettier: ^2.5.1
   react: ^17.0.2
   react-dom: ^17.0.2
+  react-redux: ^7.2.6
   react-router-dom: ^6.2.1
   react-test-renderer: ^17.0.2
   sass: ^1.46.0
@@ -38,9 +41,11 @@ specifiers:
   vitest: 0.0.131
 
 dependencies:
+  '@reduxjs/toolkit': registry.npmmirror.com/@reduxjs/toolkit/1.7.1_react-redux@7.2.6+react@17.0.2
   normalize.css: registry.npmmirror.com/normalize.css/8.0.1
   react: registry.npmmirror.com/react/17.0.2
   react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
+  react-redux: registry.npmmirror.com/react-redux/7.2.6_react-dom@17.0.2+react@17.0.2
   react-router-dom: registry.npmmirror.com/react-router-dom/6.2.1_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
@@ -49,6 +54,7 @@ devDependencies:
   '@types/node': registry.npmmirror.com/@types/node/17.0.8
   '@types/react': registry.npmmirror.com/@types/react/17.0.38
   '@types/react-dom': registry.npmmirror.com/@types/react-dom/17.0.11
+  '@types/react-redux': registry.npmmirror.com/@types/react-redux/7.1.22
   '@types/react-test-renderer': registry.npmmirror.com/@types/react-test-renderer/17.0.1
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.8.1_bd2fd93dbcc607ad2f21b784bccfe0c8
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.9.0_eslint@8.6.0+typescript@4.5.4
@@ -1183,6 +1189,13 @@ packages:
       function-bind: registry.nlark.com/function-bind/1.1.1
     dev: true
 
+  registry.nlark.com/hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha1-7OCsr3HWLClpwuxZ/v9CpLGoW0U=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/hoist-non-react-statics/download/hoist-non-react-statics-3.3.2.tgz}
+    name: hoist-non-react-statics
+    version: 3.3.2
+    dependencies:
+      react-is: registry.npmmirror.com/react-is/16.13.1
+
   registry.nlark.com/homedir-polyfill/1.0.3:
     resolution: {integrity: sha1-dDKYzvTlrz4ZQWH7rcwhUdOgWOg=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/homedir-polyfill/download/homedir-polyfill-1.0.3.tgz}
     name: homedir-polyfill
@@ -1518,7 +1531,6 @@ packages:
     resolution: {integrity: sha1-GSA/tZmR35jjoocFDUZHzerzJJk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/js-tokens/download/js-tokens-4.0.0.tgz}
     name: js-tokens
     version: 4.0.0
-    dev: true
 
   registry.nlark.com/jsbn/0.1.1:
     resolution: {integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/jsbn/download/jsbn-0.1.1.tgz}
@@ -1650,7 +1662,7 @@ packages:
     version: 1.4.0
     hasBin: true
     dependencies:
-      js-tokens: registry.npmmirror.com/js-tokens/4.0.0
+      js-tokens: registry.nlark.com/js-tokens/4.0.0
 
   registry.nlark.com/lru-cache/6.0.0:
     resolution: {integrity: sha1-bW/mVw69lqr5D8rR2vo7JWbbOpQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lru-cache/download/lru-cache-6.0.0.tgz}
@@ -2877,7 +2889,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.9
-    dev: false
 
   registry.npmmirror.com/@babel/template/7.16.7:
     resolution: {integrity: sha512-I8j/x8kHUrbYRTUxXrrMbfCa7jxkE7tZre39x3kjr9hvI82cK1FfqLygotcWN5kdPGWcLdWMHpSBavse5tWw3w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/template/download/@babel/template-7.16.7.tgz}
@@ -3087,6 +3098,28 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
+  registry.npmmirror.com/@reduxjs/toolkit/1.7.1_react-redux@7.2.6+react@17.0.2:
+    resolution: {integrity: sha512-wXwXYjBVz/ItxB7SMzEAMmEE/FBiY1ze18N+VVVX7NtVbRUrdOGKhpQMHivIJfkbJvSdLUU923a/yAagJQzY0Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@reduxjs/toolkit/download/@reduxjs/toolkit-1.7.1.tgz}
+    id: registry.npmmirror.com/@reduxjs/toolkit/1.7.1
+    name: '@reduxjs/toolkit'
+    version: 1.7.1
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || 18.0.0-beta
+      react-redux: ^7.2.1 || ^8.0.0-beta
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-redux:
+        optional: true
+    dependencies:
+      immer: registry.npmmirror.com/immer/9.0.12
+      react: registry.npmmirror.com/react/17.0.2
+      react-redux: registry.npmmirror.com/react-redux/7.2.6_react-dom@17.0.2+react@17.0.2
+      redux: registry.npmmirror.com/redux/4.1.2
+      redux-thunk: registry.npmmirror.com/redux-thunk/2.4.1_redux@4.1.2
+      reselect: registry.npmmirror.com/reselect/4.1.5
+    dev: false
+
   registry.npmmirror.com/@rollup/pluginutils/4.1.2:
     resolution: {integrity: sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@rollup/pluginutils/download/@rollup/pluginutils-4.1.2.tgz}
     name: '@rollup/pluginutils'
@@ -3141,6 +3174,14 @@ packages:
       cypress: registry.npmmirror.com/cypress/9.2.0
     dev: true
 
+  registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1:
+    resolution: {integrity: sha1-ESSq/lEYy1kZd66xzqrtEHDrA58=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz}
+    name: '@types/hoist-non-react-statics'
+    version: 3.3.1
+    dependencies:
+      '@types/react': registry.npmmirror.com/@types/react/17.0.38
+      hoist-non-react-statics: registry.nlark.com/hoist-non-react-statics/3.3.2
+
   registry.npmmirror.com/@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/istanbul-lib-coverage/download/@types/istanbul-lib-coverage-2.0.4.tgz}
     name: '@types/istanbul-lib-coverage'
@@ -3184,7 +3225,6 @@ packages:
     resolution: {integrity: sha1-/PcgXCXf95Xuea8eMNosl5CAjxE=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prop-types/download/@types/prop-types-15.7.4.tgz}
     name: '@types/prop-types'
     version: 15.7.4
-    dev: true
 
   registry.npmmirror.com/@types/react-dom/17.0.11:
     resolution: {integrity: sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-dom/download/@types/react-dom-17.0.11.tgz}
@@ -3193,6 +3233,16 @@ packages:
     dependencies:
       '@types/react': registry.npmmirror.com/@types/react/17.0.38
     dev: true
+
+  registry.npmmirror.com/@types/react-redux/7.1.22:
+    resolution: {integrity: sha512-GxIA1kM7ClU73I6wg9IRTVwSO9GS+SAKZKe0Enj+82HMU6aoESFU2HNAdNi3+J53IaOHPiUfT3kSG4L828joDQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-redux/download/@types/react-redux-7.1.22.tgz}
+    name: '@types/react-redux'
+    version: 7.1.22
+    dependencies:
+      '@types/hoist-non-react-statics': registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1
+      '@types/react': registry.npmmirror.com/@types/react/17.0.38
+      hoist-non-react-statics: registry.nlark.com/hoist-non-react-statics/3.3.2
+      redux: registry.npmmirror.com/redux/4.1.2
 
   registry.npmmirror.com/@types/react-test-renderer/17.0.1:
     resolution: {integrity: sha1-MSD30cFX+6nfARja4gywKX7g4Gs=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-test-renderer/download/@types/react-test-renderer-17.0.1.tgz}
@@ -3210,13 +3260,11 @@ packages:
       '@types/prop-types': registry.npmmirror.com/@types/prop-types/15.7.4
       '@types/scheduler': registry.npmmirror.com/@types/scheduler/0.16.2
       csstype: registry.npmmirror.com/csstype/3.0.10
-    dev: true
 
   registry.npmmirror.com/@types/scheduler/0.16.2:
     resolution: {integrity: sha1-GmL4lSVyPd4kuhsBsJK/XfitTTk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/scheduler/download/@types/scheduler-0.16.2.tgz}
     name: '@types/scheduler'
     version: 0.16.2
-    dev: true
 
   registry.npmmirror.com/@types/sinonjs__fake-timers/6.0.4:
     resolution: {integrity: sha1-Dswbklm3ZZjvAZQvVHkEzmGmp30=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/sinonjs__fake-timers/download/@types/sinonjs__fake-timers-6.0.4.tgz}
@@ -3738,7 +3786,7 @@ packages:
     dev: true
 
   registry.npmmirror.com/colors/1.4.0:
-    resolution: {integrity: sha1-xQSRR51MG9rtLJztMs98fcI2D3g=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/colors/download/colors-1.4.0.tgz}
+    resolution: {integrity: sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/colors/download/colors-1.4.0.tgz}
     name: colors
     version: 1.4.0
     engines: {node: '>=0.1.90'}
@@ -3842,7 +3890,6 @@ packages:
     resolution: {integrity: sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csstype/download/csstype-3.0.10.tgz?cache=0&sync_timestamp=1637226973684&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.10.tgz}
     name: csstype
     version: 3.0.10
-    dev: true
 
   registry.npmmirror.com/cypress/9.2.0:
     resolution: {integrity: sha512-Jn26Tprhfzh/a66Sdj9SoaYlnNX6Mjfmj5PHu2a7l3YHXhrgmavM368wjCmgrxC6KHTOv9SpMQGhAJn+upDViA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cypress/download/cypress-9.2.0.tgz}
@@ -4730,6 +4777,12 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  registry.npmmirror.com/immer/9.0.12:
+    resolution: {integrity: sha512-lk7UNmSbAukB5B6dh9fnh5D0bJTOFKxVg2cyJWTYrWRfhLrLMBquONcUs3aFq507hNoIZEDDh8lb8UtOizSMhA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/immer/download/immer-9.0.12.tgz}
+    name: immer
+    version: 9.0.12
+    dev: false
+
   registry.npmmirror.com/immutable/4.0.0:
     resolution: {integrity: sha1-uG943mre82CDle+yaakUYnl+LCM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/immutable/download/immutable-4.0.0.tgz}
     name: immutable
@@ -4839,11 +4892,6 @@ packages:
     version: 27.4.0
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dev: true
-
-  registry.npmmirror.com/js-tokens/4.0.0:
-    resolution: {integrity: sha1-GSA/tZmR35jjoocFDUZHzerzJJk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/js-tokens/download/js-tokens-4.0.0.tgz}
-    name: js-tokens
-    version: 4.0.0
 
   registry.npmmirror.com/js-yaml/4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/js-yaml/download/js-yaml-4.1.0.tgz}
@@ -5314,7 +5362,6 @@ packages:
       loose-envify: registry.nlark.com/loose-envify/1.4.0
       object-assign: registry.nlark.com/object-assign/4.1.1
       react-is: registry.npmmirror.com/react-is/16.13.1
-    dev: true
 
   registry.npmmirror.com/qs/6.5.2:
     resolution: {integrity: sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/qs/download/qs-6.5.2.tgz}
@@ -5356,13 +5403,36 @@ packages:
     resolution: {integrity: sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-is/download/react-is-16.13.1.tgz}
     name: react-is
     version: 16.13.1
-    dev: true
 
   registry.npmmirror.com/react-is/17.0.2:
     resolution: {integrity: sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-is/download/react-is-17.0.2.tgz}
     name: react-is
     version: 17.0.2
-    dev: true
+
+  registry.npmmirror.com/react-redux/7.2.6_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-10RPdsz0UUrRL1NZE0ejTkucnclYSgXp5q+tB5SWx2qeG2ZJQJyymgAhwKy73yiL/13btfB6fPr+rgbMAaZIAQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-redux/download/react-redux-7.2.6.tgz}
+    id: registry.npmmirror.com/react-redux/7.2.6
+    name: react-redux
+    version: 7.2.6
+    peerDependencies:
+      react: ^16.8.3 || ^17
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.16.7
+      '@types/react-redux': registry.npmmirror.com/@types/react-redux/7.1.22
+      hoist-non-react-statics: registry.nlark.com/hoist-non-react-statics/3.3.2
+      loose-envify: registry.nlark.com/loose-envify/1.4.0
+      prop-types: registry.npmmirror.com/prop-types/15.8.1
+      react: registry.npmmirror.com/react/17.0.2
+      react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
+      react-is: registry.npmmirror.com/react-is/17.0.2
+    dev: false
 
   registry.npmmirror.com/react-refresh/0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-refresh/download/react-refresh-0.11.0.tgz}
@@ -5436,11 +5506,28 @@ packages:
       object-assign: registry.nlark.com/object-assign/4.1.1
     dev: false
 
+  registry.npmmirror.com/redux-thunk/2.4.1_redux@4.1.2:
+    resolution: {integrity: sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/redux-thunk/download/redux-thunk-2.4.1.tgz}
+    id: registry.npmmirror.com/redux-thunk/2.4.1
+    name: redux-thunk
+    version: 2.4.1
+    peerDependencies:
+      redux: ^4
+    dependencies:
+      redux: registry.npmmirror.com/redux/4.1.2
+    dev: false
+
+  registry.npmmirror.com/redux/4.1.2:
+    resolution: {integrity: sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/redux/download/redux-4.1.2.tgz}
+    name: redux
+    version: 4.1.2
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.16.7
+
   registry.npmmirror.com/regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-runtime/download/regenerator-runtime-0.13.9.tgz}
     name: regenerator-runtime
     version: 0.13.9
-    dev: false
 
   registry.npmmirror.com/request-progress/3.0.0:
     resolution: {integrity: sha1-TKdUCBx/7GP1BeT6qCWqBs1mnb4=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/request-progress/download/request-progress-3.0.0.tgz}
@@ -5449,6 +5536,12 @@ packages:
     dependencies:
       throttleit: registry.npmmirror.com/throttleit/1.0.0
     dev: true
+
+  registry.npmmirror.com/reselect/4.1.5:
+    resolution: {integrity: sha512-uVdlz8J7OO+ASpBYoz1Zypgx0KasCY20H+N8JD13oUMtPvSHQuscrHop4KbXrbsBcdB9Ds7lVK7eRkBIfO43vQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/reselect/download/reselect-4.1.5.tgz}
+    name: reselect
+    version: 4.1.5
+    dev: false
 
   registry.npmmirror.com/resolve/1.21.0:
     resolution: {integrity: sha512-3wCbTpk5WJlyE4mSOtDLhqQmGFi0/TD9VPwmiolnk8U0wRgMEktqCXd3vy5buTO3tljvalNvKrjHEfrd2WpEKA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/resolve/download/resolve-1.21.0.tgz}
