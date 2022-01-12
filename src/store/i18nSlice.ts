@@ -1,10 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface InitialState {
-  lang: 'en' | 'zh';
+type Lang = 'en' | 'zh';
+
+interface I18nState {
+  lang: Lang;
 }
 
-const initialState: InitialState = {
+const initialState: I18nState = {
   lang: 'en',
 };
 
@@ -12,7 +14,7 @@ export const i18nSlice = createSlice({
   name: 'i18n',
   initialState,
   reducers: {
-    changeLang: (state, action) => {
+    changeLang: (state, action: PayloadAction<Lang>) => {
       state.lang = action.payload;
     },
   },
