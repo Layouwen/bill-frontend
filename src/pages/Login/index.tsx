@@ -1,6 +1,8 @@
+import { login } from '@/api';
+import { useAppDispatch } from '@/store/hooks';
+import { setToken } from '@/store/slice/userSlice';
 import { ChangeEvent, FC, useState } from 'react';
-import Button from '@/components/Button';
-import Input from '@/components/Input';
+import { Button, Input } from '@/components';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
@@ -8,6 +10,7 @@ const Login: FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -15,6 +18,18 @@ const Login: FC = () => {
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const handleLogin = async () => {
+    try {
+      const { statusCode, data } = await login({ username, password });
+      if (statusCode === 200) {
+        dispatch(setToken(data.token));
+        navigate('/');
+      }
+    } catch ({ response: { data } }) {
+      console.log('登录失败');
+    }
   };
 
   return (
@@ -36,7 +51,7 @@ const Login: FC = () => {
             value={password}
           />
         </div>
-        <Button>登录</Button>
+        <Button onClick={handleLogin}>登录</Button>
         <div className={styles.bottom}>
           <span className={styles.back} onClick={() => navigate(-1)}>
             返回

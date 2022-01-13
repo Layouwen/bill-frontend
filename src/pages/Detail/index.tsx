@@ -1,4 +1,4 @@
-import Tabbar from '@/components/Tabbar';
+import { Tabbar } from '@/components';
 import List from '@/pages/Detail/List';
 import Top from '@/pages/Detail/Top';
 import { FC } from 'react';

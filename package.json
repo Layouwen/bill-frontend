@@ -2,8 +2,8 @@
   "name": "bill-frontend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 3231",
-    "build": "tsc && vite build",
+    "dev": "vite --host 0.0.0.0 --port 3231 --mode development",
+    "build": "tsc && vite build --mode production",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest --coverage",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "axios": "^0.24.0",
     "i18next": "^21.6.6",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",

@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon';
+import { Icon } from '@/components';
 import { FC } from 'react';
 import classNames from 'classnames';
 import './index.scss';
@@ -37,7 +37,8 @@ const Tabbar: FC<TabbarProps> = ({ active, change }) => {
     },
   ];
 
-  const isActive = (tab, index: number) => {
+  // TODO: any
+  const isActive = (tab: any, index: number) => {
     return index === active ? tab.iconActive : tab.icon;
   };
 
