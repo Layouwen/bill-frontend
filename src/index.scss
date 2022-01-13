@@ -6,6 +6,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 取消 ios touch 高亮
 }
 
 body {

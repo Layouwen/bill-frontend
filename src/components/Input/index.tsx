@@ -1,11 +1,11 @@
-import { ChangeEventHandler, FC } from 'react'
-import './index.scss'
+import { ChangeEventHandler, FC } from 'react';
+import './index.scss';
 
 interface BwBillInput {
-  label?: string
-  value?: string | number
-  placeholder?: string
-  onChange?: ChangeEventHandler
+  label?: string;
+  value?: string | number;
+  placeholder?: string;
+  onChange?: ChangeEventHandler;
 }
 
 const Input: FC<BwBillInput> = ({ label, value, placeholder, onChange }) => {
@@ -20,7 +20,7 @@ const Input: FC<BwBillInput> = ({ label, value, placeholder, onChange }) => {
         value={value}
       />
     </label>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
