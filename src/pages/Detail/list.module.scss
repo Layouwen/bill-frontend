@@ -1,0 +1,54 @@
+.wrapper {
+  margin-top: 9px;
+  flex-grow: 1;
+  .group {
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 32px;
+      padding: 0 24px 0 14px;
+      color: #969696;
+      border-bottom: 1px solid #ebebeb;
+      .left {
+        font-size: 13px;
+      }
+      .right {
+        font-size: 12px;
+      }
+    }
+    .record {
+      display: flex;
+      align-items: center;
+      height: 55px;
+      .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 65px;
+        height: 54px;
+        .icon {
+          width: 35px;
+          height: 35px;
+          background: #F4F4F4;
+          border-radius: 50%;
+        }
+      }
+      .right {
+        height: 100%;
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 16px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #333333;
+        border-bottom: 1px solid #ebebeb;
+        .price {
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}
