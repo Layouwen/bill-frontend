@@ -48,7 +48,7 @@ const Login: FC = () => {
             value={username}
           />
         </div>
-        <div className="mt-3 mb-20">
+        <div className="mt-3" style={{ marginBottom: '50px' }}>
           <Input
             label="密码"
             placeholder="请输入密码"

@@ -1,14 +1,19 @@
-import { FC, MouseEventHandler } from 'react';
+import { CSSProperties, FC, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
 type ButtonProps = {
   onClick?: MouseEventHandler;
+  style?: CSSProperties;
 };
 
-const Button: FC<ButtonProps> = ({ children, onClick }) => {
+const Button: FC<ButtonProps> = ({ children, onClick, style }) => {
   return (
-    <button className={classNames('bw-bill-button')} onClick={onClick}>
+    <button
+      className={classNames('bw-bill-button')}
+      style={style}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
