@@ -23,3 +23,10 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+
+// fix and icon middle problem
+.adm-toast-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

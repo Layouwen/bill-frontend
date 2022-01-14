@@ -1,6 +1,7 @@
 import { login } from '@/api';
 import { useAppDispatch } from '@/store/hooks';
 import { setToken } from '@/store/slice/userSlice';
+import { Toast } from 'antd-mobile';
 import { ChangeEvent, FC, useState } from 'react';
 import { Button, Input } from '@/components';
 import { useNavigate } from 'react-router-dom';
@@ -25,10 +26,14 @@ const Login: FC = () => {
       const { statusCode, data } = await login({ username, password });
       if (statusCode === 200) {
         dispatch(setToken(data.token));
-        navigate('/');
+        Toast.show({ content: '登录成功', icon: 'success', duration: 1000 });
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       }
-    } catch ({ response: { data } }) {
-      console.log('登录失败');
+    } catch (e) {
+      console.error(e, 'Login/index');
+      Toast.show({ content: '登录失败', icon: 'fail' });
     }
   };
 
