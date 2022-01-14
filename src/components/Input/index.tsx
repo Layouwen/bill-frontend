@@ -1,14 +1,14 @@
 import { ChangeEventHandler, FC } from 'react';
 import './index.scss';
 
-interface BwBillInput {
+type InputProps = {
   label?: string;
   value?: string | number;
   placeholder?: string;
   onChange?: ChangeEventHandler;
-}
+};
 
-const Input: FC<BwBillInput> = ({ label, value, placeholder, onChange }) => {
+const Input: FC<InputProps> = ({ label, value, placeholder, onChange }) => {
   return (
     <label className="bw-bill-input-wrapper">
       <span className="bw-bill-input-name">{label ?? '标题'}</span>

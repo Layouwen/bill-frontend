@@ -2,9 +2,9 @@ import { FC, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
-interface ButtonProps {
+type ButtonProps = {
   onClick?: MouseEventHandler;
-}
+};
 
 const Button: FC<ButtonProps> = ({ children, onClick }) => {
   return (

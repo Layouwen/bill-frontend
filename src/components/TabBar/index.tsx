@@ -3,13 +3,13 @@ import { FC } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
-interface TabbarProps {
+type TabBarProps = {
   active: number;
   change: (index: number) => void;
-}
+};
 
-const Tabbar: FC<TabbarProps> = ({ active, change }) => {
-  const tabbarList = [
+const Tabbar: FC<TabBarProps> = ({ active, change }) => {
+  const tabBarList = [
     {
       name: '明细',
       icon: 'detail',
@@ -43,8 +43,8 @@ const Tabbar: FC<TabbarProps> = ({ active, change }) => {
   };
 
   return (
-    <div className={classNames(['bw-tabbar'])}>
-      {tabbarList.map((tab, index) => (
+    <div className={classNames(['bw-tab-bar'])}>
+      {tabBarList.map((tab, index) => (
         <div key={tab.name} className="item" onClick={() => change(index)}>
           <Icon name={isActive(tab, index)} className="tab-icon" />
           <span className="name">{tab.name}</span>

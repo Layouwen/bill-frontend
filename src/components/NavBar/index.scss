@@ -1,0 +1,26 @@
+$class-prefix-nav-bar: "bw-nav-bar";
+
+.#{$class-prefix-nav-bar} {
+  width: 375px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 13px;
+  color: #323334;
+  background: #AEEEFF;
+  &-left,
+  &-right {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  &-title {
+    flex: auto;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}

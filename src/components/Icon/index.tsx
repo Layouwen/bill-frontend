@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 
-interface IconProps {
+type IconProps = {
   className?: string;
   name: string;
-}
+};
 
 const Icon: FC<IconProps> = ({ name, className }) => {
   return (
