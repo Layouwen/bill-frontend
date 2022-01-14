@@ -1,20 +1,29 @@
 import { ChangeEventHandler, FC } from 'react';
 import './index.scss';
 
+const classPrefix = `bw-input`;
+
 type InputProps = {
+  className?: string;
   label?: string;
   value?: string | number;
   placeholder?: string;
   onChange?: ChangeEventHandler;
 };
 
-const Input: FC<InputProps> = ({ label, value, placeholder, onChange }) => {
+const Input: FC<InputProps> = ({
+  className = '',
+  label,
+  value,
+  placeholder,
+  onChange,
+}) => {
   return (
-    <label className="bw-bill-input-wrapper">
-      <span className="bw-bill-input-name">{label ?? '标题'}</span>
+    <label className={`${classPrefix}-wrapper ${className}`}>
+      {label && <span className={`${classPrefix}-name`}>{label}</span>}
       <input
         onChange={onChange}
-        className="bw-bill-input"
+        className={classPrefix}
         type="text"
         placeholder={placeholder}
         value={value}

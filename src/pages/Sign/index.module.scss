@@ -1,0 +1,17 @@
+.wrapper {
+  height: 100%;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    :global {
+      .bw-input-wrapper {
+        --width: 310px;
+        --prefix-width: 90px;
+      }
+    }
+  }
+
+}
