@@ -9,7 +9,7 @@
     "coverage": "vitest --coverage",
     "lint": "eslint src/**/*.{tsx,ts,js,jsx}",
     "prettier": "prettier --config .prettierrc.js --write src/**/*.{tsx,ts,js,jsx}",
-    "postinstall": "husky install; chmod 700 .husky/pre-commit"
+    "postinstall": "husky install && chmod 700 .husky/pre-commit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
