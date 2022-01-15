@@ -69,16 +69,14 @@
     bottom: 0;
   }
 
-  .list {
-    width: 354px;
+  .list-wrapper {
     height: 68px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #FEFEFE;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 8px;
+    padding: 0 10px 0;
+    .list {
+      background: #FEFEFE;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16);
+      border-radius: 8px;
+    }
   }
 }
 
