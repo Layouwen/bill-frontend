@@ -32,7 +32,14 @@ const Top: FC = () => {
           </div>
         </div>
       </div>
-      <div className={styles.list}>1</div>
+      <div
+        className={classNames(
+          styles['list-wrapper'],
+          'w-full absolute bottom-0 left-1/2 -translate-x-1/2',
+        )}
+      >
+        <div className={classNames(styles.list, 'h-full')}>1</div>
+      </div>
     </div>
   );
 };
