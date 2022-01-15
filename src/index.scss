@@ -1,4 +1,4 @@
-@import "normalize.css";
+@import "~normalize.css";
 
 @tailwind base;
 @tailwind components;
@@ -15,6 +15,9 @@ body {
 
 .page {
   height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .icon {

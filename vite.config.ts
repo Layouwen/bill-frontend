@@ -17,6 +17,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src/'),
+      '~normalize.css': 'normalize.css',
       classnames: 'classnames-es-ts',
     },
   },

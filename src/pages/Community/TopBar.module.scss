@@ -1,0 +1,29 @@
+.wrapper {
+  height: 46px;
+  flex-shrink: 0;
+  padding-left: 15px;
+  font-size: 16px;
+  color: #94969A;
+  background: #FEFEFE;
+  border-bottom: 1px solid #D9D9D9;
+  .title {
+    width: 67px;
+    &.active {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333233;
+      &::before {
+        display: block;
+        content: "";
+        width: 14px;
+        height: 3px;
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #AEEEFF;
+        border-radius: 2px;
+      }
+    }
+  }
+}

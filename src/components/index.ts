@@ -1,7 +1,7 @@
 import Button from './Button';
 import Icon from './Icon';
 import Input from './Input';
-import Tabbar from './TabBar';
+import TabBar from './TabBar';
 import NavBar from './NavBar';
 
-export { Button, Icon, Input, Tabbar, NavBar };
+export { Button, Icon, Input, TabBar, NavBar };

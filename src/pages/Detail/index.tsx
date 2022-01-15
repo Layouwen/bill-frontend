@@ -1,22 +1,14 @@
-import { Tabbar } from '@/components';
+import { TabBar } from '@/components';
 import List from '@/pages/Detail/List';
 import Top from '@/pages/Detail/Top';
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './index.module.scss';
 
 const Detail: FC = () => {
-  const navigation = useNavigate();
-
-  const handleChangeTab = (index: number) => {
-    index === 4 && navigation('/login');
-  };
-
   return (
-    <div className={styles.wrapper}>
+    <div className="page">
       <Top />
       <List />
-      <Tabbar active={0} change={handleChangeTab} />
+      <TabBar active={0} />
     </div>
   );
 };

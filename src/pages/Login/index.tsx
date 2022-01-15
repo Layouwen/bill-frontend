@@ -38,7 +38,7 @@ const Login: FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
+    <div className="page justify-center items-center">
       <div className="-translate-y-1/4">
         <div>
           <Input

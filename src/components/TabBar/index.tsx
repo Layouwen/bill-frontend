@@ -1,39 +1,46 @@
-import { Icon } from '@/components';
+import { useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 import classNames from 'classnames';
+import { Icon } from '@/components';
 import './index.scss';
 
 type TabBarProps = {
   active: number;
-  change: (index: number) => void;
 };
 
-const Tabbar: FC<TabBarProps> = ({ active, change }) => {
+const TabBar: FC<TabBarProps> = ({ active }) => {
+  const navigate = useNavigate();
+
   const tabBarList = [
     {
       name: '明细',
       icon: 'detail',
       iconActive: 'detail-fill',
+      router: '/detail',
     },
     {
       name: '图表',
       icon: 'chart',
       iconActive: 'chart-fill',
+      router: '/sign',
     },
     {
       name: '记账',
       icon: 'community',
       iconActive: 'community-fill',
+      router: '/community',
     },
     {
       name: '社区',
       icon: 'community',
       iconActive: 'community-fill',
+      router: '/community',
     },
     {
       name: '我的',
       icon: 'mine',
       iconActive: 'mine-fill',
+      router: '/login',
     },
   ];
 
@@ -42,10 +49,19 @@ const Tabbar: FC<TabBarProps> = ({ active, change }) => {
     return index === active ? tab.iconActive : tab.icon;
   };
 
+  const changeRoute = (index: number, router: string) => {
+    if (index === active) return;
+    navigate(router);
+  };
+
   return (
     <div className={classNames(['bw-tab-bar'])}>
       {tabBarList.map((tab, index) => (
-        <div key={tab.name} className="item" onClick={() => change(index)}>
+        <div
+          key={tab.name}
+          className="item"
+          onClick={() => changeRoute(index, tab.router)}
+        >
           <Icon name={isActive(tab, index)} className="tab-icon" />
           <span className="name">{tab.name}</span>
         </div>
@@ -54,4 +70,4 @@ const Tabbar: FC<TabBarProps> = ({ active, change }) => {
   );
 };
 
-export default Tabbar;
+export default TabBar;

@@ -55,7 +55,7 @@ const Sign: FC = () => {
   };
 
   return (
-    <div className={classNames(styles.wrapper, 'flex flex-col h-full')}>
+    <div className={classNames(styles.wrapper, 'page')}>
       <NavBar back="返回" backArrow={false} onBack={() => navigate(-1)}>
         注册
       </NavBar>
