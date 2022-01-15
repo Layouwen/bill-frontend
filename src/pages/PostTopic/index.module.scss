@@ -1,0 +1,88 @@
+.wrapper {
+  .top {
+    background: #fefefe;
+    border-bottom: 1px solid #D9D9D9;
+  }
+
+  main {
+    margin: 0 20px;
+    .textarea {
+      width: 100%;
+      min-height: 45px;
+      margin: 17px 0;
+      font-size: 16px;
+      &:empty:before {
+        color: #9D9D9D;
+        content: "请输入内容"
+      }
+    }
+    .imgs {
+      .img {
+        position: relative;
+        margin: 0 9px 9px 0;
+        width: 30%;
+        height: 0;
+        padding-bottom: 30%;
+        background: #F2F2F2;
+        opacity: 1;
+        img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+        .circle {
+          width: 22px;
+          height: 22px;
+          z-index: 20;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          background: #96969670;
+          border-radius: 50%;
+          .del {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            font-size: 12px;
+          }
+        }
+        .add {
+          position: absolute;
+          top: 50%;
+          font-size: 23px;
+        }
+      }
+    }
+  }
+
+  footer {
+    margin-top: 24-9px;
+    padding: 11px 0;
+    border-top: 1px solid #D9D9D9;
+    border-bottom: 1px solid #D9D9D9;
+    > div {
+      padding: 0 9px;
+      font-size: 14px;
+      span {
+        color: #9D9D9D;
+      }
+      div {
+        width: 199px;
+        height: 27px;
+        text-align: center;
+        line-height: 27px;
+        color: #000000;
+        background: #F2F2F2;
+        border-radius: 12px;
+      }
+    }
+    :global {
+      .icon {
+        font-size: 12px;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
