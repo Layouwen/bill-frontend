@@ -1,3 +1,4 @@
+import Mine from '@/pages/Mine';
 import {
   unstable_HistoryRouter as Router,
   Routes,
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/detail" />} />
         <Route path="/community" element={<Community />} />
         <Route path="/sign" element={<Sign />} />
+        <Route path="/mine" element={<Mine />} />
         <Route
           path="/post-topic"
           element={
