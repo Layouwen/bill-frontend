@@ -7,10 +7,11 @@ import {
   ChangeEvent,
   useRef,
   useCallback,
+  MouseEvent,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { Icon, NavBar } from '@/components';
+import { Button, Icon, NavBar } from '@/components';
 import styles from './index.module.scss';
 
 const PostTopic: FC = () => {
@@ -19,29 +20,29 @@ const PostTopic: FC = () => {
   const [imgs, setImgs] = useState<string[]>([]);
   const navigator = useNavigate();
 
-  const deleteImg = (i) => {
+  const deleteImg = (i: number) => {
     const state = [...imgs];
     state.splice(i, 1);
     setImgs(state);
     console.log(imgs);
   };
 
-  const addImg = (e) => {
-    console.log('add', e.target);
+  const addImg = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     uploadRef.current?.click();
-    // void handleAddTopic();
   };
 
-  // TODO: post topic
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleAddTopic = async () => {
     try {
-      await addTopic({ content, images: imgs });
-      Toast.show({ content: '发布成功', duration: 600 });
-      setTimeout(() => {
-        navigator('/community');
-      }, 600);
+      const { statusCode, message } = await addTopic({ content, images: imgs });
+      if (statusCode === 200) {
+        Toast.show({ content: '发布成功', duration: 600 });
+        setTimeout(() => {
+          navigator('/community');
+        }, 600);
+      } else {
+        Toast.show({ content: message?.[0] });
+      }
     } catch ({
       data: {
         message: [msg],
@@ -60,7 +61,6 @@ const PostTopic: FC = () => {
   const changeFiles = async (e: ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
     const files = target.files;
-    console.log(files, imgs);
     if (!files) return;
     if (imgs.length + files.length > 9) {
       clearFiles();
@@ -74,31 +74,28 @@ const PostTopic: FC = () => {
       maskClickable: false,
     });
 
-    const uploadFiles = [...files].map((file) => {
+    const uploadFileCb = (data: FormData) => {
+      return () => uploadFile(data);
+    };
+
+    const formDataCb = [...files].map((file) => {
       const formData = new FormData();
       formData.append('file', file);
-      return () => uploadFile(formData);
+      return uploadFileCb(formData);
     });
 
-    let test = 0;
+    const data = [] as string[];
     try {
-      for (const p of uploadFiles) {
-        if (test < 1) {
-          test++;
-          const res = await p();
-          console.log(res);
-        }
+      for (const cb of formDataCb) {
+        const res = await cb();
+        if (res) data.push(res.data.url);
       }
     } finally {
-      console.log(uploadFiles);
       clearFiles();
       Toast.clear();
     }
 
-    // TODO: save img url to state
-    // setImgs(
-    //   [...imgs].concat([...files].map((file) => URL.createObjectURL(file))),
-    // );
+    setImgs([...imgs].concat(data));
   };
 
   useEffect(() => {
@@ -115,7 +112,7 @@ const PostTopic: FC = () => {
       >
         发帖
       </NavBar>
-      <main>
+      <main className="grow">
         <div
           onInput={(e: ChangeEvent<HTMLDivElement>) => {
             setContent(e.target.innerText);
@@ -162,6 +159,9 @@ const PostTopic: FC = () => {
           <Icon name="back" />
         </footer>
       </main>
+      <Button size="full" block onClick={handleAddTopic}>
+        发表
+      </Button>
     </div>
   );
 };

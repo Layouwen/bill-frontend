@@ -34,8 +34,7 @@ request.interceptors.response.use(
         history.push('/login');
       }, 800);
     }
-    return response;
-    // return Promise.reject(response);
+    return response.data;
   },
 );
 
