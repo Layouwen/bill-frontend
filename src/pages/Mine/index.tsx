@@ -98,7 +98,7 @@ const Mine: FC = () => {
             <div className="flex grow">
               <div
                 className="flex justify-center items-center h-full"
-                style={{ width: '40%' }}
+                style={{ width: '40%', transform: 'translate(-16px)' }}
               >
                 <p>剩余</p>
                 <p>76%</p>
