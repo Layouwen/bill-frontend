@@ -7,4 +7,7 @@ $class-prefix-icon: "bw-icon";
   fill: currentColor;
   overflow: hidden;
   font-size: 20px;
+  &-block {
+    display: block;
+  }
 }
