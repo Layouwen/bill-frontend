@@ -1,9 +1,10 @@
 import {
-  BrowserRouter as Router,
+  unstable_HistoryRouter as Router,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
+import { history } from '@/utils';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
 import Detail from '@/pages/Detail';
@@ -15,7 +16,7 @@ import Login from '@/pages/Login';
 
 const App = () => {
   return (
-    <Router>
+    <Router history={history}>
       <FirstScreen />
       <Routes>
         <Route path="/" element={<Navigate to="/detail" />} />
