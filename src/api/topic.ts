@@ -2,6 +2,7 @@ import { request } from '@/utils';
 
 export type Topic = {
   id: number;
+  avatar: string;
   name: string;
   content: string;
   images: string[];

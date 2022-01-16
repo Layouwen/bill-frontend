@@ -23,7 +23,11 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
                   'rounded-full overflow-hidden',
                 )}
               >
-                {/*<img className="w-full" src={i.avatar} alt="" />*/}
+                <img
+                  className="w-full h-full object-cover"
+                  src={i.avatar}
+                  alt={i.name}
+                />
               </div>
               <div className="flex-grow">
                 <div className={styles.name}>{i.name}</div>

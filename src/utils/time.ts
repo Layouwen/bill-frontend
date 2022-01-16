@@ -9,7 +9,7 @@ dayjs.updateLocale('en', {
   relativeTime: {
     future: '%s前',
     past: '%s后',
-    s: '1秒',
+    s: '刚刚',
     m: '1分',
     mm: '%d分',
     h: '1小时',
@@ -28,6 +28,6 @@ export const showDate = (timestamp: string) => {
   const before = dayjs(timestamp).valueOf();
   const oneDay = 60 * 60 * 24 * 1000;
   return now - before < oneDay
-    ? dayjs().from(timestamp)
+    ? dayjs().from(timestamp, now - before < 60 * 1000)
     : dayjs(timestamp).format('YYYY-MM-DD HH:mm');
 };
