@@ -1,5 +1,8 @@
 import classNames from 'classnames';
 import { FC } from 'react';
+import './index.scss';
+
+const classPrefix = 'bw-icon';
 
 type IconProps = {
   className?: string;
@@ -8,7 +11,10 @@ type IconProps = {
 
 const Icon: FC<IconProps> = ({ name, className }) => {
   return (
-    <svg className={classNames('icon', className)} aria-hidden="true">
+    <svg
+      className={classNames('icon', classPrefix, className)}
+      aria-hidden="true"
+    >
       <use xlinkHref={`#icon-${name}`} />
     </svg>
   );
