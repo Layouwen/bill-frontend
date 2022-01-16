@@ -1,7 +1,8 @@
+import { FC } from 'react';
+import classNames from 'classnames';
 import { Topic } from '@/api';
 import { Icon } from '@/components';
-import classNames from 'classnames';
-import { FC } from 'react';
+import { showDate } from '@/utils/time';
 import styles from './ItemList.module.scss';
 
 type ItemListProps = {
@@ -26,7 +27,7 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
               </div>
               <div className="flex-grow">
                 <div className={styles.name}>{i.name}</div>
-                <div className={styles.time}>{i.createdAt}</div>
+                <div className={styles.time}>{showDate(i.createdAt)}</div>
               </div>
             </div>
             <main>
