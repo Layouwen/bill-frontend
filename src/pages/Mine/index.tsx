@@ -1,10 +1,36 @@
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { FC, useEffect } from 'react';
+import classNames from 'classnames';
+import { getUserInfo } from '@/api';
 import { Icon, TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
-import classNames from 'classnames';
-import { FC } from 'react';
 import styles from './index.module.scss';
 
 const Mine: FC = () => {
+  const { name, avatar } = useAppSelector((state) => ({
+    name: state.user.name,
+    avatar: state.user.avatar,
+  }));
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    void getInfo();
+  }, []);
+
+  const getInfo = async () => {
+    try {
+      const { data, statusCode } = await getUserInfo();
+      if (statusCode === 200) {
+        dispatch({
+          type: 'user/setUserInfo',
+          payload: data,
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const tabs = [
     {
       icon: 'msg',
@@ -30,7 +56,7 @@ const Mine: FC = () => {
   return (
     <div className={classNames('page', styles.wrapper)}>
       <main className="overflow-auto flex flex-col grow">
-        <UserInfo />
+        <UserInfo name={name} avatar={avatar} />
         <div className={styles.box}>
           <div className={classNames(styles.menu, 'flex')}>
             {tabs.map((tab) => (

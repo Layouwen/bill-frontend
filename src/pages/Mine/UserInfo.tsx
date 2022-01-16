@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import styles from './UserInfo.module.scss';
 
-const UserInfo: FC = () => {
+type UserInfoProps = {
+  avatar?: string;
+  name?: string;
+};
+
+const UserInfo: FC<UserInfoProps> = ({ name, avatar }) => {
   return (
     <div
       className={classNames(
@@ -16,12 +21,13 @@ const UserInfo: FC = () => {
           <img
             className="w-full h-full object-cover"
             src={
-              'http://bill-rearend.oss-cn-guangzhou.aliyuncs.com/7ee0905f626645b291b4d6e62cefe1b7aa4c784895564d882ccaf532f4dead39'
+              avatar ||
+              'https://bill-rearend.oss-cn-guangzhou.aliyuncs.com/static/defulatAvatar.jpg'
             }
-            alt={''}
+            alt={name}
           />
         </div>
-        <span>Web_Program</span>
+        <span>{name || '未登录'}</span>
       </div>
       <div className={classNames(styles.middle, 'flex absolute w-full')}>
         <div className="grow flex flex-col justify-center items-center">
