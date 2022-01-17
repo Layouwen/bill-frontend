@@ -10,7 +10,7 @@ dayjs.updateLocale('en', {
     future: '%s前',
     past: '%s后',
     s: '刚刚',
-    m: '1分',
+    m: '1分前',
     mm: '%d分',
     h: '1小时',
     hh: '%d小时',
