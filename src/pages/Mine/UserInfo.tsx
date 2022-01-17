@@ -1,6 +1,7 @@
-import { Icon } from '@/components';
-import classNames from 'classnames';
 import { FC } from 'react';
+import classNames from 'classnames';
+import { Icon } from '@/components';
+import { useNavigate } from 'react-router-dom';
 import styles from './UserInfo.module.scss';
 
 type UserInfoProps = {
@@ -9,6 +10,9 @@ type UserInfoProps = {
 };
 
 const UserInfo: FC<UserInfoProps> = ({ name, avatar }) => {
+  const navigate = useNavigate();
+  const toUserInfo = () => navigate('/user-info');
+
   return (
     <div
       className={classNames(
@@ -16,7 +20,10 @@ const UserInfo: FC<UserInfoProps> = ({ name, avatar }) => {
         'w-full relative overflow-hidden flex-shrink-0',
       )}
     >
-      <div className={classNames(styles.avatar, 'absolute flex items-center')}>
+      <div
+        className={classNames(styles.avatar, 'absolute flex items-center')}
+        onClick={toUserInfo}
+      >
         <div className={classNames(styles.img, 'overflow-hidden rounded-full')}>
           <img
             className="w-full h-full object-cover"
@@ -62,10 +69,7 @@ const UserInfo: FC<UserInfoProps> = ({ name, avatar }) => {
           <span className="grow" style={{ lineHeight: '15px' }}>
             升级为VIP
           </span>
-          <Icon
-            name="back"
-            className={classNames(styles.right, 'rotate-180')}
-          />
+          <Icon name="right" className={classNames(styles.right)} />
         </div>
       </div>
     </div>

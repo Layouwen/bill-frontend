@@ -9,5 +9,5 @@ interface UserInfo {
 }
 
 export const getUserInfo = () => {
-  return request.post<unknown, BaseResponse<UserInfo>>('/user/userInfo');
+  return request.get<unknown, BaseResponse<UserInfo>>('/user/userInfo');
 };
