@@ -8,16 +8,15 @@ type UserInfo = {
   avatar: string;
 };
 
-// type UpdateUserInfo = {
-//   avatar: string;
-//   username: string;
-//   name: string;
-// };
+type UpdateUserInfo = {
+  avatar: string;
+  name: string;
+};
 
 export const getUserInfo = () => {
   return request.get<unknown, SuccessResponse<UserInfo>>('/user/userInfo');
 };
 
-// export const updateUserInfo = (data: UpdateUserInfo) => {
-//   return request.put<unknown, SuccessResponse<any>>('/user/userInfo');
-// };
+export const updateUserInfo = (data: UpdateUserInfo) => {
+  return request.put<unknown, SuccessResponse<any>>('/user/userInfo', data);
+};
