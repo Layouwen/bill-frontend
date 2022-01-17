@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUserInfo } from '@/api';
 import { Icon, TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
+import { setUserInfo } from '@/store/slice';
 import styles from './index.module.scss';
 
 const Mine: FC = () => {
@@ -20,12 +21,7 @@ const Mine: FC = () => {
   const getInfo = async () => {
     try {
       const { data, statusCode } = await getUserInfo();
-      if (statusCode === 200) {
-        dispatch({
-          type: 'user/setUserInfo',
-          payload: data,
-        });
-      }
+      if (statusCode === 200) dispatch(setUserInfo(data));
     } catch (e) {
       console.error(e);
     }
