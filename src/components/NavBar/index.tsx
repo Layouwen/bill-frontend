@@ -30,7 +30,7 @@ const NavBar: FC<NavBarProps> = (p) => {
           <div className={`${classPrefix}-back`} onClick={props.onBack}>
             {backArrow && (
               <span className={`${classPrefix}-back-arrow`}>
-                {backArrow === true ? <Icon name="back" /> : backArrow}
+                {backArrow === true ? <Icon name="left" /> : backArrow}
               </span>
             )}
             <span aria-hidden="true">{back}</span>
