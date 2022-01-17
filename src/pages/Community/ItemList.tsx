@@ -46,7 +46,10 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
                         'relative h-0 overflow-hidden',
                       )}
                     >
-                      <img src={img} alt="" />
+                      <img
+                        src={img + '?x-oss-process=image/resize,h_90'}
+                        alt=""
+                      />
                     </div>
                   ))}
               </div>
