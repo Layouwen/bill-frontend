@@ -25,7 +25,7 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
       state.username = action.payload.username;
       state.avatar = action.payload.avatar;
-      localStorage.setItem('userinfo', JSON.stringify(action.payload));
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
   },
 });

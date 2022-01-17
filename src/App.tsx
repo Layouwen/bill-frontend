@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import {
   unstable_HistoryRouter as Router,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
+import { useAppDispatch } from '@/store/hooks';
+import { setUserInfo } from '@/store/slice';
 import { history } from '@/utils';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
@@ -17,6 +20,12 @@ import Mine from '@/pages/Mine';
 import UserInfo from '@/pages/UserInfo';
 
 const App = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) dispatch(setUserInfo(JSON.parse(userInfo)));
+  }, []);
+
   return (
     <Router history={history}>
       <FirstScreen />
