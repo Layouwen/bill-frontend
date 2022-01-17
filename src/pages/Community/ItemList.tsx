@@ -47,6 +47,7 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
                       )}
                     >
                       <img
+                        className="w-full h-full object-cover"
                         src={img + '?x-oss-process=image/resize,h_90'}
                         alt=""
                       />
