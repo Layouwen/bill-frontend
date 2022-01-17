@@ -1,6 +1,6 @@
 import { request } from '@/utils';
 
-type UserInfo = {
+export type UserInfo = {
   id: number;
   userId: string;
   name: string;

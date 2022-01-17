@@ -1,3 +1,4 @@
+import { UserInfo } from '@/api';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
@@ -24,7 +25,7 @@ export const userSlice = createSlice({
       state.token = action.payload;
       localStorage.setItem('token', action.payload);
     },
-    setUserInfo: (state, action: PayloadAction<UserState>) => {
+    setUserInfo: (state, action: PayloadAction<UserInfo>) => {
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.username = action.payload.username;
