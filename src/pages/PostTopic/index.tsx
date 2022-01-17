@@ -90,9 +90,9 @@ const PostTopic: FC = () => {
         const res = await cb();
         if (res) data.push(res.data.url);
       }
+      Toast.clear();
     } finally {
       clearFiles();
-      Toast.clear();
     }
 
     setImgs([...imgs].concat(data));
@@ -127,7 +127,11 @@ const PostTopic: FC = () => {
               <div className={styles.circle} onClick={() => deleteImg(i)}>
                 <Icon name="add" className={styles.del} />
               </div>
-              <img src={img} alt="" onClick={() => console.log(1)} />
+              <img
+                src={img + '?x-oss-process=image/resize,h_100'}
+                alt=""
+                onClick={() => console.log(1)}
+              />
             </div>
           ))}
           {imgs.length < 9 && (

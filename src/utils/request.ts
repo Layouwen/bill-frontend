@@ -24,18 +24,25 @@ request.interceptors.response.use(
     return response.data;
   },
   ({ response }) => {
-    if (response.status === 401) {
-      localStorage.removeItem('token');
-      Toast.show({
-        content: '登录已过期，请重新登录',
-        duration: 800,
-      });
-      setTimeout(() => {
-        history.push('/login');
-      }, 800);
-    }
+    errorHandlers[response.status as keyof typeof errorHandlers]?.();
     return response.data;
   },
 );
+
+const errorHandlers = {
+  401: () => {
+    localStorage.removeItem('token');
+    Toast.show({
+      content: '登录已过期，请重新登录',
+      duration: 800,
+    });
+    setTimeout(() => {
+      history.push('/login');
+    }, 800);
+  },
+  413: () => {
+    Toast.show({ content: '图片太大，请重新选择', duration: 800 });
+  },
+};
 
 export { request };
