@@ -1,11 +1,12 @@
-import { Modal } from 'antd-mobile';
+import choseFile from '@/utils/choseFile';
+import { Modal, Toast } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
 import React, { FC, useCallback, useRef } from 'react';
 import classNames from 'classnames';
 import { Button, List, NavBar } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logOut, updateUserInfo as updateInfo } from '@/store/slice';
-import { updateUserInfo } from '@/api';
+import { updateUserInfo, uploadFile } from '@/api';
 import styles from './index.module.scss';
 
 const userInfo: FC = () => {
@@ -50,6 +51,26 @@ const userInfo: FC = () => {
     });
   };
 
+  const handleChangeAvatar = async () => {
+    const files = await choseFile();
+    const formData = new FormData();
+    if (!files) return;
+    formData.append('file', files[0]);
+    const { statusCode, data } = await uploadFile(formData);
+    if (statusCode !== 200) {
+      Toast.show({ content: '更新失败', icon: 'fail' });
+      return;
+    }
+    const { statusCode: status } = await updateUserInfo({
+      name: user.name,
+      avatar: data.url,
+    });
+    if (status === 200) {
+      dispatch(updateInfo({ name: user.name, avatar: data.url }));
+      Toast.show({ content: '更新成功', icon: 'success', duration: 800 });
+    }
+  };
+
   return (
     <div className={classNames('page')} style={{ background: '#f2f2f7' }}>
       <NavBar back="返回" onBack={() => navigate(-1)}>
@@ -65,6 +86,7 @@ const userInfo: FC = () => {
                 styles.avatar,
                 'rounded-full overflow-hidden',
               )}
+              onClick={handleChangeAvatar}
             >
               <img
                 className="w-full h-full object-cover"
@@ -92,5 +114,4 @@ const userInfo: FC = () => {
     </div>
   );
 };
-
 export default userInfo;
