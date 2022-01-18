@@ -28,6 +28,7 @@ const userInfo: FC = () => {
       content: (
         <>
           <input
+            className={styles['inner-input']}
             defaultValue={user.name}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
               name.current = e.target.value;
