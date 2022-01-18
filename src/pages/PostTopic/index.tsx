@@ -160,7 +160,7 @@ const PostTopic: FC = () => {
             <span>#参与话题</span>
             <div>选择合适的话题会有更多赞~</div>
           </div>
-          <Icon name="back" />
+          <Icon name="left" />
         </footer>
       </main>
       <Button size="full" block onClick={handleAddTopic}>

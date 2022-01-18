@@ -1,9 +1,10 @@
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { FC, useEffect } from 'react';
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUserInfo } from '@/api';
 import { Icon, TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
+import { setUserInfo } from '@/store/slice';
 import styles from './index.module.scss';
 
 const Mine: FC = () => {
@@ -20,12 +21,7 @@ const Mine: FC = () => {
   const getInfo = async () => {
     try {
       const { data, statusCode } = await getUserInfo();
-      if (statusCode === 200) {
-        dispatch({
-          type: 'user/setUserInfo',
-          payload: data,
-        });
-      }
+      if (statusCode === 200) dispatch(setUserInfo(data));
     } catch (e) {
       console.error(e);
     }
@@ -57,6 +53,7 @@ const Mine: FC = () => {
     <div className={classNames('page', styles.wrapper)}>
       <main className="overflow-auto flex flex-col grow">
         <UserInfo name={name} avatar={avatar} />
+
         <div className={styles.box}>
           <div className={classNames(styles.menu, 'flex')}>
             {tabs.map((tab) => (
@@ -80,11 +77,7 @@ const Mine: FC = () => {
               )}
             >
               账单
-              <Icon
-                name="back"
-                className="rotate-180"
-                style={{ fontSize: 12 }}
-              />
+              <Icon name="right" style={{ fontSize: 12 }} />
             </div>
             <div className={classNames(styles.bottom, 'flex grow items-end')}>
               <div className={classNames(styles.big, 'flex-shrink-0 relative')}>
@@ -115,11 +108,7 @@ const Mine: FC = () => {
             >
               08月总预算
               <p className="ml-auto">查看全部</p>
-              <Icon
-                name="back"
-                className="rotate-180"
-                style={{ fontSize: 12 }}
-              />
+              <Icon name="right" style={{ fontSize: 12 }} />
             </div>
             <div className="flex grow">
               <div
@@ -162,7 +151,7 @@ const Mine: FC = () => {
             )}
           >
             设置
-            <Icon name="back" className="rotate-180" style={{ fontSize: 12 }} />
+            <Icon name="right" style={{ fontSize: 12 }} />
           </div>
         </div>
       </main>

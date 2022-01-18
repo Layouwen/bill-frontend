@@ -1,10 +1,12 @@
-import Mine from '@/pages/Mine';
+import { useEffect } from 'react';
 import {
   unstable_HistoryRouter as Router,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
+import { useAppDispatch } from '@/store/hooks';
+import { setUserInfo } from '@/store/slice';
 import { history } from '@/utils';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
@@ -14,14 +16,30 @@ import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/Sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
+import Mine from '@/pages/Mine';
+import UserInfo from '@/pages/UserInfo';
 
 const App = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) dispatch(setUserInfo(JSON.parse(userInfo)));
+  }, []);
+
   return (
     <Router history={history}>
       <FirstScreen />
       <Routes>
         <Route path="/" element={<Navigate to="/detail" />} />
         <Route path="/community" element={<Community />} />
+        <Route
+          path="/user-info"
+          element={
+            <LoginGuard>
+              <UserInfo />
+            </LoginGuard>
+          }
+        />
         <Route path="/sign" element={<Sign />} />
         <Route path="/mine" element={<Mine />} />
         <Route

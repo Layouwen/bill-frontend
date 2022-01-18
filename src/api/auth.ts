@@ -5,7 +5,7 @@ interface LoginRes {
 }
 
 export const login = (body: { username: string; password: string }) => {
-  return request.post<never, BaseResponse<LoginRes>>('/auth/login', body);
+  return request.post<never, SuccessResponse<LoginRes>>('/auth/login', body);
 };
 
 export const sign = (body: {
@@ -13,5 +13,5 @@ export const sign = (body: {
   password: string;
   name: string;
 }) => {
-  return request.post<never, BaseResponse<LoginRes>>('/auth/sign', body);
+  return request.post<never, SuccessResponse<LoginRes>>('/auth/sign', body);
 };
