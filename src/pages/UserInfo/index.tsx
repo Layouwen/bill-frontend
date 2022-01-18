@@ -79,6 +79,7 @@ const userInfo: FC = () => {
       <div style={{ height: 10 }} />
       <List>
         <List.Item
+          onClick={handleChangeAvatar}
           arrow={false}
           extra={
             <div
@@ -86,7 +87,6 @@ const userInfo: FC = () => {
                 styles.avatar,
                 'rounded-full overflow-hidden',
               )}
-              onClick={handleChangeAvatar}
             >
               <img
                 className="w-full h-full object-cover"

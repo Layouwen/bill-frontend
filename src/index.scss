@@ -17,8 +17,11 @@ textarea, input {
   outline: none;
 }
 
+html, body, #root, .page {
+  height: 100%;
+}
+
 .page {
-  height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
