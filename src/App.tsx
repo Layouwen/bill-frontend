@@ -18,6 +18,7 @@ import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
 import Mine from '@/pages/Mine';
 import UserInfo from '@/pages/UserInfo';
+import Password from '@/pages/Password';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -37,6 +38,14 @@ const App = () => {
           element={
             <LoginGuard>
               <UserInfo />
+            </LoginGuard>
+          }
+        />
+        <Route
+          path="/password"
+          element={
+            <LoginGuard>
+              <Password />
             </LoginGuard>
           }
         />

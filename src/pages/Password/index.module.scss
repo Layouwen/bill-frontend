@@ -1,0 +1,13 @@
+.wrapper {
+  main {
+    .box {
+      transform: translateY(-12%);
+      :global {
+        .bw-input-wrapper {
+          --width: 310px;
+          --prefix-width: 90px;
+        }
+      }
+    }
+  }
+}

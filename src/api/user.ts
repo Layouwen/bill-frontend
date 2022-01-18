@@ -13,10 +13,19 @@ type UpdateUserInfo = {
   name: string;
 };
 
+type UpdatePassword = {
+  password: string;
+  newPassword: string;
+};
+
 export const getUserInfo = () => {
   return request.get<unknown, SuccessResponse<UserInfo>>('/user/userInfo');
 };
 
 export const updateUserInfo = (data: UpdateUserInfo) => {
   return request.put<unknown, SuccessResponse<any>>('/user/userInfo', data);
+};
+
+export const changePassword = (data: UpdatePassword) => {
+  return request.put<unknown, SuccessResponse<any>>('/user/password', data);
 };
