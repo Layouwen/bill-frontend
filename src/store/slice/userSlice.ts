@@ -32,6 +32,15 @@ export const userSlice = createSlice({
       state.avatar = action.payload.avatar;
       localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
+    updateUserInfo: (
+      state,
+      {
+        payload: { name, avatar },
+      }: PayloadAction<{ name: string; avatar: string }>,
+    ) => {
+      state.name = name;
+      state.avatar = avatar;
+    },
     logOut: (state) => {
       state.id = '';
       state.username = '';
@@ -43,6 +52,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setToken, setUserInfo, logOut } = userSlice.actions;
+export const { setToken, setUserInfo, updateUserInfo, logOut } =
+  userSlice.actions;
 
 export default userSlice.reducer;

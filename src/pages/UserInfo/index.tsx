@@ -4,7 +4,7 @@ import React, { FC, useCallback, useRef } from 'react';
 import classNames from 'classnames';
 import { Button, List, NavBar } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { logOut, setUserInfo } from '@/store/slice';
+import { logOut, updateUserInfo as updateInfo } from '@/store/slice';
 import { updateUserInfo } from '@/api';
 import styles from './index.module.scss';
 
@@ -41,9 +41,7 @@ const userInfo: FC = () => {
           avatar: user.avatar,
         });
         if (statusCode === 200) {
-          dispatch(
-            setUserInfo({ ...user, name: name.current, avatar: user.avatar }),
-          );
+          dispatch(updateInfo({ name: name.current, avatar: user.avatar }));
           name.current = '';
         }
         return;
