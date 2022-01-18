@@ -65,7 +65,6 @@ const userInfo: FC = () => {
                 styles.avatar,
                 'rounded-full overflow-hidden',
               )}
-              onClick={() => console.log('换头像')}
             >
               <img
                 className="w-full h-full object-cover"
