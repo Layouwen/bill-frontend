@@ -1,4 +1,3 @@
-import { history } from '@/utils/history';
 import { Toast } from 'antd-mobile';
 import axios from 'axios';
 
@@ -37,7 +36,7 @@ const errorHandlers = {
       duration: 800,
     });
     setTimeout(() => {
-      history.push('/login');
+      window.location.hash = '/login';
     }, 800);
   },
   413: () => {

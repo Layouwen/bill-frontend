@@ -25,7 +25,6 @@ specifiers:
   eslint-plugin-cypress: ^2.12.1
   eslint-plugin-jest: ^25.3.4
   eslint-plugin-react: ^7.28.0
-  history: ^5.2.0
   husky: ^7.0.4
   i18next: ^21.6.6
   jsdom: ^19.0.0
@@ -50,7 +49,6 @@ dependencies:
   antd-mobile: registry.npmmirror.com/antd-mobile/5.0.0-rc.17_react-dom@17.0.2+react@17.0.2
   axios: registry.npmmirror.com/axios/0.24.0
   dayjs: registry.npmmirror.com/dayjs/1.10.7
-  history: registry.npmmirror.com/history/5.2.0
   i18next: registry.npmmirror.com/i18next/21.6.6
   normalize.css: registry.npmmirror.com/normalize.css/8.0.1
   react: registry.npmmirror.com/react/17.0.2
