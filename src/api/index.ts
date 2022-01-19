@@ -4,7 +4,7 @@ export * from './auth';
 export * from './topic';
 export * from './user';
 
-export const uploadFile = async (body: FormData) => {
+export const uploadFile = async (body: FormData, loading = true) => {
   return request.post<unknown, SuccessResponse<{ url: string }>>(
     '/upload',
     body,
@@ -12,6 +12,7 @@ export const uploadFile = async (body: FormData) => {
       headers: {
         contentType: 'multipart/form-data',
       },
+      loading,
     },
   );
 };

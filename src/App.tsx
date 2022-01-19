@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import {
-  unstable_HistoryRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
 import { useAppDispatch } from '@/store/hooks';
 import { setUserInfo } from '@/store/slice';
-import { history } from '@/utils';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
 import Detail from '@/pages/Detail';
@@ -28,7 +27,7 @@ const App = () => {
   }, []);
 
   return (
-    <Router history={history}>
+    <Router>
       <FirstScreen />
       <Routes>
         <Route path="/" element={<Navigate to="/detail" />} />

@@ -52,6 +52,7 @@ const Login: FC = () => {
           <Input
             label="密码"
             placeholder="请输入密码"
+            type="password"
             onChange={handlePasswordChange}
             value={password}
           />
