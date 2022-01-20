@@ -2,6 +2,12 @@ import { request } from '@/utils';
 
 interface LoginRes {
   token: string;
+  userInfo: {
+    id: number;
+    name: string;
+    username: string;
+    avatar: string;
+  };
 }
 
 export const login = (

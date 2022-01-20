@@ -8,14 +8,15 @@ import { setUserInfo } from '@/store/slice';
 import styles from './index.module.scss';
 
 const Mine: FC = () => {
-  const { name, avatar } = useAppSelector((state) => ({
-    name: state.user.name,
-    avatar: state.user.avatar,
+  const { name, token, avatar } = useAppSelector((state) => ({
+    name: state.user.userInfo.name,
+    avatar: state.user.userInfo.avatar,
+    token: state.user.token,
   }));
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    void getInfo();
+    token && void getInfo();
   }, []);
 
   const getInfo = async () => {

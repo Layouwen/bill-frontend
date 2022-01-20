@@ -10,7 +10,7 @@ import { updateUserInfo, uploadFile } from '@/api';
 import styles from './index.module.scss';
 
 const userInfo: FC = () => {
-  const user = useAppSelector((state) => state.user);
+  const userData = useAppSelector((state) => state.user.userInfo);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const name = useRef('');
@@ -23,14 +23,14 @@ const userInfo: FC = () => {
   };
 
   const handleChangeName = () => {
-    name.current = user.name;
+    name.current = userData.name;
     Modal.confirm({
       title: '昵称',
       content: (
         <>
           <input
             className={styles['inner-input']}
-            defaultValue={user.name}
+            defaultValue={userData.name}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
               name.current = e.target.value;
             }}
@@ -40,10 +40,10 @@ const userInfo: FC = () => {
       onConfirm: async () => {
         const { statusCode } = await updateUserInfo({
           name: name.current,
-          avatar: user.avatar,
+          avatar: userData.avatar,
         });
         if (statusCode === 200) {
-          dispatch(updateInfo({ name: name.current, avatar: user.avatar }));
+          dispatch(updateInfo({ name: name.current, avatar: userData.avatar }));
           name.current = '';
         }
         return;
@@ -62,12 +62,11 @@ const userInfo: FC = () => {
       return;
     }
     const { statusCode: status } = await updateUserInfo({
-      name: user.name,
+      name: userData.name,
       avatar: data.url,
     });
     if (status === 200) {
-      dispatch(updateInfo({ name: user.name, avatar: data.url }));
-      Toast.show({ content: '更新成功', icon: 'success', duration: 800 });
+      dispatch(updateInfo({ name: userData.name, avatar: data.url }));
     }
   };
 
@@ -90,18 +89,18 @@ const userInfo: FC = () => {
             >
               <img
                 className="w-full h-full object-cover"
-                src={user.avatar}
-                alt={user.name}
+                src={userData.avatar}
+                alt={userData.name}
               />
             </div>
           }
         >
           头像
         </List.Item>
-        <List.Item clickable arrow={false} extra={user.id}>
+        <List.Item clickable arrow={false} extra={userData.id}>
           ID
         </List.Item>
-        <List.Item extra={user.name} onClick={handleChangeName}>
+        <List.Item extra={userData.name} onClick={handleChangeName}>
           昵称
         </List.Item>
       </List>

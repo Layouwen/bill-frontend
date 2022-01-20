@@ -1,20 +1,20 @@
-import { UserInfo } from '@/api';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface UserState {
+type UserInfo = {
   id: number | string;
-  token: string;
   name: string;
   username: string;
   avatar: string;
+};
+
+interface UserState {
+  token: string;
+  userInfo: UserInfo;
 }
 
 const initialState: UserState = {
   token: localStorage.getItem('token') || '',
-  id: '',
-  name: '',
-  username: '',
-  avatar: '',
+  userInfo: JSON.parse(localStorage.getItem('userInfo') || '{}'),
 };
 
 export const userSlice = createSlice({
@@ -26,10 +26,8 @@ export const userSlice = createSlice({
       localStorage.setItem('token', action.payload);
     },
     setUserInfo: (state, action: PayloadAction<UserInfo>) => {
-      state.id = action.payload.id;
-      state.name = action.payload.name;
-      state.username = action.payload.username;
-      state.avatar = action.payload.avatar;
+      const { id, name, username, avatar } = action.payload;
+      state.userInfo = { id, name, username, avatar };
       localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
     updateUserInfo: (
@@ -38,15 +36,16 @@ export const userSlice = createSlice({
         payload: { name, avatar },
       }: PayloadAction<{ name: string; avatar: string }>,
     ) => {
-      state.name = name;
-      state.avatar = avatar;
+      state.userInfo = { ...state.userInfo, name, avatar };
     },
     logOut: (state) => {
-      state.id = '';
-      state.username = '';
+      state.userInfo = {
+        username: '',
+        name: '',
+        id: '',
+        avatar: '',
+      };
       state.token = '';
-      state.name = '';
-      state.avatar = '';
       localStorage.clear();
     },
   },

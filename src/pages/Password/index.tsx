@@ -29,18 +29,11 @@ const Password: FC = () => {
     if (newPassword !== rePassword) {
       return Toast.show('新密码不一致');
     }
-    const { statusCode, message } = await changePassword({
+    const { statusCode } = await changePassword({
       password: oldPassword,
       newPassword,
     });
-    if (statusCode === 200) {
-      Toast.show({ content: '修改成功', duration: 1000, icon: 'success' });
-      setTimeout(() => {
-        navigate(-1);
-      }, 1000);
-    } else {
-      Toast.show(message);
-    }
+    if (statusCode === 200) setTimeout(() => navigate(-1), 1000);
   };
 
   return (
@@ -61,10 +54,12 @@ const Password: FC = () => {
             label="旧密码"
             value={oldPassword}
             onChange={handleOldPassword}
+            type="password"
             placeholder="请输入旧密码"
           />
           <Input
             label="新密码"
+            type="password"
             value={newPassword}
             onChange={handleNewPassword}
             className="mt-3"
@@ -74,6 +69,7 @@ const Password: FC = () => {
             label="确认密码"
             className="mt-3"
             value={rePassword}
+            type="password"
             onChange={handleRePasswordChange}
             placeholder="请确认新密码"
           />
