@@ -12,6 +12,7 @@ import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/Sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
+import Bookkeeping from '@/pages/Bookkeeping';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <FirstScreen />
       <Routes>
         <Route path="/" element={<Navigate to="/detail" />} />
+        <Route path="/bookkeeping" element={<Bookkeeping />} />
         <Route path="/community" element={<Community />} />
         <Route path="/sign" element={<Sign />} />
         <Route

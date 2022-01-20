@@ -1,0 +1,117 @@
+.keyBoard {
+  background: red;
+  display: flex;
+  flex-direction: column;
+
+  > .top {
+    background: #FFFFFF;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    flex-wrap: wrap;
+
+
+    > div {
+      flex-grow: 1;
+      align-items: center;
+      display: flex;
+      padding: 5px 0;
+      margin-bottom: -1px;
+      border-bottom: 1px solid #ccc;
+      height: 39px;
+
+      span:nth-child(1) {
+        font-size: 13px;
+        font-weight: 400;
+        color: #333233;
+        opacity: 1;
+        margin-left: 26px;
+        margin-right: 13px;
+        min-width: 30px;
+      }
+
+      > input {
+        border: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -webkit-appearance: none;
+        outline: none;
+        min-width: 100px;
+        flex: 1;
+        padding-right: 10px;
+      }
+    }
+
+    > .total {
+      font-size: 26px;
+      font-weight: 400;
+      color: #000000;
+      opacity: 1;
+      padding: 0px 10px;
+      min-width: 60px;
+      text-align: center;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  > .main {
+    display: flex;
+
+    > .numbers {
+      background: #aeeeff;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 3;
+
+      > .keys {
+        width: 33.333%;
+        height: 46.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #F3F3F3;
+        border-top: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        font-size: 21px;
+        font-weight: 400;
+        color: #333233;
+        opacity: 1;
+      }
+    }
+
+    > .right {
+      background: #F3F3F3;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 46.5px;
+
+        &.bor {
+          border-top: 1px solid #ccc;
+
+          &:nth-child(1) {
+            span {
+              margin-left: 4px;
+            }
+          }
+
+          &:nth-child(4) {
+            background: #AEEEFF;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
