@@ -14,26 +14,21 @@ const Community: FC = () => {
     {
       name: '关注',
       onClick: () => {
-        console.log(1);
+        setTopics([]);
       },
     },
     {
       name: '推荐',
       onClick: async () => {
-        try {
-          const { statusCode, data } = await getTopics();
-          if (statusCode === 200) {
-            setTopics(data);
-          }
-        } catch (e) {
-          console.log(e);
-        }
+        const { statusCode, data } = await getTopics(true);
+        if (statusCode === 200) setTopics(data);
       },
     },
     {
       name: '最新',
-      onClick: () => {
-        console.log(3);
+      onClick: async () => {
+        const { statusCode, data } = await getTopics();
+        if (statusCode === 200) setTopics(data);
       },
     },
   ];

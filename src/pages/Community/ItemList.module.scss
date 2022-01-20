@@ -1,6 +1,4 @@
 .wrapper {
-  flex-grow: 1;
-  overflow: auto;
   padding-bottom: 40px;
   .item {
     margin: 0 16px;
@@ -64,5 +62,17 @@
         }
       }
     }
+  }
+}
+
+.not-data {
+  &-wrapper {
+    color: #d1d1d1;
+  }
+  width: 105.6px;
+  height: 69.6px;
+  &-text {
+    margin-top: 3px;
+    font-size: 16.8px;
   }
 }

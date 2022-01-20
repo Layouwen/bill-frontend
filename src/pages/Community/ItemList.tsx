@@ -11,9 +11,10 @@ type ItemListProps = {
 
 const ItemList: FC<ItemListProps> = ({ data }) => {
   return (
-    <div className={styles.wrapper}>
-      {data &&
-        !!data.length &&
+    <div
+      className={classNames(styles.wrapper, 'flex-grow relative overflow-auto')}
+    >
+      {data && !!data.length ? (
         data.map((i) => (
           <div key={i.id} className={styles.item}>
             <div className={styles.head}>
@@ -70,7 +71,18 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
               </footer>
             </main>
           </div>
-        ))}
+        ))
+      ) : (
+        <div
+          className={classNames(
+            styles['not-data-wrapper'],
+            'absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-center',
+          )}
+        >
+          <Icon name="not-data" block className={styles['not-data']} />
+          <span className={styles['not-data-text']}>暂无数据</span>
+        </div>
+      )}
     </div>
   );
 };

@@ -10,8 +10,12 @@ export type Topic = {
   updatedAt: string;
 };
 
-export const getTopics = () => {
-  return request.get<unknown, SuccessResponse<Topic[]>>('/topic');
+export const getTopics = (recommend?: boolean) => {
+  return request.get<unknown, SuccessResponse<Topic[]>>('/topic', {
+    params: {
+      recommend,
+    },
+  });
 };
 
 export const addTopic = (topic: { content: string; images?: string[] }) => {
