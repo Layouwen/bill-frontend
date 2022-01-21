@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import classNames from 'classnames';
-import { Topic } from '@/api';
+import { Topic, topicLike } from '@/api';
 import { Icon } from '@/components';
 import { showDate } from '@/utils/time';
 import styles from './ItemList.module.scss';
@@ -10,6 +10,10 @@ type ItemListProps = {
 };
 
 const ItemList: FC<ItemListProps> = ({ data }) => {
+  const handleLike = async (topicId: number) => {
+    await topicLike(topicId);
+  };
+
   return (
     <div
       className={classNames(styles.wrapper, 'flex-grow relative overflow-auto')}
@@ -64,9 +68,8 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
                   <Icon name="comment" />
                   {/*{i.commentCount}*/}
                 </span>
-                <span>
-                  <Icon name="like" />
-                  {/*{i.likeCount}*/}
+                <span onClick={() => handleLike(i.id)}>
+                  <Icon name="like" />0{/*{i.likeCount}*/}
                 </span>
               </footer>
             </main>

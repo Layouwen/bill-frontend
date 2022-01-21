@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.VITE_HOST || '';
 
 const request = axios.create({
   baseURL: `${baseUrl}/api`,
-  timeout: 10000,
+  timeout: 20000,
 });
 
 request.interceptors.request.use((config) => {
@@ -31,8 +31,14 @@ request.interceptors.response.use(
     showMessage(response);
     return response.data;
   },
-  ({ response }) => {
-    showMessage(response);
+  ({ message, response, config }) => {
+    if (config.loading) {
+      if (message.includes('timeout')) {
+        Toast.show({ content: '请求超时', icon: 'fail', duration: 800 });
+      } else {
+        showMessage(response);
+      }
+    }
     return response.data;
   },
 );

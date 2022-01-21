@@ -21,3 +21,9 @@ export const getTopics = (recommend?: boolean) => {
 export const addTopic = (topic: { content: string; images?: string[] }) => {
   return request.post<unknown, SuccessResponse<unknown>>('/topic', topic);
 };
+
+export const topicLike = (topicId: number) => {
+  return request.put<unknown, SuccessResponse<unknown>>(
+    `/topic/like/${topicId}`,
+  );
+};
