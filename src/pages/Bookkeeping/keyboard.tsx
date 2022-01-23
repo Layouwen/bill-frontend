@@ -92,6 +92,20 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
       //加减拼接
 
       if (addNum !== '') {
+        if (addNum === '.') {
+          if (keys === '+' || keys === '-') {
+            setAddition(String(keys));
+            setAddNum('');
+            setTotals(num + String(keys));
+            return;
+          } else if (keys === '') {
+            setAddition(String(keys));
+            setAddNum('');
+            setTotals(num);
+          }
+          return;
+        }
+
         if (Addition === '+') {
           const NewTotals =
             (Number(num) * 10 * 10 + Number(addNum) * 10 * 10) / 100;
@@ -184,6 +198,10 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
   const changeNumber = (keys: string | number) => {
     let orders: Array<string> = [];
     let str;
+
+    if (totals === '-') {
+      return;
+    }
 
     if (totals === '0' && keys === 0) {
       return;
