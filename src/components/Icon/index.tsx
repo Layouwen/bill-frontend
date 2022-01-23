@@ -1,14 +1,33 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
+import './index.scss';
+
+const classPrefix = 'bw-icon';
 
 type IconProps = {
   className?: string;
   name: string;
+  block?: boolean;
+  style?: CSSProperties;
 };
 
-const Icon: FC<IconProps> = ({ name, className }) => {
+const defaultProps = {
+  block: false,
+};
+
+const Icon: FC<IconProps> = (p) => {
+  const { name, className, block, style } = Object.assign(
+    { ...defaultProps },
+    p,
+  );
   return (
-    <svg className={classNames('icon', className)} aria-hidden="true">
+    <svg
+      className={classNames('icon', classPrefix, className, {
+        [`${classPrefix}-block`]: block,
+      })}
+      style={style}
+      aria-hidden="true"
+    >
       <use xlinkHref={`#icon-${name}`} />
     </svg>
   );

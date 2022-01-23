@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3231 --mode development",
     "build": "tsc && vite build --mode production",
+    "build-gitee": "tsc && vite build --mode production --base=/bill-frontend-website/",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest --coverage",
@@ -15,6 +16,7 @@
     "@reduxjs/toolkit": "^1.7.1",
     "antd-mobile": "^5.0.0-rc.17",
     "axios": "^0.24.0",
+    "dayjs": "^1.10.7",
     "i18next": "^21.6.6",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",

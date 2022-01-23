@@ -35,22 +35,16 @@ const Sign: FC = () => {
 
   const handleSign = async () => {
     if (password !== rePassword) {
-      Toast.show('两次输入的密码不一致');
+      return Toast.show('两次输入的密码不一致');
     }
-    console.log({ username, password, name });
-    const { statusCode, message, data } = await sign({
+    const { statusCode, data } = await sign({
       username,
       password,
       name,
     });
     if (statusCode === 200) {
-      Toast.show({ content: '注册成功', duration: 1000, icon: 'success' });
       dispatch(setToken(data.token));
-      setTimeout(() => {
-        navigate('/');
-      }, 1000);
-    } else {
-      Toast.show(message);
+      setTimeout(() => navigate('/'), 1000);
     }
   };
 
@@ -85,6 +79,7 @@ const Sign: FC = () => {
             label="密码"
             value={password}
             onChange={handlePasswordChange}
+            type="password"
             className="mt-3"
             placeholder="请输入密码"
           />
@@ -92,6 +87,7 @@ const Sign: FC = () => {
             label="确认密码"
             className="mt-3"
             value={rePassword}
+            type="password"
             onChange={handleRePasswordChange}
             placeholder="请再次输入密码"
           />

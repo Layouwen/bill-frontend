@@ -11,3 +11,6 @@ cypress/videos
 cypress/screenshots
 
 coverage
+
+.env.development
+.env.production

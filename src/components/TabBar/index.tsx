@@ -40,7 +40,7 @@ const TabBar: FC<TabBarProps> = ({ active }) => {
       name: '我的',
       icon: 'mine',
       iconActive: 'mine-fill',
-      router: '/login',
+      router: '/mine',
     },
   ];
 

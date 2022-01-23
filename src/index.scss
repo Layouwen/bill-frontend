@@ -13,22 +13,18 @@ body {
   font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 }
 
-textarea {
+textarea, input {
   outline: none;
 }
 
+html, body, #root, .page {
+  height: 100%;
+}
+
 .page {
-  height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-}
-
-.icon {
-  width: 1em; height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
 }
 
 // fix and icon middle problem
@@ -36,4 +32,8 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.adm-button {
+  background-color: var(--background-color);
 }

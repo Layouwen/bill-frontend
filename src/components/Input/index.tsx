@@ -7,13 +7,15 @@ type InputProps = {
   className?: string;
   label?: string;
   value?: string | number;
+  type?: string;
   placeholder?: string;
   onChange?: ChangeEventHandler;
 };
 
 const Input: FC<InputProps> = ({
   className = '',
-  label,
+  label = 'input',
+  type = 'text',
   value,
   placeholder,
   onChange,
@@ -24,7 +26,7 @@ const Input: FC<InputProps> = ({
       <input
         onChange={onChange}
         className={classPrefix}
-        type="text"
+        type={type}
         placeholder={placeholder}
         value={value}
       />

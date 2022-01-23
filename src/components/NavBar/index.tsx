@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
+import { Icon } from '@/components';
 import './index.scss';
 
 const classPrefix = `bw-nav-bar`;
@@ -19,7 +20,7 @@ const defaultProps = {
 };
 
 const NavBar: FC<NavBarProps> = (p) => {
-  const props = Object.assign(defaultProps, p);
+  const props = Object.assign({ ...defaultProps }, p);
   const { back, backArrow, className } = props;
 
   return (
@@ -29,8 +30,7 @@ const NavBar: FC<NavBarProps> = (p) => {
           <div className={`${classPrefix}-back`} onClick={props.onBack}>
             {backArrow && (
               <span className={`${classPrefix}-back-arrow`}>
-                {/* TODO: back icon */}
-                {backArrow === true ? 'back' : backArrow}
+                {backArrow === true ? <Icon name="left" /> : backArrow}
               </span>
             )}
             <span aria-hidden="true">{back}</span>
