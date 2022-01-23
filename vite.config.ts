@@ -10,7 +10,8 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://localhost:3000',
-        target: 'https://bwrearend.c1.sidoc.cn',
+        target: 'http://192.168.0.103:3000',
+        // target: 'https://bwrearend.c1.sidoc.cn',
         changeOrigin: true,
       },
     },

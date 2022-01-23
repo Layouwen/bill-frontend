@@ -1,7 +1,7 @@
 import { Toast } from 'antd-mobile';
 import axios from 'axios';
 
-const baseUrl = import.meta.env.VITE_HOST || '';
+const baseUrl = '';
 
 const request = axios.create({
   baseURL: `${baseUrl}/api`,
