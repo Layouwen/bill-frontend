@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
-import Detail from '@/pages/Detail';
 import NotFound from '@/pages/NotFound';
 import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/Sign';
@@ -24,7 +23,6 @@ const App = () => {
         <Route path="/community" element={<Community />} />
         <Route path="/sign" element={<Sign />} />
         <Route
-          path="/post-topic"
           element={
             <LoginGuard>
               <PostTopic />
@@ -32,7 +30,7 @@ const App = () => {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/detail" element={<Detail />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

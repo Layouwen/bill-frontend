@@ -47,315 +47,220 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
   ];
 
   const add = useRef<HTMLDivElement>(null);
-  const [totals, setTotals] = useState('0.00');
   const [inputToggle, setInputToggle] = useState(false);
-  const [num, setNum] = useState('0');
-  const [addNum, setAddNum] = useState('0');
+  const [totals, setTotals] = useState('0.00');
+  const [num, setNum] = useState('');
+  const [addNum, setAddNum] = useState('');
+  const [Addition, setAddition] = useState('');
+  const [completeText, setCompleteText] = useState('=');
 
-  const changeDian = (item: { keys: string | number }) => {
-    if (
-      item.keys === '.' &&
-      !num.includes('.') &&
-      !totals.includes('+') &&
-      !totals.includes('-')
-    ) {
-      setNum(num + item.keys);
-      setTotals(num + item.keys);
-    }
-    if (item.keys === '.' && addNum.includes('.')) {
-      return;
-    } else if (
-      (item.keys === '.' && !addNum.includes('.') && totals.includes('+')) ||
-      totals.includes('-')
-    ) {
-      setAddNum(addNum + item.keys);
-      setTotals(totals + item.keys);
-    }
-  };
-
-  const changeDelete = (item: { keys: string | number }) => {
-    //点击了删除
-    if (item.keys === 'x') {
-      if (totals === '0') return;
-      if (totals.length === 1) {
-        setTotals('0');
-        setNum('0');
-        setAddNum('0');
-        return;
-      }
-      const NewTotals = totals.substring(0, totals.length - 1);
-      if (totals.includes('+')) {
-        const index = totals.indexOf('+');
-        const newAddNum = totals.slice(index + 1, totals.length - 1);
-        setAddNum(newAddNum);
-      } else if (totals.includes('-')) {
-        const index = totals.indexOf('-');
-        const newAddNum = totals.slice(index + 1, totals.length - 1);
-        setAddNum(newAddNum);
-      }
-      setNum(NewTotals);
-      setTotals(NewTotals);
-      if (addNum === '0') {
-        setAddNum('0');
-        return;
-      }
-
-      return;
-    }
-  };
-
-  const changeAddNumber = (item: { keys: string | number }, acc: string) => {
-    //字符串拼接
-    if (addNum.length > 7 && !addNum.includes('.') && !addNum.includes(acc))
-      return;
-
-    if (totals !== '0.00' && addNum.includes('.') && totals.includes(acc)) {
-      //判断num存在了点
-      const index = addNum.indexOf('.');
-      if (addNum.length > index + 2) return;
-      setAddNum(addNum + item.keys);
-      setTotals(totals + item.keys);
-      return;
-    }
-
-    if (item.keys === 0 && totals.includes(acc) && addNum.length < 2) {
-      const lin = totals.charAt(totals.length - 1);
-      if (lin === '0') {
-        setTotals(totals);
-        return;
-      }
-      setAddNum('0');
-      setTotals(totals + item.keys);
-      return;
-    } else if (item.keys !== 0 && addNum === '0') {
-      const lin = totals.charAt(totals.length - 1);
-      setAddNum(String(item.keys)); //5
-      if (lin === '0') {
-        const NewTotals = totals.slice(0, totals.length - 1);
-        setTotals(NewTotals + item.keys); //5+0+5
-        return;
-      }
-      setTotals(totals + item.keys); //5+0+5
-    } else {
-      setAddNum(addNum + String(item.keys));
-      setTotals(totals + item.keys);
-    }
-  };
-
-  const changeNumber = (item: { keys: string | number }) => {
-    //点击了数字键盘
-    // 键盘输入控制逻辑 //总数计算
-    if (num.length > 7 && !totals.includes('.') && !totals.includes('+'))
-      return;
-
-    if (totals.includes('+')) {
-      changeAddNumber(item, '+');
-      return;
-    } else if (totals.includes('-')) {
-      changeAddNumber(item, '-');
-      return;
-    }
-
-    if (totals !== '0.00' && num.includes('.') && !totals.includes('+')) {
-      //判断num存在了点
-      const index = num.indexOf('.');
-      if (num.length > index + 2) return;
-      setNum(num + item.keys);
-      setTotals(num + item.keys);
-      return;
-    }
-
-    if (totals === '0') {
-      setTotals(String(item.keys));
-      setNum(String(item.keys));
-    } else {
-      if (num === '0') {
-        setTotals(String(item.keys));
-        setNum(String(item.keys));
-        return;
-      } else {
-        setTotals(num + String(item.keys));
-        setNum(num + String(item.keys));
-      }
-    }
-  };
-
+  //数字键盘已经小数点和删除键
   const changeKeys = (index: number, item: { keys: number | string }) => {
-    if (totals === '-' && item.keys !== 'x') {
+    if (typeof item.keys === 'number') {
+      changeNumber(item.keys);
+    } else if (item.keys === '.') {
+      changeDian(item.keys);
+    } else if (item.keys === 'x') {
+      changeDelete(item.keys);
+    }
+  };
+
+  //拼接
+  const changePing = (keys: string | number, toggle?: number) => {
+    const lastIndex = totals.lastIndexOf('+');
+    const lastIndex1 = totals.lastIndexOf('-');
+    let orders: Array<string> = [];
+    let str;
+    if (toggle === 1) {
+      //num数字
+      orders = [num];
+      orders.push(String(keys));
+      str = orders.join('');
+      setNum(String(str));
+      setTotals(String(str));
+      return;
+    } else if (toggle === 2) {
+      //addNum数字
+      orders = [addNum];
+      orders.push(String(keys));
+      str = orders.join('');
+      setAddNum(String(str));
+      setTotals(num + Addition + String(str));
+      setCompleteText('完成');
+      return;
+    } else if (toggle === 3) {
+      //加减拼接
+
+      if (addNum !== '') {
+        if (Addition === '+') {
+          const NewTotals =
+            (Number(num) * 10 * 10 + Number(addNum) * 10 * 10) / 100;
+          setNum(String(NewTotals));
+          setAddNum('');
+          setTotals(String(NewTotals) + keys);
+          setAddition(String(keys));
+          setCompleteText('=');
+          return;
+        } else if (Addition === '-') {
+          const NewTotals =
+            (Number(num) * 10 * 10 - Number(addNum) * 10 * 10) / 100;
+          setNum(String(NewTotals));
+          setAddNum('');
+          setTotals(String(NewTotals) + keys);
+          setAddition(String(keys));
+          setCompleteText('=');
+        }
+      } else if (addNum === '') {
+        //不存在的时候
+        setAddition(String(keys));
+        setTotals(num + String(keys));
+        return;
+      }
+    } else if (toggle === 4) {
+      //小数点
+
+      if (!Addition.includes('+') && !Addition.includes('-')) {
+        if (num.includes('.')) return;
+        //加减都不存在,就赋值给num
+        if (totals === '0') {
+          setNum('0' + String(keys));
+          setTotals('0' + String(keys));
+        } else {
+          setNum(num + String(keys));
+          setTotals(num + String(keys));
+        }
+        return;
+      } else if (Addition.includes('+') || Addition.includes('-')) {
+        //减号不在第一位的时候
+        //并且存在加号或者减号,就赋值给addNum
+        if (addNum.includes('.')) return;
+        setAddNum(addNum + String(keys));
+        setTotals(num + Addition + addNum + String(keys));
+        return;
+      }
+    } else if (toggle === 5) {
+      //点击了删除
+      //点击了删除
+      if (!Addition.includes('+') && !Addition.includes('-')) {
+        const newNum = num.slice(0, num.length - 1);
+        if (newNum === '') {
+          setNum('');
+          setTotals('0');
+          return;
+        }
+        setNum(newNum);
+        setTotals(newNum);
+      } else if (Addition.includes('+') || Addition.includes('-')) {
+        const newAddNum = addNum.slice(0, addNum.length - 1);
+
+        let str1;
+        if (lastIndex + 1 === totals.length) {
+          //删除加号
+          str1 = totals.slice(0, totals.length - 1);
+          setAddition('');
+          setTotals(str1);
+          return;
+        } else if (lastIndex1 + 1 === totals.length) {
+          //删除减号
+          str1 = totals.slice(0, totals.length - 1);
+          setAddition('');
+          setTotals(str1);
+          return;
+        }
+
+        if (newAddNum === '') {
+          setAddNum('');
+          setTotals(num + Addition + '');
+          setCompleteText('=');
+          return;
+        }
+        setAddNum(newAddNum);
+        setTotals(num + Addition + newAddNum);
+      }
+    }
+  };
+
+  //数字
+  const changeNumber = (keys: string | number) => {
+    let orders: Array<string> = [];
+    let str;
+
+    if (totals === '0' && keys === 0) {
       return;
     }
 
-    if (typeof item.keys === 'number') {
-      changeNumber(item);
-    } else if (typeof item.keys !== 'number') {
-      if (item.keys === 'x') {
-        changeDelete(item);
-      } else if (item.keys === '.') {
-        changeDian(item);
-      }
+    if (Addition.includes('+') || Addition.includes('-')) {
+      if (addNum.includes('.')) {
+        //存在点时候，后面就只能跟两个想小数
+        const dianIndex = addNum.indexOf('.');
+        if (addNum.length > dianIndex + 2) return;
+      } else if (addNum.length === 8) return;
+      changePing(keys, 2);
+      return;
     }
+
+    if (num === '0') {
+      orders = [String(keys)];
+      str = String(orders);
+      setNum(str);
+      setTotals(str);
+      return;
+    }
+
+    if (num !== '') {
+      const Index = totals.indexOf('-');
+      if (num.includes('.')) {
+        //存在点时候，后面就只能跟两个想小数
+        const dianIndex = num.indexOf('.');
+        if (num.length > dianIndex + 2) return;
+      }
+      if (Index === 0 && !num.includes('.')) {
+        if (num.length === 9) return;
+      } else {
+        if (num.length === 8) return;
+      }
+      changePing(keys, 1);
+      return;
+    } else if (num === '') {
+      orders = [String(keys)];
+      str = String(orders);
+      setNum(str);
+      setTotals(str);
+      return;
+    }
+  };
+
+  //小数点
+  const changeDian = (keys: string | number) => {
+    if (totals === '0.00' || totals === '-') return;
+    changePing(keys, 4);
+  };
+
+  //删除
+  const changeDelete = (keys: string | number) => {
+    changePing(keys, 5);
   };
 
   //加号
-  const changeAddFn = () => {
-    if (totals === '0.00' || totals === '0' || totals === '-') {
+  const changeAddFn = (str: string) => {
+    if (totals === '0' || totals === '0.00' || totals === '-') {
       return;
     }
-    const index = totals.indexOf('-');
-    if (index === 0) {
-      //减号存在第一位就return
-      if (totals.includes('+')) {
-        const MinusNew = Number(num) * 100 + Number(addNum) * 100;
-        setNum(String(MinusNew / 100));
-        setAddNum('0');
-        setTotals(String(MinusNew / 100) + '+');
-        return;
-      }
-      const MinusNew = Number(num) * 100 - Number(addNum) * 100;
-      setNum(String(MinusNew / 100));
-      setAddNum('0');
-      setTotals(String(MinusNew / 100) + '+');
-
-      return;
-    }
-    changeToggle('+'); //点击了加号之后，判断字符串的最后一位是不是为加号！ (为加号就return，为减号就替换)
-    if (totals !== '0.00' && totals.includes('+')) {
-      const newText = changeNewAccordFn('+');
-      if (newText) setTotals(newText + '+');
-      return;
-    } else if (
-      totals !== '0.00' &&
-      !totals.includes('+') &&
-      !totals.includes('-')
-    ) {
-      setTotals(totals + '+');
-      return;
-    }
-    if (totals !== '0.00' && !totals.includes('+') && totals.includes('-')) {
-      const newText = changeNewAccordFn('-');
-      if (newText) setTotals(newText + '+');
-    }
+    changePing(str, 3);
   };
 
   //减号
-  const changeMinusFn = () => {
-    if (totals === '0.00' || totals === '0' || totals === '-') {
+  const changeMinusFn = (str: string) => {
+    if (totals === '0' || totals === '0.00' || totals === '-') {
       return;
     }
-    const index = totals.indexOf('-');
-    if (index === 0) {
-      //减号存在第一位就return
-
-      if (totals.includes('+')) {
-        const MinusNew = Number(num) * 100 + Number(addNum) * 100;
-        setNum(String(MinusNew / 100));
-        setAddNum('0');
-        setTotals(String(MinusNew / 100) + '-');
-        return;
-      }
-      const MinusNew = Number(num) * 100 - Number(addNum) * 100;
-      setNum(String(MinusNew / 100));
-      setAddNum('0');
-      setTotals(String(MinusNew / 100) + '-');
-      return;
-    }
-
-    changeToggle('-'); //点击了减号之后，判断字符串的最后一位是不是为减号！ (为减号就return，为加号就替换)
-    if (totals !== '0.00' && totals.includes('-')) {
-      const newText = changeNewAccordFn('-');
-      if (newText) setTotals(newText + '-');
-      return;
-    } else if (
-      totals !== '0.00' &&
-      !totals.includes('-') &&
-      !totals.includes('+')
-    ) {
-      setTotals(totals + '-');
-      return;
-    }
-    if (totals !== '0.00' && !totals.includes('-') && totals.includes('+')) {
-      const newText = changeNewAccordFn('+');
-      if (newText) setTotals(newText + '-');
-    }
+    changePing(str, 3);
   };
 
+  //完成
   const changeCompleteFn = () => {
-    if (totals === '-') {
-      setTotals('0');
-      return;
-    }
-
-    if (addNum === '0.' || addNum === '.') {
-      //防止加减符合后面只有.的情况，用户就直接运算保存，这里就直接截取掉变量的最后一位也就是这个点！
-      const newText = totals.slice(0, totals.length - 1);
-      setAddNum('0');
-      setTotals(newText);
-      return;
-    }
-
-    if (totals.includes('+')) {
-      const newText = changeNewAccordFn('+');
-      if (newText) setTotals(newText);
-    } else if (totals.includes('-')) {
-      const newText = changeNewAccordFn('-');
-      if (newText) setTotals(newText);
-    }
-  };
-
-  const changeNewAccordFn = (str: string) => {
-    //加减运算
-
-    const indexJian = totals.indexOf('-'); //-的位置是否在第一位
-    const jian = totals.slice(totals.length - 1, totals.length);
-    if (indexJian === 0 && jian === '-') {
-      const NewTotals = totals.slice(0, totals.length - 1);
-      setTotals(NewTotals);
-      return;
-    }
-    const lastIndexOf1 = totals.lastIndexOf(str);
-    // const index = totals.indexOf(str); //flag
-    const leftNum = totals.slice(0, lastIndexOf1); //截取前面的
-    const rightNum = totals.slice(lastIndexOf1 + 1, totals.length); //截取后面的
-    if (rightNum === '.') return;
-    let NewTotals: number;
-    if (totals.includes('+')) {
-      NewTotals = Number(leftNum) * 100 + Number(rightNum) * 100;
-    } else {
-      NewTotals = Number(leftNum) * 100 - Number(rightNum) * 100;
-    }
-    /* eslint-disable */
-    // @ts-ignore
-    NewTotals = NewTotals / 100;
-    /* eslint-disable */
-
-    setNum(String(NewTotals));
-    setAddNum('0');
-    return String(NewTotals);
-  };
-
-  const changeToggle = (value: string) => {
-    if (totals.includes('+')) {
-      const index1 = totals.indexOf(value);
-      const flag = totals.slice(index1, totals.length);
-      if (flag === '+') {
-        if (value === '-') {
-          const NewTotals = totals.slice(0, totals.length - 1);
-          const res = NewTotals + value;
-          setTotals(res);
-        }
-        return;
-      }
-    } else if (totals.includes('-')) {
-      const index1 = totals.indexOf(value);
-      const flag = totals.slice(index1, totals.length);
-      if (flag === '-') {
-        if (value === '+') {
-          const NewTotals = totals.slice(0, totals.length - 1);
-          const res = NewTotals + value;
-          setTotals(res);
-        }
-        return;
-      }
+    if (Addition.includes('+') || Addition.includes('-')) {
+      changePing('', 3);
     }
   };
 
@@ -403,10 +308,10 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
                   <Icon name={'community-fill'} className="tab-icon" />
                   <span>今天</span>
                 </div>
-                <div className={styles.bor} onClick={() => changeAddFn()}>
+                <div className={styles.bor} onClick={() => changeAddFn('+')}>
                   +
                 </div>
-                <div className={styles.bor} onClick={() => changeMinusFn()}>
+                <div className={styles.bor} onClick={() => changeMinusFn('-')}>
                   -
                 </div>
                 <div
@@ -415,7 +320,7 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
                     changeCompleteFn();
                   }}
                 >
-                  完成
+                  {completeText}
                 </div>
               </div>
             </div>
