@@ -12,7 +12,9 @@ const FirstScreen: FC = () => {
 
   const close = () => {
     setTimeout(() => {
+      /* eslint-disable */
       el.current!.remove();
+      /* eslint-disable */
     }, 1200);
   };
 

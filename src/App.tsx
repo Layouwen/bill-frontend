@@ -18,6 +18,7 @@ import Login from '@/pages/Login';
 import Mine from '@/pages/Mine';
 import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
+import Bookkeeping from '@/pages/Bookkeeping';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +32,7 @@ const App = () => {
       <FirstScreen />
       <Routes>
         <Route path="/" element={<Navigate to="/detail" />} />
+        <Route path="/bookkeeping" element={<Bookkeeping />} />
         <Route path="/community" element={<Community />} />
         <Route
           path="/user-info"

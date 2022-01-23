@@ -28,7 +28,7 @@ const TabBar: FC<TabBarProps> = ({ active }) => {
       name: '记账',
       icon: 'community',
       iconActive: 'community-fill',
-      router: '/community',
+      router: '/bookkeeping',
     },
     {
       name: '社区',
@@ -44,10 +44,11 @@ const TabBar: FC<TabBarProps> = ({ active }) => {
     },
   ];
 
-  // TODO: any
+  /* eslint-disable */
   const isActive = (tab: any, index: number) => {
     return index === active ? tab.iconActive : tab.icon;
   };
+  /* eslint-disable */
 
   const changeRoute = (index: number, router: string) => {
     if (index === active) return;

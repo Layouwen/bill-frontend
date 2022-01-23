@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "lint": "eslint src/**/*.{tsx,ts,js,jsx}",
+    "lint": "eslint src/**/*.{tsx,ts,js,jsx} --fix",
     "prettier": "prettier --config .prettierrc.js --write src/**/*.{tsx,ts,js,jsx}",
     "postinstall": "husky install && chmod 700 .husky/pre-commit"
   },
