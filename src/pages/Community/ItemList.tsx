@@ -7,11 +7,15 @@ import styles from './ItemList.module.scss';
 
 type ItemListProps = {
   data?: Topic[];
+  fetch: () => void;
 };
 
-const ItemList: FC<ItemListProps> = ({ data }) => {
+const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
   const handleLike = async (topicId: number) => {
     await topicLike(topicId);
+    setTimeout(async () => {
+      await fetch();
+    }, 100);
   };
 
   return (
@@ -69,7 +73,8 @@ const ItemList: FC<ItemListProps> = ({ data }) => {
                   {/*{i.commentCount}*/}
                 </span>
                 <span onClick={() => handleLike(i.id)}>
-                  <Icon name="like" />0{/*{i.likeCount}*/}
+                  <Icon name={i.isLike ? 'like-fill' : 'like'} />
+                  {i.likeCount}
                 </span>
               </footer>
             </main>

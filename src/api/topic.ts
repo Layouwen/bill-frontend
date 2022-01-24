@@ -8,6 +8,8 @@ export type Topic = {
   images: string[];
   createdAt: string;
   updatedAt: string;
+  isLike: boolean;
+  likeCount: number;
 };
 
 export const getTopics = (recommend?: boolean) => {

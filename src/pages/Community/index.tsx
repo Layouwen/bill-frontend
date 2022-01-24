@@ -33,6 +33,11 @@ const Community: FC = () => {
     },
   ];
 
+  const fetchData = async () => {
+    const { statusCode, data } = await getTopics();
+    if (statusCode === 200) setTopics(data);
+  };
+
   const onChange = (key: number) => {
     setTabIndex(key);
     tabs[key].onClick();
@@ -45,7 +50,7 @@ const Community: FC = () => {
   return (
     <div className="page">
       <TopBar data={tabs} index={tabIndex} onChange={onChange} />
-      <ItemList data={topics} />
+      <ItemList data={topics} fetch={fetchData} />
       <TabBar active={3} />
       <FixedPin onClick={handlePostTopic}>发帖</FixedPin>
     </div>
