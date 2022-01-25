@@ -19,6 +19,7 @@ import Mine from '@/pages/Mine';
 import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
+import TopicDetail from '@/pages/TopicDetail';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -60,6 +61,7 @@ const App = () => {
             </LoginGuard>
           }
         />
+        <Route path="/topic-detail" element={<TopicDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="*" element={<NotFound />} />

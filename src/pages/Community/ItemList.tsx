@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Topic, topicLike } from '@/api';
 import { Icon } from '@/components';
 import { showDate } from '@/utils/time';
+import { useNavigate } from 'react-router-dom';
 import styles from './ItemList.module.scss';
 
 type ItemListProps = {
@@ -11,6 +12,7 @@ type ItemListProps = {
 };
 
 const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
+  const navigate = useNavigate();
   const handleLike = async (topicId: number) => {
     await topicLike(topicId);
     setTimeout(async () => {
@@ -68,7 +70,7 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
                   <Icon name="share" />
                   {/*{i.shareCount}*/}
                 </span>
-                <span>
+                <span onClick={() => navigate('/topic-detail')}>
                   <Icon name="comment" />
                   {/*{i.commentCount}*/}
                 </span>

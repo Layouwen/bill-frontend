@@ -116,10 +116,9 @@ const PostTopic: FC = () => {
         <div
           onInput={(e: ChangeEvent<HTMLDivElement>) => {
             setContent(e.target.innerText);
-            console.log(e.target.innerText);
           }}
           contentEditable={true}
-          className={classNames('max-width-full outline-none', styles.textarea)}
+          className={classNames('max-width-full', styles.textarea)}
         />
         <div className={classNames(styles.imgs, 'flex flex-wrap')}>
           {imgs.map((img, i) => (
