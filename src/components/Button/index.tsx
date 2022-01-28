@@ -1,11 +1,11 @@
-import { CSSProperties, FC, MouseEventHandler } from 'react';
+import { CSSProperties, FC } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
 const classPrefix = 'bw-button';
 
 type ButtonProps = {
-  onClick?: MouseEventHandler;
+  onClick?: () => void;
   style?: CSSProperties;
   size?: 'medium' | 'full';
   block?: boolean;
