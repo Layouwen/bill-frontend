@@ -24,7 +24,6 @@ const PostTopic: FC = () => {
     const state = [...imgs];
     state.splice(i, 1);
     setImgs(state);
-    console.log(imgs);
   };
 
   const addImg = (e: MouseEvent<HTMLDivElement>) => {

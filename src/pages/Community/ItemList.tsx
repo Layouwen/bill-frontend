@@ -36,12 +36,12 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
               >
                 <img
                   className="w-full h-full object-cover"
-                  src={i.avatar}
-                  alt={i.name}
+                  src={i.user.avatar}
+                  alt={i.user.name}
                 />
               </div>
               <div className="flex-grow">
-                <div className={styles.name}>{i.name}</div>
+                <div className={styles.name}>{i.user.name}</div>
                 <div className={styles.time}>{showDate(i.createdAt)}</div>
               </div>
             </div>
@@ -68,11 +68,11 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
               <footer className="flex">
                 <span>
                   <Icon name="share" />
-                  {/*{i.shareCount}*/}
+                  {i.shareCount}
                 </span>
-                <span onClick={() => navigate('/topic-detail')}>
+                <span onClick={() => navigate(`/topic-detail/${i.id}`)}>
                   <Icon name="comment" />
-                  {/*{i.commentCount}*/}
+                  {i.commentCount}
                 </span>
                 <span onClick={() => handleLike(i.id)}>
                   <Icon name={i.isLike ? 'like-fill' : 'like'} />

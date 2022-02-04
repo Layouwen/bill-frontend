@@ -1,37 +1,13 @@
+import { showDate } from '@/utils/time';
 import classNames from 'classnames';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './ReplyArea.module.scss';
 
-const ReplyArea: FC = () => {
-  const [data] = useState([
-    {
-      id: 1,
-      content: 'test评论1',
-      name: '吴彦祖',
-      avatar:
-        'https://bill-rearend.oss-cn-guangzhou.aliyuncs.com/static/defulatAvatar.jpg',
-      likeCount: 1,
-      isLike: true,
-    },
-    {
-      id: 2,
-      content: 'test评论1',
-      name: '吴彦祖',
-      avatar:
-        'https://bill-rearend.oss-cn-guangzhou.aliyuncs.com/static/defulatAvatar.jpg',
-      likeCount: 1,
-      isLike: true,
-    },
-    {
-      id: 3,
-      content: 'test评论1',
-      name: '吴彦祖',
-      avatar:
-        'https://bill-rearend.oss-cn-guangzhou.aliyuncs.com/static/defulatAvatar.jpg',
-      likeCount: 1,
-      isLike: true,
-    },
-  ]);
+type ReplyProps = {
+  comments: any;
+};
+
+const ReplyArea: FC<ReplyProps> = ({ comments }) => {
   return (
     <div>
       <header
@@ -49,8 +25,8 @@ const ReplyArea: FC = () => {
           'flex justify-center items-center flex-wrap',
         )}
       >
-        {data.length > 0 ? (
-          data.map((item) => (
+        {comments && comments.length > 0 ? (
+          comments.map((item) => (
             <div
               className={classNames(styles.item, 'w-full relative')}
               key={item.id}
@@ -64,24 +40,27 @@ const ReplyArea: FC = () => {
                 >
                   <img
                     className="w-full h-full object-cover"
-                    src={item.avatar}
-                    alt={item.name}
+                    src={item.user.avatar}
+                    alt={item.user.name}
                   />
                 </div>
                 <div className={classNames(styles.right, 'flex-grow')}>
-                  <div>{item.name}</div>
+                  <div>{item.user.name}</div>
                   <div className={styles.content}>{item.content}</div>
                   <div className={styles.time}>
-                    2020-08-20 20:58{' '}
-                    <span className={classNames(styles.report, 'text-center')}>
-                      6回复
-                    </span>
+                    {showDate(item.createdAt)}
+                    {/*<span className={classNames(styles.report, 'text-center')}>*/}
+                    {/*  6回复*/}
+                    {/*</span>*/}
                   </div>
                 </div>
               </main>
-              <footer>
-                <div className={styles['reply-box']}>12312</div>
-              </footer>
+              {/*<footer>*/}
+              {/*  <div className={styles['reply-box']}>*/}
+              {/*    <span className={styles.name}>A_憨憨_：</span>*/}
+              {/*    哈哈哈*/}
+              {/*  </div>*/}
+              {/*</footer>*/}
             </div>
           ))
         ) : (

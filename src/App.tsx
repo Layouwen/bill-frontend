@@ -61,7 +61,7 @@ const App = () => {
             </LoginGuard>
           }
         />
-        <Route path="/topic-detail" element={<TopicDetail />} />
+        <Route path="/topic-detail/:id" element={<TopicDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="*" element={<NotFound />} />
