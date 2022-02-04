@@ -26,7 +26,8 @@ const ReplyArea: FC<ReplyProps> = ({ comments }) => {
         )}
       >
         {comments && comments.length > 0 ? (
-          comments.map((item) => (
+          // TODO: item any fix
+          comments.map((item: any) => (
             <div
               className={classNames(styles.item, 'w-full relative')}
               key={item.id}
