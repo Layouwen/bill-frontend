@@ -2,13 +2,17 @@ import { getTopics, Topic } from '@/api';
 import { TabBar, FixedPin } from '@/components';
 import ItemList from '@/pages/Community/ItemList';
 import TopBar from '@/pages/Community/TopBar';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Community: FC = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(2);
   const [topics, setTopics] = useState<Topic[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    tabs[tabIndex].onClick();
+  }, []);
 
   const tabs = [
     {
