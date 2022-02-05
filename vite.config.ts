@@ -3,15 +3,14 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defaultHost } from './src/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // target: 'http://localhost:3000',
-        target: 'http://120.77.182.207:3000',
-        // target: 'https://bwrearend.c1.sidoc.cn',
+        target: defaultHost,
         changeOrigin: true,
       },
     },

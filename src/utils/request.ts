@@ -1,3 +1,4 @@
+import { defaultHost } from '@/config';
 import {
   baseResponseProcess,
   errorResponseProcess,
@@ -5,8 +6,11 @@ import {
 import { Toast } from 'antd-mobile';
 import axios from 'axios';
 
+const host =
+  import.meta.env.VITE_HOST || (import.meta.env.DEV ? '' : defaultHost);
+
 const request = axios.create({
-  baseURL: `/api`,
+  baseURL: host + '/api',
   timeout: 20000,
 });
 
