@@ -6,6 +6,10 @@ type UserInfo = {
   name: string;
   username: string;
   avatar: string;
+  checkIn: boolean;
+  checkInKeep: number;
+  checkInAll: number;
+  recordCount: number;
 };
 
 type UpdateUserInfo = {
@@ -30,6 +34,12 @@ export const updateUserInfo = (data: UpdateUserInfo, loading = true) => {
 
 export const changePassword = (data: UpdatePassword, loading = true) => {
   return request.put<unknown, SuccessResponse<any>>('/user/password', data, {
+    loading,
+  });
+};
+
+export const checkInPost = (loading = true) => {
+  return request.post<unknown, SuccessResponse<any>>('/check_in', null, {
     loading,
   });
 };

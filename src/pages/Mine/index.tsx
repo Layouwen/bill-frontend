@@ -1,13 +1,19 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getUserInfo } from '@/api';
+import { checkInPost, getUserInfo } from '@/api';
 import { Icon, TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
 import styles from './index.module.scss';
 
 const Mine: FC = () => {
+  const [checkIn, setCheckIn] = useState(false);
+  const [numberInfo, setNumberInfo] = useState({
+    checkInAll: 0,
+    checkInKeep: 0,
+    recordCount: 0,
+  });
   const { name, token, avatar } = useAppSelector((state) => ({
     name: state.user.userInfo.name,
     avatar: state.user.userInfo.avatar,
@@ -20,12 +26,22 @@ const Mine: FC = () => {
   }, []);
 
   const getInfo = async () => {
-    try {
-      const { data, statusCode } = await getUserInfo();
-      if (statusCode === 200) dispatch(setUserInfo(data));
-    } catch (e) {
-      console.error(e);
+    const { data, statusCode } = await getUserInfo();
+    if (statusCode === 200) {
+      dispatch(setUserInfo(data));
+      setNumberInfo({
+        checkInAll: data.checkInAll,
+        checkInKeep: data.checkInKeep,
+        recordCount: data.recordCount,
+      });
+      setCheckIn(data.checkIn);
     }
+  };
+
+  const onCheckIn = async () => {
+    if (checkIn) return;
+    await checkInPost();
+    await getInfo();
   };
 
   const tabs = [
@@ -53,7 +69,13 @@ const Mine: FC = () => {
   return (
     <div className={classNames('page', styles.wrapper)}>
       <main className="overflow-auto flex flex-col grow">
-        <UserInfo name={name} avatar={avatar} />
+        <UserInfo
+          name={name}
+          avatar={avatar}
+          checkIn={checkIn}
+          numberInfo={numberInfo}
+          onCheckIn={onCheckIn}
+        />
 
         <div className={styles.box}>
           <div className={classNames(styles.menu, 'flex')}>
