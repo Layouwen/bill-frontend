@@ -5,10 +5,26 @@ import { ChangeEvent, FC, useRef, useState } from 'react';
 const classPrefix = 'bw-comment';
 
 type CommentProps = {
-  onSubmit: (text: string) => void;
+  data: {
+    shareCount: number;
+    likeCount: number;
+    commentCount: number;
+    startCount?: number;
+    isLike?: boolean;
+  };
+  onSubmit?: (text: string) => void;
+  onStart?: () => void;
+  onLike?: () => void;
+  onShare?: () => void;
 };
 
-export const Comment: FC<CommentProps> = ({ onSubmit }) => {
+export const Comment: FC<CommentProps> = ({
+  onSubmit,
+  data,
+  onShare,
+  onLike,
+  onStart,
+}) => {
   const textareaEl = useRef<HTMLTextAreaElement>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState('');
@@ -50,17 +66,17 @@ export const Comment: FC<CommentProps> = ({ onSubmit }) => {
       />
       {!isEditing && (
         <div className={`${classPrefix}-icon`}>
-          <div className={`${classPrefix}-box`}>
-            <span>2</span>
+          <div className={`${classPrefix}-box`} onClick={onShare}>
+            <span>{data?.shareCount || 0}</span>
             <Icon name="share" />
           </div>
-          <div className={`${classPrefix}-box`}>
-            <span>123</span>
+          <div className={`${classPrefix}-box`} onClick={onStart}>
+            <span>{data?.startCount || 0}</span>
             <Icon name="start" />
           </div>
-          <div className={`${classPrefix}-box`}>
-            <span>31</span>
-            <Icon name="like" />
+          <div className={`${classPrefix}-box`} onClick={onLike}>
+            <span>{data?.likeCount || 0}</span>
+            <Icon name={data?.isLike ? 'like-fill' : 'like'} />
           </div>
         </div>
       )}

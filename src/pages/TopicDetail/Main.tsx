@@ -1,4 +1,4 @@
-import { Topic, topicLike } from '@/api';
+import { Topic } from '@/api';
 import { FixedPin, ImagePreview, TopicItem } from '@/components';
 import ReplyArea from '@/pages/TopicDetail/ReplyArea';
 import { FC, useState } from 'react';
@@ -6,16 +6,10 @@ import { FC, useState } from 'react';
 type MainProps = {
   topic?: Topic;
   comments: any;
-  fetch: () => void;
+  onLike: () => void;
 };
 
-const Main: FC<MainProps> = ({ topic, comments, fetch }) => {
-  const handleLike = async (topicId: number) => {
-    await topicLike(topicId);
-    setTimeout(async () => {
-      await fetch();
-    }, 100);
-  };
+const Main: FC<MainProps> = ({ topic, comments, onLike }) => {
   const [imgVisible, setImgVisible] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
 
@@ -32,7 +26,7 @@ const Main: FC<MainProps> = ({ topic, comments, fetch }) => {
           data={topic!}
           onClick={() => console.log('click item')}
           onShare={() => console.log('share')}
-          onLike={() => handleLike(topic!.id)}
+          onLike={onLike}
           onImg={(index, src) => {
             setImgVisible(true);
             setImgSrc(src);
