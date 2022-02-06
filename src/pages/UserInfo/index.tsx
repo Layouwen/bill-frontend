@@ -1,9 +1,9 @@
 import choseFile from '@/utils/choseFile';
-import { Modal, Toast } from 'antd-mobile';
+import { Toast } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
-import React, { FC, useCallback, useRef } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import classNames from 'classnames';
-import { Button, List, NavBar } from '@/components';
+import { Button, List, NavBar, Modal as MyModal } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logOut, updateUserInfo as updateInfo } from '@/store/slice';
 import { updateUserInfo, uploadFile } from '@/api';
@@ -13,7 +13,8 @@ const userInfo: FC = () => {
   const userData = useAppSelector((state) => state.user.userInfo);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const name = useRef('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [name, setName] = useState(userData.name);
 
   const toPassword = useCallback(() => navigate('/password'), []);
 
@@ -22,33 +23,24 @@ const userInfo: FC = () => {
     navigate('/detail');
   };
 
+  const onCancelModal = () => {
+    setModalVisible(false);
+    setName(userData.name);
+  };
+
   const handleChangeName = () => {
-    name.current = userData.name;
-    Modal.confirm({
-      title: '昵称',
-      content: (
-        <>
-          <input
-            className={styles['inner-input']}
-            defaultValue={userData.name}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-              name.current = e.target.value;
-            }}
-          />
-        </>
-      ),
-      onConfirm: async () => {
-        const { statusCode } = await updateUserInfo({
-          name: name.current,
-          avatar: userData.avatar,
-        });
-        if (statusCode === 200) {
-          dispatch(updateInfo({ name: name.current, avatar: userData.avatar }));
-          name.current = '';
-        }
-        return;
-      },
+    setModalVisible(true);
+  };
+
+  const changeName = async () => {
+    const { statusCode } = await updateUserInfo({
+      name,
+      avatar: userData.avatar,
     });
+    if (statusCode === 200) {
+      dispatch(updateInfo({ name, avatar: userData.avatar }));
+      setModalVisible(false);
+    }
   };
 
   const handleChangeAvatar = async () => {
@@ -75,6 +67,16 @@ const userInfo: FC = () => {
       <NavBar back="返回" onBack={() => navigate(-1)}>
         个人信息
       </NavBar>
+      <MyModal visible={modalVisible} onOk={changeName} onClose={onCancelModal}>
+        <div className={styles.modal}>
+          <input
+            className={styles['modal-input']}
+            value={name}
+            onChange={({ target: { value } }) => setName(value)}
+            placeholder="请输入2-12位昵称"
+          />
+        </div>
+      </MyModal>
       <div style={{ height: 10 }} />
       <List>
         <List.Item

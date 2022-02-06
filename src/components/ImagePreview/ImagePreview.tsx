@@ -18,7 +18,7 @@ export const ImagePreview: FC<ImagePreviewProps> = (p) => {
   const { visible, onClose, image } = props;
 
   return (
-    <Mask onClick={onClose} visible={!!(image && visible)}>
+    <Mask opacity={1} onClick={onClose} visible={!!(image && visible)}>
       <div className={classPrefix}>
         <img className={`${classPrefix}-img`} src={image} alt={image} />
       </div>
