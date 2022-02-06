@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import classNames from 'classnames';
 import { Topic, topicLike } from '@/api';
-import { Icon } from '@/components';
+import { Icon, ImagePreview } from '@/components';
 import { showDate } from '@/utils/time';
 import { useNavigate } from 'react-router-dom';
 import styles from './ItemList.module.scss';
@@ -19,11 +19,18 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
       await fetch();
     }, 100);
   };
+  const [imgVisible, setImgVisible] = useState(false);
+  const [imgSrc, setImgSrc] = useState('');
 
   return (
     <div
       className={classNames(styles.wrapper, 'flex-grow relative overflow-auto')}
     >
+      <ImagePreview
+        visible={imgVisible}
+        image={imgSrc}
+        onClose={() => setImgVisible(false)}
+      />
       {data && !!data.length ? (
         data.map((i) => (
           <div key={i.id} className={styles.item}>
@@ -51,6 +58,10 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
                 {i.images &&
                   i.images.map((img, index) => (
                     <div
+                      onClick={() => {
+                        setImgSrc(img);
+                        setImgVisible(true);
+                      }}
                       key={img + index}
                       className={classNames(
                         styles.img,

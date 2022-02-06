@@ -7,3 +7,4 @@ export { default as FixedPin } from './FixedPin';
 export { default as LoginGuard } from './LoginGuard';
 export { default as List } from './list';
 export { default as Comment } from './comment';
+export { default as ImagePreview } from './ImagePreview';

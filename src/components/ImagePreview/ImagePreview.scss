@@ -1,0 +1,17 @@
+$class-prefix-image-preview: "bw-image-preview";
+
+.#{$class-prefix-image-preview} {
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  &-img {
+    margin: auto 0;
+    object-fit: cover;
+  }
+}
