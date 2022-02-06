@@ -1,3 +1,4 @@
+import Mask from '../Mask';
 import React, { FC } from 'react';
 
 const classPrefix = `bw-image-preview`;
@@ -17,12 +18,10 @@ export const ImagePreview: FC<ImagePreviewProps> = (p) => {
   const { visible, onClose, image } = props;
 
   return (
-    <>
-      {visible && image ? (
-        <div className={classPrefix} onClick={onClose}>
-          <img className={`${classPrefix}-img`} src={image} alt={image} />
-        </div>
-      ) : null}
-    </>
+    <Mask onClick={onClose} visible={!!(image && visible)}>
+      <div className={classPrefix}>
+        <img className={`${classPrefix}-img`} src={image} alt={image} />
+      </div>
+    </Mask>
   );
 };
