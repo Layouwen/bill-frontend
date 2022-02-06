@@ -2,8 +2,8 @@
   "name": "bill-frontend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "cross-env VITE_PORT=4000 vite --host 0.0.0.0 --port 3231 --mode dev",
-    "build": "tsc && vite build --mode prod",
+    "dev": "vite --host 0.0.0.0 --port 3231",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest --coverage",
