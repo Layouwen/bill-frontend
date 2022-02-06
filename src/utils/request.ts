@@ -6,8 +6,9 @@ import {
 import { Toast } from 'antd-mobile';
 import axios from 'axios';
 
-const host =
-  import.meta.env.VITE_HOST || (import.meta.env.DEV ? '' : defaultHost);
+let host = import.meta.env.DEV ? '' : defaultHost;
+if (typeof import.meta.env.VITE_HOST === 'string')
+  host = import.meta.env.VITE_HOST;
 
 const request = axios.create({
   baseURL: host + '/api',
