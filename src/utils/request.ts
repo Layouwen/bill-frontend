@@ -12,7 +12,7 @@ if (typeof import.meta.env.VITE_HOST === 'string')
 
 const request = axios.create({
   baseURL: host + '/api',
-  timeout: 30000,
+  timeout: 50000,
 });
 
 request.interceptors.request.use((config) => {
