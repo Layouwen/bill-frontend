@@ -25,7 +25,7 @@ const TopicDetail: FC = () => {
       <NavBar back="返回" className={styles.nav} onBack={() => navigate(-1)}>
         蓝鲸记账
       </NavBar>
-      <Main topic={topic} comments={topic?.comments} />
+      <Main topic={topic} comments={topic?.comments} fetch={fetchTopic} />
       <Comment onSubmit={onSubmit} />
     </div>
   );

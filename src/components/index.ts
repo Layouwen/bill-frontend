@@ -10,3 +10,4 @@ export { default as Comment } from './comment';
 export { default as ImagePreview } from './ImagePreview';
 export { default as Mask } from './Mask';
 export { default as Modal } from './Modal';
+export { default as TopicItem } from './TopicItem';

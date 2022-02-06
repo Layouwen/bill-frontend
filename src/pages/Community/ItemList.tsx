@@ -1,8 +1,7 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { Topic, topicLike } from '@/api';
-import { Icon, ImagePreview } from '@/components';
-import { showDate } from '@/utils/time';
+import { Icon, ImagePreview, TopicItem } from '@/components';
 import { useNavigate } from 'react-router-dom';
 import styles from './ItemList.module.scss';
 
@@ -22,6 +21,10 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
   const [imgVisible, setImgVisible] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
 
+  const toDetail = useCallback((id: number) => {
+    navigate(`/topic-detail/${id}`);
+  }, []);
+
   return (
     <div
       className={classNames(styles.wrapper, 'flex-grow relative overflow-auto')}
@@ -33,65 +36,18 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
       />
       {data && !!data.length ? (
         data.map((i) => (
-          <div key={i.id} className={styles.item}>
-            <div className={styles.head}>
-              <div
-                className={classNames(
-                  styles.img,
-                  'rounded-full overflow-hidden',
-                )}
-              >
-                <img
-                  className="w-full h-full object-cover"
-                  src={i.user.avatar}
-                  alt={i.user.name}
-                />
-              </div>
-              <div className="flex-grow">
-                <div className={styles.name}>{i.user.name}</div>
-                <div className={styles.time}>{showDate(i.createdAt)}</div>
-              </div>
-            </div>
-            <main>
-              <div className={styles.content}>{i.content}</div>
-              <div className={classNames(styles.imgs, 'flex flex-wrap')}>
-                {i.images &&
-                  i.images.map((img, index) => (
-                    <div
-                      onClick={() => {
-                        setImgSrc(img);
-                        setImgVisible(true);
-                      }}
-                      key={img + index}
-                      className={classNames(
-                        styles.img,
-                        'relative h-0 overflow-hidden',
-                      )}
-                    >
-                      <img
-                        className="w-full h-full object-cover"
-                        src={img}
-                        alt=""
-                      />
-                    </div>
-                  ))}
-              </div>
-              <footer className="flex">
-                <span>
-                  <Icon name="share" />
-                  {i.shareCount}
-                </span>
-                <span onClick={() => navigate(`/topic-detail/${i.id}`)}>
-                  <Icon name="comment" />
-                  {i.commentCount}
-                </span>
-                <span onClick={() => handleLike(i.id)}>
-                  <Icon name={i.isLike ? 'like-fill' : 'like'} />
-                  {i.likeCount}
-                </span>
-              </footer>
-            </main>
-          </div>
+          <TopicItem
+            key={i.id}
+            data={i}
+            onClick={(id) => toDetail(id)}
+            onComment={(id) => toDetail(id)}
+            onShare={() => console.log('share')}
+            onLike={() => handleLike(i.id)}
+            onImg={(index, src) => {
+              setImgVisible(true);
+              setImgSrc(src);
+            }}
+          />
         ))
       ) : (
         <div
