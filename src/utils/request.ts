@@ -11,7 +11,7 @@ const host =
 
 const request = axios.create({
   baseURL: host + '/api',
-  timeout: 20000,
+  timeout: 30000,
 });
 
 request.interceptors.request.use((config) => {
@@ -31,10 +31,12 @@ request.interceptors.response.use(
     return response.data;
   },
   ({ message, response, config }) => {
+    if (message.includes('timeout')) {
+      Toast.show({ content: '请求超时', icon: 'fail', duration: 800 });
+      return response;
+    }
     baseResponseProcess(response.data.statusCode);
     if (config.loading) errorResponseProcess(response.data);
-    message.includes('timeout') &&
-      Toast.show({ content: '请求超时', icon: 'fail', duration: 800 });
     return response.data;
   },
 );
