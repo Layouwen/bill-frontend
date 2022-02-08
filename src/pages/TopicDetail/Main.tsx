@@ -1,5 +1,10 @@
 import { Topic } from '@/api';
-import { FixedPin, ImagePreview, TopicItem, Share } from '@/components';
+import {
+  // FixedPin,
+  ImagePreview,
+  TopicItem,
+  Share,
+} from '@/components';
 import ReplyArea from '@/pages/TopicDetail/ReplyArea';
 import { FC, useState } from 'react';
 
@@ -60,7 +65,7 @@ const Main: FC<MainProps> = ({ topic, comments, onLike }) => {
         visible={shareVisible}
         onClose={() => setShareVisible(false)}
       />
-      <FixedPin onClick={() => setShareVisible(true)}>操作</FixedPin>
+      {/*<FixedPin onClick={() => setShareVisible(true)}>操作</FixedPin>*/}
       <ImagePreview
         visible={imgVisible}
         image={imgSrc}
