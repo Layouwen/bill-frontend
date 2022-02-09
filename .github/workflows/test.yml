@@ -18,5 +18,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd bill/bill-backend
-            ls
             ./deploy.sh

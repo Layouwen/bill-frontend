@@ -60,7 +60,7 @@ const Main: FC<MainProps> = ({ topic, comments, onLike }) => {
         visible={shareVisible}
         onClose={() => setShareVisible(false)}
       />
-      <FixedPin onClick={() => setShareVisible(true)}>你好</FixedPin>
+      <FixedPin onClick={() => setShareVisible(true)}>哈哈</FixedPin>
       <ImagePreview
         visible={imgVisible}
         image={imgSrc}
