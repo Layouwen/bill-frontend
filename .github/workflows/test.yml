@@ -17,5 +17,6 @@ jobs:
           key: ${{ secrets.RSA_KEY }}
           port: ${{ secrets.PORT }}
           script: |
+            ls
             cd bill/bill-backend
             ./deploy.sh
