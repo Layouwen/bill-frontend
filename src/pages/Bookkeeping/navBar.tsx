@@ -2,12 +2,18 @@ import { FC, useState } from 'react';
 import styles from './navBar.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-const navBar: FC = () => {
+type navBarType = {
+  change: (type: string) => void;
+};
+
+const navBar: FC<navBarType> = ({ change }) => {
   const [active, setActive] = useState(0);
   const navigation = useNavigate();
 
   const handleChangeTab = (index: number) => {
-    console.log(index);
+    console.log(index, '切换了');
+    const type = index === 0 ? '-' : '+';
+    change(type);
     setActive(index);
   };
 

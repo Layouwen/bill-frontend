@@ -1,3 +1,11 @@
+	*{
+        -webkit-touch-callout:none;  /*系统默认菜单被禁用*/
+        -webkit-user-select:none; /*webkit浏览器*/
+        -khtml-user-select:none; /*早期浏览器*/
+        -moz-user-select:none;/*火狐*/
+        -ms-user-select:none; /*IE10*/
+        user-select:none;
+    }
 .keyBoard {
   display: flex;
   flex-direction: column;
@@ -16,7 +24,7 @@
       align-items: center;
       display: flex;
       padding: 5px 0;
-      margin-bottom: -1px;
+      margin-bottom: -2px;
       border-bottom: 1px solid #ccc;
       height: 39px;
 
@@ -82,6 +90,10 @@
         color: #333233;
         opacity: 1;
       }
+
+      .active{
+        background: #C5C5C5;
+      }
     }
 
     > .right {
@@ -99,6 +111,7 @@
         &.bor {
           border-top: 1px solid #ccc;
 
+
           &:nth-child(1) {
             span {
               margin-left: 4px;
@@ -110,6 +123,15 @@
             opacity: 1;
           }
         }
+
+
+
+      }
+         .active{
+        background: #C5C5C5;
+      }
+      .active1{
+        box-shadow: 0 0px 10px 8px #C5C5C5 inset;
       }
     }
   }

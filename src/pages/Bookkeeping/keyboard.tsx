@@ -1,12 +1,18 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './keyboard.module.scss';
 import { Icon } from '@/components';
+import { addRecord } from '@/api';
+import { useNavigate } from 'react-router-dom';
+import CustomRender from '@/pages/Bookkeeping/component';
+import classNames from 'classnames';
+import { Toast } from 'antd-mobile';
 
 type keyType = {
   keyToggle: number;
+  type: string;
 };
 
-const keyboard: FC<keyType> = ({ keyToggle }) => {
+const keyboard: FC<keyType> = ({ type, keyToggle }) => {
   const ArrayList = [
     {
       keys: 7,
@@ -46,22 +52,71 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
     },
   ];
 
-  const add = useRef<HTMLDivElement>(null);
+  // const addText = useRef<HTMLDivElement>(null);
   const [inputToggle, setInputToggle] = useState(false);
-  const [totals, setTotals] = useState('0.00');
-  const [num, setNum] = useState('');
-  const [addNum, setAddNum] = useState('');
-  const [Addition, setAddition] = useState('');
-  const [completeText, setCompleteText] = useState('=');
+  const [totals, setTotals] = useState('0.00'); //总数
+  const [num, setNum] = useState(''); //加减号前面的数字
+  const [addNum, setAddNum] = useState(''); //加减号后面的数字
+  const [Addition, setAddition] = useState(''); //存储加减号
+  const [completeText, setCompleteText] = useState('完成');
+  const [remarkValue, setRemarkValue] = useState(''); //备注
+  const [valueDate, setValueDate] = useState(false); //日期的显示和隐藏
+  const [DateValue, setDateValue] = useState('今天'); //选择的日期
+  const [DateTimeValue, setDateTimeValue] = useState(0); //选择的日期的时间戳
+  const [active, setActive] = useState(-1); //选择键盘样式高亮
+  const [active1, setActive1] = useState(-1); //选择键盘样式高亮
+  const navigate = useNavigate();
 
-  //数字键盘已经小数点和删除键
-  const changeKeys = (index: number, item: { keys: number | string }) => {
+  //TODO 拖动距离超出了数字键盘盒子的范围就取消高亮并且不输入内容!
+  const changeStart = (index: number) => {
+    //长按事件
+    setActive(index);
+  };
+  const changeMoves = (e: any) => {
+    //拖动事件
+
+    /*
+     * pageX-光标的x轴距离
+     * offsetWidth-这个元素的width的宽度
+     * offsetLeft-这个元素的left的距离
+     * */
+    if (
+      e.touches[0].pageY - e.touches[0].target.offsetTop < 0 ||
+      e.touches[0].pageY - e.touches[0].target.offsetTop > 46
+    ) {
+      setActive(-2);
+      setActive1(-1);
+    } else if (
+      e.touches[0].pageX - e.touches[0].target.offsetLeft < 0 ||
+      e.touches[0].pageX - e.touches[0].target.offsetLeft > 80
+    ) {
+      setActive(-2);
+      setActive1(-1);
+    }
+  };
+
+  const changeEnd = (index: number, item: { keys: number | string }) => {
+    //键盘抬起事件
+    setActive(-1);
+    if (active === -2) return;
     if (typeof item.keys === 'number') {
       changeNumber(item.keys);
     } else if (item.keys === '.') {
       changeDian(item.keys);
     } else if (item.keys === 'x') {
       changeDelete(item.keys);
+    }
+  };
+
+  //数字键盘已经小数点和删除键
+  const changeKeys = () => {
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+      //苹果端
+    } else if (/(Android)/i.test(navigator.userAgent)) {
+      //安卓端
+    } else {
+      alert('请使用手机进入该网站！');
+      //pc端
     }
   };
 
@@ -86,7 +141,7 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
       str = orders.join('');
       setAddNum(String(str));
       setTotals(num + Addition + String(str));
-      setCompleteText('完成');
+      setCompleteText('=');
       return;
     } else if (toggle === 3) {
       //加减拼接
@@ -102,6 +157,7 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
             setAddition(String(keys));
             setAddNum('');
             setTotals(num);
+            return num;
           }
           return;
         }
@@ -113,8 +169,8 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
           setAddNum('');
           setTotals(String(NewTotals) + keys);
           setAddition(String(keys));
-          setCompleteText('=');
-          return;
+          setCompleteText('完成');
+          return String(NewTotals);
         } else if (Addition === '-') {
           const NewTotals =
             (Number(num) * 10 * 10 - Number(addNum) * 10 * 10) / 100;
@@ -122,13 +178,14 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
           setAddNum('');
           setTotals(String(NewTotals) + keys);
           setAddition(String(keys));
-          setCompleteText('=');
+          setCompleteText('完成');
+          return String(NewTotals);
         }
       } else if (addNum === '') {
         //不存在的时候
         setAddition(String(keys));
         setTotals(num + String(keys));
-        return;
+        return num;
       }
     } else if (toggle === 4) {
       //小数点
@@ -185,7 +242,7 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
         if (newAddNum === '') {
           setAddNum('');
           setTotals(num + Addition + '');
-          setCompleteText('=');
+          setCompleteText('完成');
           return;
         }
         setAddNum(newAddNum);
@@ -259,8 +316,18 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
     changePing(keys, 5);
   };
 
+  //这是阻止右键菜单的出现的情况
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+
   //加号
   const changeAddFn = (str: string) => {
+    setActive1(-1);
+    if (active === -2) {
+      setActive(-1);
+      return;
+    }
     if (totals === '0' || totals === '0.00' || totals === '-') {
       return;
     }
@@ -268,18 +335,91 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
   };
 
   //减号
-  const changeMinusFn = (str: string) => {
+  // const changeMinusFn = (str: string) => {
+  //   setActive1(-1);
+  //   if(active===-2){
+  //     setActive(-1);
+  //     return;
+  //   }
+  //   if (totals === '0' || totals === '0.00' || totals === '-') {
+  //     return;
+  //   }
+  //   changePing(str, 3);
+  // };
+
+  //完成
+  const changeCompleteFn = async () => {
+    setActive1(-1);
+    if (active === -2) {
+      setActive(-1);
+      return;
+    }
+    let newTotals;
+    if (Addition === '+' || Addition === '-') {
+      newTotals = changePing('', 3);
+    } else if (Addition !== '+' && Addition !== '-') {
+      newTotals = totals;
+    }
+    const str = Number(newTotals);
     if (totals === '0' || totals === '0.00' || totals === '-') {
       return;
     }
-    changePing(str, 3);
+    if (Addition) return;
+    if (completeText !== '完成') return;
+
+    //DateValue 这是确定之后的日期
+    //DateTimeValue 这是确定之后的时间戳
+    let time1 = '';
+    if (DateTimeValue === 0) {
+      //当用户没有选择日期的时候，默认日期是当前的日期和时分秒
+      time1 = new Date().toISOString(); //iso保存时区
+    } else if (DateTimeValue !== 0) {
+      time1 = new Date(DateTimeValue).toISOString();
+    }
+
+    const res = await addRecord({
+      remark: remarkValue + '  ',
+      categoryId: '1',
+      time: time1,
+      type: String(type),
+      amount: String(str),
+    });
+    if (res.statusCode === 200) {
+      // Touch('创建成功')
+      Toast.show({ content: res.message });
+      navigate('/detail');
+    } else if (Number(res.statusCode) === 403) {
+      Toast.show({ content: '登录过期,请重新登录!' });
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    } else if (Number(res.statusCode) === 401) {
+      Toast.show({ content: '请先登录!' });
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    }
   };
 
-  //完成
-  const changeCompleteFn = () => {
-    if (Addition.includes('+') || Addition.includes('-')) {
-      changePing('', 3);
-    }
+  //加减以及完成的点击高亮
+  const changeStart1 = (index: number) => {
+    //长按事件
+    setActive1(index);
+  };
+
+  const CustomRenderToggle = () => {
+    //显示组件
+    // setActive1(-1);
+    // if (active === -2) {
+    //   setActive(-1);
+    //   return;
+    // }
+    setValueDate(true);
+  };
+
+  const ChangeDateRender = () => {
+    //关闭组件
+    setValueDate(false);
   };
 
   const inputOnBlur = () => {
@@ -288,6 +428,25 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
 
   const inputOnFocus = () => {
     setInputToggle(true);
+  };
+
+  // TODO: any
+  const changeRemark = (e: any) => {
+    //备注
+    setRemarkValue(e.target.value);
+  };
+
+  const changeTime = (value: string, time: number) => {
+    //选择的时间
+    //value 这是子组件返回的渲染的日期
+    //time 这是子组件返回的时间戳的参数
+
+    setDateTimeValue(time);
+    if (new Date(value).toDateString() == new Date().toDateString()) {
+      setDateValue('今天');
+    } else {
+      setDateValue(value);
+    }
   };
 
   return (
@@ -300,13 +459,12 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
               <input
                 type="text"
                 placeholder="点击写备注..."
+                onChange={changeRemark}
                 onBlur={() => inputOnBlur()}
                 onFocus={() => inputOnFocus()}
               />
             </div>
-            <span className={styles.total} ref={add}>
-              {totals}
-            </span>
+            <span className={styles.total}>{totals}</span>
           </div>
           {inputToggle === false ? (
             <div className={styles.main}>
@@ -314,27 +472,68 @@ const keyboard: FC<keyType> = ({ keyToggle }) => {
                 {ArrayList.map((item, index) => (
                   <div
                     key={index}
-                    className={styles.keys}
-                    onClick={() => changeKeys(index, item)}
+                    className={classNames([
+                      styles.keys,
+                      active === index ? styles.active : '',
+                    ])}
+                    onClick={() => changeKeys()}
+                    onTouchStart={() => changeStart(index)}
+                    onTouchMove={changeMoves}
+                    onTouchEnd={() => changeEnd(index, item)}
                   >
                     {item.keys}
                   </div>
                 ))}
               </div>
               <div className={styles.right}>
-                <div className={styles.bor}>
+                <div
+                  className={classNames([
+                    styles.bor,
+                    active1 === 4 ? styles.active : '',
+                  ])}
+                  onTouchStart={() => changeStart1(5)} //TODO onTouchEnd事件捕获修复在改为4
+                  onTouchMove={changeMoves}
+                  onClick={CustomRenderToggle}
+                  // onTouchEnd={CustomRenderToggle}
+                >
+                  <CustomRender
+                    valueDate={valueDate}
+                    change={() => ChangeDateRender()}
+                    changeTime={changeTime}
+                  ></CustomRender>
                   <Icon name={'community-fill'} className="tab-icon" />
-                  <span>今天</span>
+                  <span>{DateValue}</span>
                 </div>
-                <div className={styles.bor} onClick={() => changeAddFn('+')}>
+                <div
+                  className={classNames([
+                    styles.bor,
+                    active1 === 1 ? styles.active : '',
+                  ])}
+                  onTouchStart={() => changeStart1(1)}
+                  onTouchMove={changeMoves}
+                  onTouchEnd={() => changeAddFn('+')}
+                >
                   +
                 </div>
-                <div className={styles.bor} onClick={() => changeMinusFn('-')}>
+                <div
+                  className={classNames([
+                    styles.bor,
+                    active1 === 2 ? styles.active : '',
+                  ])}
+                  onTouchStart={() => changeStart1(2)}
+                  onTouchMove={changeMoves}
+                  onTouchEnd={() => changeAddFn('-')}
+                >
                   -
                 </div>
                 <div
-                  className={styles.bor}
-                  onClick={() => {
+                  className={classNames([
+                    styles.bor,
+                    active1 === 3 ? styles.active1 : '',
+                  ])}
+                  onTouchStart={() => changeStart1(3)}
+                  onTouchMove={changeMoves}
+                  onTouchEnd={() => {
                     changeCompleteFn();
                   }}
                 >

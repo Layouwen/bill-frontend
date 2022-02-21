@@ -6,6 +6,7 @@ import KeyBoard from '@/pages/Bookkeeping/keyboard';
 
 const Bookkeeping: FC = () => {
   const [keyToggle, setKeyToggle] = useState(-1);
+  const [type1, setType1] = useState('-');
 
   const handleChangeTab = (index: number) => {
     const numbers = index + 1;
@@ -18,11 +19,16 @@ const Bookkeeping: FC = () => {
     }
   };
 
+  const navBarType = (type: string) => {
+    console.log(type, '接受');
+    setType1(String(type));
+  };
+
   return (
     <div className={styles.bookkeeping}>
-      <NavBar></NavBar>
+      <NavBar change={navBarType}></NavBar>
       <Main change={handleChangeTab}></Main>
-      <KeyBoard keyToggle={keyToggle}></KeyBoard>
+      <KeyBoard keyToggle={keyToggle} type={type1}></KeyBoard>
     </div>
   );
 };
