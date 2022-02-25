@@ -63,7 +63,6 @@ const Main: FC<changePropsFn> = ({ change }) => {
   const changeMainFn = (index: number) => {
     serActive(index);
     change(index);
-    console.log(index);
   };
 
   return (

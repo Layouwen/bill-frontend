@@ -5,8 +5,8 @@ import Main from './main';
 import KeyBoard from '@/pages/Bookkeeping/keyboard';
 
 const Bookkeeping: FC = () => {
-  const [keyToggle, setKeyToggle] = useState(-1);
-  const [type1, setType1] = useState('-');
+  const [keyToggle, setKeyToggle] = useState(-1); //图标的id
+  const [type1, setType1] = useState('-'); //切换支出和收入
 
   const handleChangeTab = (index: number) => {
     const numbers = index + 1;
@@ -20,7 +20,7 @@ const Bookkeeping: FC = () => {
   };
 
   const navBarType = (type: string) => {
-    console.log(type, '接受');
+    console.log(type, '切换支出和收入');
     setType1(String(type));
   };
 

@@ -334,19 +334,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle }) => {
     changePing(str, 3);
   };
 
-  //减号
-  // const changeMinusFn = (str: string) => {
-  //   setActive1(-1);
-  //   if(active===-2){
-  //     setActive(-1);
-  //     return;
-  //   }
-  //   if (totals === '0' || totals === '0.00' || totals === '-') {
-  //     return;
-  //   }
-  //   changePing(str, 3);
-  // };
-
   //完成
   const changeCompleteFn = async () => {
     setActive1(-1);
@@ -379,7 +366,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle }) => {
 
     const res = await addRecord({
       remark: remarkValue + '  ',
-      categoryId: '1',
+      categoryId: String(keyToggle),
       time: time1,
       type: String(type),
       amount: String(str),
