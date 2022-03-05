@@ -1,79 +1,53 @@
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { Topic, topicLike } from '@/api';
-import { Icon } from '@/components';
-import { showDate } from '@/utils/time';
+import { Icon, ImagePreview, TopicItem } from '@/components';
+import { useNavigate } from 'react-router-dom';
 import styles from './ItemList.module.scss';
 
 type ItemListProps = {
   data?: Topic[];
+  fetch: () => void;
 };
 
-const ItemList: FC<ItemListProps> = ({ data }) => {
+const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
+  const navigate = useNavigate();
   const handleLike = async (topicId: number) => {
     await topicLike(topicId);
+    setTimeout(async () => {
+      await fetch();
+    }, 100);
   };
+  const [imgVisible, setImgVisible] = useState(false);
+  const [imgSrc, setImgSrc] = useState('');
+
+  const toDetail = useCallback((id: number) => {
+    navigate(`/topic-detail/${id}`);
+  }, []);
 
   return (
     <div
       className={classNames(styles.wrapper, 'flex-grow relative overflow-auto')}
     >
+      <ImagePreview
+        visible={imgVisible}
+        image={imgSrc}
+        onClose={() => setImgVisible(false)}
+      />
       {data && !!data.length ? (
         data.map((i) => (
-          <div key={i.id} className={styles.item}>
-            <div className={styles.head}>
-              <div
-                className={classNames(
-                  styles.img,
-                  'rounded-full overflow-hidden',
-                )}
-              >
-                <img
-                  className="w-full h-full object-cover"
-                  src={i.avatar}
-                  alt={i.name}
-                />
-              </div>
-              <div className="flex-grow">
-                <div className={styles.name}>{i.name}</div>
-                <div className={styles.time}>{showDate(i.createdAt)}</div>
-              </div>
-            </div>
-            <main>
-              <div className={styles.content}>{i.content}</div>
-              <div className={classNames(styles.imgs, 'flex flex-wrap')}>
-                {i.images &&
-                  i.images.map((img, index) => (
-                    <div
-                      key={img + index}
-                      className={classNames(
-                        styles.img,
-                        'relative h-0 overflow-hidden',
-                      )}
-                    >
-                      <img
-                        className="w-full h-full object-cover"
-                        src={img}
-                        alt=""
-                      />
-                    </div>
-                  ))}
-              </div>
-              <footer className="flex">
-                <span>
-                  <Icon name="share" />
-                  {/*{i.shareCount}*/}
-                </span>
-                <span>
-                  <Icon name="comment" />
-                  {/*{i.commentCount}*/}
-                </span>
-                <span onClick={() => handleLike(i.id)}>
-                  <Icon name="like" />0{/*{i.likeCount}*/}
-                </span>
-              </footer>
-            </main>
-          </div>
+          <TopicItem
+            key={i.id}
+            data={i}
+            onClick={(id) => toDetail(id)}
+            onComment={(id) => toDetail(id)}
+            onShare={() => console.log('share')}
+            onLike={() => handleLike(i.id)}
+            onImg={(index, src) => {
+              setImgVisible(true);
+              setImgSrc(src);
+            }}
+          />
         ))
       ) : (
         <div

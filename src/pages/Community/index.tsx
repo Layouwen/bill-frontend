@@ -2,13 +2,17 @@ import { getTopics, Topic } from '@/api';
 import { TabBar, FixedPin } from '@/components';
 import ItemList from '@/pages/Community/ItemList';
 import TopBar from '@/pages/Community/TopBar';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Community: FC = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(2);
   const [topics, setTopics] = useState<Topic[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    tabs[tabIndex].onClick();
+  }, []);
 
   const tabs = [
     {
@@ -33,6 +37,11 @@ const Community: FC = () => {
     },
   ];
 
+  const fetchData = async () => {
+    const { statusCode, data } = await getTopics();
+    if (statusCode === 200) setTopics(data);
+  };
+
   const onChange = (key: number) => {
     setTabIndex(key);
     tabs[key].onClick();
@@ -45,7 +54,7 @@ const Community: FC = () => {
   return (
     <div className="page">
       <TopBar data={tabs} index={tabIndex} onChange={onChange} />
-      <ItemList data={topics} />
+      <ItemList data={topics} fetch={fetchData} />
       <TabBar active={3} />
       <FixedPin onClick={handlePostTopic}>发帖</FixedPin>
     </div>

@@ -7,9 +7,22 @@ import styles from './UserInfo.module.scss';
 type UserInfoProps = {
   avatar?: string;
   name?: string;
+  checkIn: boolean;
+  numberInfo: {
+    checkInAll: number;
+    checkInKeep: number;
+    recordCount: number;
+  };
+  onCheckIn: () => void;
 };
 
-const UserInfo: FC<UserInfoProps> = ({ name, avatar }) => {
+const UserInfo: FC<UserInfoProps> = ({
+  name,
+  avatar,
+  checkIn,
+  onCheckIn,
+  numberInfo,
+}) => {
   const navigate = useNavigate();
   const toUserInfo = () => navigate('/user-info');
 
@@ -38,21 +51,26 @@ const UserInfo: FC<UserInfoProps> = ({ name, avatar }) => {
       </div>
       <div className={classNames(styles.middle, 'flex absolute w-full')}>
         <div className="grow flex flex-col justify-center items-center">
-          <span className="font-bold">8</span>
+          <span className="font-bold">{numberInfo.checkInKeep || 0}</span>
           <p>已连续打卡</p>
         </div>
         <div className="grow flex flex-col justify-center items-center">
-          <span className="font-bold">9</span>
+          <span className="font-bold">{numberInfo.checkInAll || 0}</span>
           <p>记账总天数</p>
         </div>
         <div className="grow flex flex-col justify-center items-center">
-          <span className="font-bold">50</span>
+          <span className="font-bold">{numberInfo.recordCount || 0}</span>
           <p>记账总笔数</p>
         </div>
       </div>
-      <button className="absolute flex justify-center items-center">
-        已打卡
-      </button>
+      {name && (
+        <button
+          className="absolute flex justify-center items-center"
+          onClick={onCheckIn}
+        >
+          {checkIn ? '已打卡' : '打卡'}
+        </button>
+      )}
       <div
         className={classNames(
           styles['bottom-wrapper'],
