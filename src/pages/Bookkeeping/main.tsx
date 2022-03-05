@@ -12,50 +12,42 @@ const Main: FC<changePropsFn> = ({ change }) => {
     {
       id: 1,
       name: '餐饮',
-      icon: 'mine',
-      iconActive: 'mine-fill',
+      icon: 'canyin1',
     },
     {
       id: 2,
       name: '购物',
-      icon: 'mine',
-      iconActive: 'mine-fill',
+      icon: 'icon-',
     },
     {
       id: 3,
       name: '日用',
-      icon: 'mine',
-      iconActive: 'mine-fill',
+      icon: 'riyongbaihuo',
     },
     {
       id: 4,
       name: '日常',
       icon: 'mine',
-      iconActive: 'mine-fill',
     },
     {
       id: 5,
       name: '泡妞',
       icon: 'mine',
-      iconActive: 'mine-fill',
     },
     {
       id: 6,
       name: '约会',
       icon: 'mine',
-      iconActive: 'mine-fill',
     },
     {
       id: 7,
       name: '零售',
       icon: 'mine',
-      iconActive: 'mine-fill',
     },
     {
       id: 8,
       name: '外卖',
       icon: 'mine',
-      iconActive: 'mine-fill',
     },
   ];
 
@@ -63,14 +55,14 @@ const Main: FC<changePropsFn> = ({ change }) => {
 
   /* eslint-disable */
   const isActive = (item: any, index: number) => {
-    return index === active ? item.iconActive : item.icon;
+    // return index === active ? item.iconActive : item.icon;
+    return item.icon;
   };
   /* eslint-disable */
 
   const changeMainFn = (index: number) => {
     serActive(index);
     change(index);
-    console.log(index);
   };
 
   return (
@@ -82,7 +74,11 @@ const Main: FC<changePropsFn> = ({ change }) => {
             key={index}
             onClick={() => changeMainFn(index)}
           >
-            <div>
+            <div
+              className={
+                active === index ? styles.newClass_icon_backGround : ''
+              }
+            >
               <Icon
                 name={isActive(item, index)}
                 className={classNames(['tab-icon', styles.newClass_icon])}

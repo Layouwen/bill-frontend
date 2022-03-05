@@ -32,9 +32,17 @@
         border-radius: 50%;
         opacity: 1;
         margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //background: red;
+        overflow: hidden;
         .newClass_icon {
-          width: 100%;
-          height: 100%;
+          width: 80%;
+          height: 80%;
+        }
+        &.newClass_icon_backGround{
+          background: #AEEEFF;
         }
       }
     }
