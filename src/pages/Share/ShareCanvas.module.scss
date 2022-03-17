@@ -1,0 +1,53 @@
+.canvas {
+  > main {
+    position: relative;
+    padding: 12px;
+    height: 156px;
+    font-size: 13px;
+    color: #333233;
+    background: #fff;
+    .qccode {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      img {
+        width: 71px;
+        height: 71px;
+      }
+      span {
+        font-size: 12px;
+      }
+    }
+    .type{
+      margin: 7px 0 5px 0;
+      font-size: 22px;
+    }
+    .desc{
+      color: #969696;
+    }
+    .money{
+      display: flex;
+      align-items: baseline;
+      div {
+        margin-left: 12px;
+        font-size: 23px;
+        color: #EA6453;
+        span {
+          font-size: 33px;
+        }
+      }
+    }
+  }
+  > footer {
+    width: 281px;
+    height: 261px;
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

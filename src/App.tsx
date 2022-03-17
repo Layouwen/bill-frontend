@@ -20,6 +20,7 @@ import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
 import TopicDetail from '@/pages/TopicDetail';
+import Share from '@/pages/Share';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -53,6 +54,7 @@ const App = () => {
         />
         <Route path="/sign" element={<Sign />} />
         <Route path="/mine" element={<Mine />} />
+        <Route path="/share" element={<Share />} />
         <Route
           path="/post-topic"
           element={
