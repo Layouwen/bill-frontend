@@ -2,55 +2,15 @@ import { FC, useState } from 'react';
 import styles from './main.module.scss';
 import { Icon } from '@/components';
 import classNames from 'classnames';
+import mainList from '@/pages/Bookkeeping/icon';
+
+console.log(mainList, '这是icon的数组');
 
 type changePropsFn = {
   change: (index: number) => void;
 };
 
 const Main: FC<changePropsFn> = ({ change }) => {
-  const mainList = [
-    {
-      id: 1,
-      name: '餐饮',
-      icon: 'canyin1',
-    },
-    {
-      id: 2,
-      name: '购物',
-      icon: 'icon-',
-    },
-    {
-      id: 3,
-      name: '日用',
-      icon: 'riyongbaihuo',
-    },
-    {
-      id: 4,
-      name: '日常',
-      icon: 'mine',
-    },
-    {
-      id: 5,
-      name: '泡妞',
-      icon: 'mine',
-    },
-    {
-      id: 6,
-      name: '约会',
-      icon: 'mine',
-    },
-    {
-      id: 7,
-      name: '零售',
-      icon: 'mine',
-    },
-    {
-      id: 8,
-      name: '外卖',
-      icon: 'mine',
-    },
-  ];
-
   const [active, serActive] = useState(-1);
 
   /* eslint-disable */

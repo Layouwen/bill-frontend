@@ -7,15 +7,17 @@
     flex-wrap: wrap;
     padding: 20px 0 10px 0;
 
+
     > .wrapper_item {
-      //margin-right: 31px;
-      //margin: 15px 15px;
       margin-bottom: 20px;
-      flex: 25%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 24%;
 
+      &:not(:nth-child(4n)) {
+        margin-right: calc(4% / 3);
+      }
 
       > span {
         font-size: 13px;
@@ -23,7 +25,6 @@
         color: #000000;
         opacity: 1;
       }
-
 
       > div {
         width: 55px;
@@ -35,11 +36,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        //background: red;
         overflow: hidden;
         .newClass_icon {
-          width: 80%;
-          height: 80%;
+          width: 60%;
+          height: 60%;
         }
         &.newClass_icon_backGround{
           background: #AEEEFF;
@@ -47,4 +47,5 @@
       }
     }
   }
+
 }
