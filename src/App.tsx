@@ -21,6 +21,7 @@ import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
 import TopicDetail from '@/pages/TopicDetail';
 import Share from '@/pages/Share';
+import Message from '@/pages/Message';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -66,6 +67,7 @@ const App = () => {
         <Route path="/topic-detail/:id" element={<TopicDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
+        <Route path="/message" element={<Message />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

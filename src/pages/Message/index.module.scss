@@ -1,0 +1,41 @@
+.nav-bar {
+  background: #FEFEFE;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 17px;
+  background: #FFFFFF;
+  &::before {
+    height: 1px;
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    background: #EBEBEB;
+  }
+  .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 14px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+  }
+  .title {
+    flex-grow: 1;
+    font-size: 15px;
+    color: #323334;
+  }
+}
+
