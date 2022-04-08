@@ -5,9 +5,11 @@ import { checkInPost, getUserInfo } from '@/api';
 import { Icon, TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
 const Mine: FC = () => {
+  const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState(false);
   const [numberInfo, setNumberInfo] = useState({
     checkInAll: 0,
@@ -48,6 +50,7 @@ const Mine: FC = () => {
     {
       icon: 'msg',
       name: '消息',
+      path: '/message',
     },
     {
       icon: 'badge',
@@ -66,6 +69,11 @@ const Mine: FC = () => {
       name: '设置',
     },
   ];
+
+  const goTo = (path?: string) => {
+    path && navigate(path);
+  };
+
   return (
     <div className={classNames('page', styles.wrapper)}>
       <main className="overflow-auto flex flex-col grow">
@@ -86,6 +94,7 @@ const Mine: FC = () => {
                   styles.tab,
                   'w-1/4 flex flex-col justify-center items-center',
                 )}
+                onClick={() => goTo(tab.path)}
               >
                 <Icon name={tab.icon} className={styles.icon} />
                 <span className={styles.name}>{tab.name}</span>

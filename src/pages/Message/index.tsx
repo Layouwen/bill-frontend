@@ -1,8 +1,10 @@
 import { Icon, NavBar } from '@/components';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
 const Message: FC = () => {
+  const navigate = useNavigate();
   const itemList = [
     {
       title: '系统通知',
@@ -19,7 +21,11 @@ const Message: FC = () => {
   ];
   return (
     <div className="page">
-      <NavBar back="返回" className={styles['nav-bar']}>
+      <NavBar
+        onBack={() => navigate(-1)}
+        back="返回"
+        className={styles['nav-bar']}
+      >
         消息
       </NavBar>
       <div className={styles.list}>
