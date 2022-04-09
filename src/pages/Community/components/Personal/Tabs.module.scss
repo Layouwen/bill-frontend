@@ -1,0 +1,46 @@
+.tabs {
+  display: flex;
+  .tab {
+    height: 36px;
+    line-height: 36px;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 14px;
+    color: #888B92;
+    &.active {
+      position: relative;
+      font-weight: bold;
+      color: #1C1C1F;
+      &:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 1px;
+        transform: translateX(-50%);
+        width: 14px;
+        height: 3px;
+        display: block;
+        background: #AEEEFF;
+        border-radius: 1.5px;
+      }
+    }
+  }
+}
+
+.achieve {
+  padding: 13px 16px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1C1D1F;
+}
+
+.check-info {
+  .font-bold {
+    font-size: 16px;
+    color: #1C1D1F;
+  }
+  p {
+    font-size: 12px;
+    color: #8C8F95;
+  }
+}

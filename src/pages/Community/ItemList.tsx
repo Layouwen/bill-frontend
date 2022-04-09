@@ -47,6 +47,7 @@ const ItemList: FC<ItemListProps> = ({ data, fetch }) => {
               setImgVisible(true);
               setImgSrc(src);
             }}
+            onAvatar={(id) => navigate(`/community/personal/${id}`)}
           />
         ))
       ) : (

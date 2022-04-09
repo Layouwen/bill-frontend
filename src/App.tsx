@@ -20,6 +20,7 @@ import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
 import TopicDetail from '@/pages/TopicDetail';
+import Personal from '@/pages/Community/Personal';
 import Share from '@/pages/Share';
 import Message from '@/pages/Message';
 
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/detail" />} />
         <Route path="/bookkeeping" element={<Bookkeeping />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/community/personal/:id" element={<Personal />} />
         <Route
           path="/user-info"
           element={
