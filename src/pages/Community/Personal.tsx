@@ -4,7 +4,7 @@ import Tabs from '@/pages/Community/components/Personal/Tabs';
 import UserInfo from '@/pages/Community/components/Personal/UserInfo';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import styles from './personal.module.scss';
+import styles from './Personal.module.scss';
 
 interface TopicUserInfoData {
   userInfo: {
