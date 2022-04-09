@@ -1,14 +1,23 @@
 import classNames from 'classnames';
+import { FC } from 'react';
 import styles from './UserInfo.module.scss';
 
-const UserInfo = () => {
+interface UserInfoProps {
+  data?: {
+    avatar: string;
+    id: number;
+    name: string;
+  };
+}
+
+const UserInfo: FC<UserInfoProps> = ({ data }) => {
   return (
     <div className={styles.wrapper}>
       <div className={classNames(styles.avatar, 'rounded-full')}>
-        <img src="" alt="" />
+        <img src={data?.avatar} alt="" />
       </div>
       <div className={styles.middle}>
-        <span className={styles.name}>打卡第二个百万</span>
+        <span className={styles.name}>{data?.name || '我是小可爱'}</span>
         <div className={styles.desc}>
           <div>
             <span>22</span> 关注

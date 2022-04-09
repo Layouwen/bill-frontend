@@ -52,7 +52,7 @@ export const TopicItem: FC<TopicItemProps> = ({
       <div className={styles.head}>
         <div
           className={classNames(styles.img, 'rounded-full overflow-hidden')}
-          onClick={(e) => stopPropagation(e, onAvatar!, data.id)}
+          onClick={(e) => stopPropagation(e, onAvatar!, data.user.id)}
         >
           <img
             className="w-full h-full object-cover"
