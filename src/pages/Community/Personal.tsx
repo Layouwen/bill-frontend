@@ -24,6 +24,9 @@ interface TopicUserInfoData {
     checkInCount: number;
     checkInKeep: number;
   };
+  isFollow: boolean;
+  fans: number;
+  follow: number;
 }
 
 const Personal = () => {
@@ -44,7 +47,13 @@ const Personal = () => {
         back="返回"
         className={styles['nav-bar']}
       />
-      <UserInfo data={data?.userInfo} />
+      <UserInfo
+        data={data?.userInfo}
+        isFollow={data?.isFollow}
+        fansCount={data?.fans}
+        followCount={data?.follow}
+        topicUserInfo={topicUserInfo}
+      />
       <Tabs checkInfo={data?.checkInfo} topics={data?.topics} />
     </div>
   );
