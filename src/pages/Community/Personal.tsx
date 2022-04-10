@@ -23,6 +23,7 @@ interface TopicUserInfoData {
   checkInfo: {
     checkInCount: number;
     checkInKeep: number;
+    recordCount: number;
   };
   isFollow: boolean;
   fans: number;
