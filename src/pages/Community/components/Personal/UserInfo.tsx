@@ -2,6 +2,7 @@ import { followUserApi, unfollowUserApi } from '@/api/follow';
 import { useAppSelector } from '@/store/hooks';
 import classNames from 'classnames';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './UserInfo.module.scss';
 
 interface UserInfoProps {
@@ -23,6 +24,7 @@ const UserInfo: FC<UserInfoProps> = ({
   followCount,
   fansCount,
 }) => {
+  const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const followUser = async (followId: number) => {
     await followUserApi(followId);
@@ -34,6 +36,10 @@ const UserInfo: FC<UserInfoProps> = ({
     topicUserInfo();
   };
 
+  const goToFollowListPage = (followId: number, type: 'follow' | 'fans') => {
+    navigate(`/community/follow-list/${followId}/${type}`);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={classNames(styles.avatar, 'rounded-full')}>
@@ -42,10 +48,10 @@ const UserInfo: FC<UserInfoProps> = ({
       <div className={styles.middle}>
         <span className={styles.name}>{data?.name || '我是小可爱'}</span>
         <div className={styles.desc}>
-          <div>
+          <div onClick={() => goToFollowListPage(data!.id, 'follow')}>
             <span>{followCount || 0}</span> 关注
           </div>
-          <div>
+          <div onClick={() => goToFollowListPage(data!.id, 'fans')}>
             <span>{fansCount || 0}</span> 粉丝
           </div>
         </div>

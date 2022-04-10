@@ -1,3 +1,4 @@
+import FollowList from '@/pages/Community/FollowList';
 import { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -39,6 +40,10 @@ const App = () => {
         <Route path="/bookkeeping" element={<Bookkeeping />} />
         <Route path="/community" element={<Community />} />
         <Route path="/community/personal/:id" element={<Personal />} />
+        <Route
+          path="/community/follow-list/:id/:type"
+          element={<FollowList />}
+        />
         <Route
           path="/user-info"
           element={
