@@ -7,3 +7,14 @@ export const followUserApi = (followId: number) => {
 export const unfollowUserApi = (followId: number) => {
   return request.delete(`/follow/${followId}`);
 };
+
+export enum FollowListType {
+  FOLLOW = 'follow',
+  FANS = 'fans',
+}
+
+export const getFollowList = (followId: number, type: FollowListType) => {
+  return request.get<unknown, SuccessResponse<any>>(`/follow/${followId}`, {
+    params: { type },
+  });
+};

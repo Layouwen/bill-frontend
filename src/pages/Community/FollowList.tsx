@@ -1,19 +1,26 @@
+import { FollowListType, getFollowList } from '@/api/follow';
 import { NavBar } from '@/components';
-import { useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './FollowList.module.scss';
 
 const FollowList = () => {
   const { id, type } = useParams();
   const navigate = useNavigate();
-  // const [list, setList] = useState<any[]>([]);
+  const [list, setList] = useState<any[]>([]);
 
   useEffect(() => {
     void getListData();
   }, []);
 
   const getListData = async () => {
-    console.log(id);
+    const { statusCode, data } = await getFollowList(
+      parseInt(id!),
+      type as FollowListType,
+    );
+    if (statusCode === 200) {
+      setList(data.data);
+    }
   };
 
   const followName = (type: FollowType) => {
@@ -28,8 +35,8 @@ const FollowList = () => {
       >
         阿文的{followName(type as FollowType)}
       </NavBar>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-        <Item key={i} />
+      {list.map((i) => (
+        <Item key={i} data={i} />
       ))}
     </div>
   );
@@ -37,24 +44,34 @@ const FollowList = () => {
 
 export default FollowList;
 
-const Item = () => {
+interface ItemProps {
+  data: {
+    avatar: string;
+    name: string;
+    fans: number;
+    follow: number;
+    isFollow: boolean;
+    topics: number;
+  };
+}
+
+const Item: FC<ItemProps> = ({ data }) => {
   return (
     <div className={styles.item}>
-      <img className="rounded-full overflow-hidden" src="" alt="" />
+      <img className="rounded-full overflow-hidden" src={data.avatar} alt="" />
       <div className={styles.box}>
-        <div className={styles.name}>名字</div>
+        <div className={styles.name}>{data.name}</div>
         <div className={styles.desc}>
-          <span>粉丝：182</span>
-          <span>帖子：202</span>
+          <span>粉丝：{data.fans}</span>
+          <span>帖子：{data.topics}</span>
         </div>
       </div>
       <div className={styles['btn-wrapper']}>
-        <button className={styles.active}>已关注</button>
-        {/*{true ? (*/}
-        {/*  */}
-        {/*) : (*/}
-        {/*  <button>+关注</button>*/}
-        {/*)}*/}
+        {data.isFollow ? (
+          <button className={styles.active}>已关注</button>
+        ) : (
+          <button>+关注</button>
+        )}
       </div>
     </div>
   );
