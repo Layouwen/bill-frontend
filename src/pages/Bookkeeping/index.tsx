@@ -3,24 +3,19 @@ import styles from './index.module.scss';
 import NavBar from './navBar';
 import Main from './main';
 import KeyBoard from '@/pages/Bookkeeping/keyboard';
+import { iconObj } from '@/api/category';
 
 const Bookkeeping: FC = () => {
-  const [keyToggle, setKeyToggle] = useState(-1); //图标的id
+  const [keyToggle, setKeyToggle] = useState<number>(-1); //图标的id
+  const [name, setName] = useState(''); //图标选项的名称
   const [type1, setType1] = useState('-'); //切换支出和收入
 
-  const handleChangeTab = (index: number) => {
-    const numbers = index + 1;
-    console.log(numbers, 'book');
-    if (numbers && numbers > -1) {
-      setKeyToggle(numbers);
-      console.log('触发了');
-    } else {
-      setKeyToggle(-1);
-    }
+  const handleChangeTab = (index: number, item: iconObj) => {
+    setName(item.name);
+    setKeyToggle(item.id);
   };
 
   const navBarType = (type: string) => {
-    console.log(type, '切换支出和收入');
     setType1(String(type));
   };
 
@@ -28,7 +23,7 @@ const Bookkeeping: FC = () => {
     <div className={styles.bookkeeping}>
       <NavBar change={navBarType}></NavBar>
       <Main change={handleChangeTab}></Main>
-      <KeyBoard keyToggle={keyToggle} type={type1}></KeyBoard>
+      <KeyBoard keyToggle={keyToggle} name={name} type={type1}></KeyBoard>
     </div>
   );
 };

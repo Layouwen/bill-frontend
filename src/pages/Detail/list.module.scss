@@ -1,6 +1,9 @@
 .wrapper {
   margin-top: 9px;
   flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
   .group {
     .title {
       display: flex;
@@ -34,6 +37,7 @@
           border-radius: 50%;
         }
       }
+
       .right {
         height: 100%;
         flex-grow: 1;
@@ -49,6 +53,19 @@
           flex-shrink: 0;
         }
       }
+
+
     }
+    .record:last-child{
+        .right {
+          border-bottom: none;
+        }
+    }
+    &:last-child{
+      border-bottom: 1px solid #ebebeb;
+    }
+  }
+  .aotuMain{
+    margin: auto;
   }
 }

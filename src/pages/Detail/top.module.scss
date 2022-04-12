@@ -53,7 +53,10 @@
   }
 
   .big {
-    font-size: 22px;
+    font-size: 18px;
+  }
+  .bigNum{
+    font-size: 12px;
   }
 
   .right {
@@ -78,5 +81,10 @@
       border-radius: 8px;
     }
   }
+}
+
+.year {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
 }
 

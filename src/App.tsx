@@ -20,6 +20,7 @@ import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
 import TopicDetail from '@/pages/TopicDetail';
+import CateGory from '@/pages/Bookkeeping/CategorySettings';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/detail" />} />
         <Route path="/bookkeeping" element={<Bookkeeping />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/CateGory" element={<CateGory />}></Route>
         <Route
           path="/user-info"
           element={

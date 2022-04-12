@@ -38,7 +38,7 @@ const CustomRender: FC<CustomRender> = ({ valueDate, change, changeTime }) => {
       (val.getMonth() + 1 < 10
         ? '0' + (val.getMonth() + 1)
         : val.getMonth() + 1) + '/';
-    const D = val.getDate() + ' ';
+    const D = (val.getDate() < 10 ? '0' + val.getDate() : val.getDate()) + ' ';
     const h = date.getHours() + ':';
     const m = date.getMinutes() + ':';
     const s = date.getSeconds();
@@ -46,27 +46,19 @@ const CustomRender: FC<CustomRender> = ({ valueDate, change, changeTime }) => {
     //Y + M + D 应该渲染的时间
     const getTimeValue = Y + M + D;
 
-    const newDate = new Date(Y + M + D + h + m + s).getTime(); //选择的年月日和当前的选择的时候的时分秒
-
     //newDate 新的时间戳
-    // const newDate2 = new Date(parseInt(String(newDate))).toLocaleString().replace(/:\d{1,2}$/, ' ');
-    //newDate2  新的时间
+    const newDate = new Date(Y + M + D + h + m + s).getTime(); //选择的年月日和当前的选择的时候的时分秒
     changeTime(getTimeValue, newDate);
 
     //start  //显示某月某日是星期几？
     // getWeekByDay(newDate2)
     //end
+
     //start //获取某年某月的天数
     // getDaysInOneMonth(2022,1)
     //edn
   };
 
-  // function getWeekByDay(dayValue: string) { //dayValue=“2014-01-01”
-  //     const day = new Date(Date.parse(dayValue.replace(/-/g, '/'))); //将日期值格式化
-  //     const today = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]; //创建星期数组
-  //     // console.log(today[day.getDay()]);
-  //     return today[day.getDay()];  //返一个星期中的某一天，其中0为星期日
-  // }
   //
   // function getDaysInOneMonth(year:number, month:number) {
   //     month = parseInt(String(month), 10);

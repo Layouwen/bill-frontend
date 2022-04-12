@@ -1,29 +1,31 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './main.module.scss';
-import { Icon } from '@/components';
-import classNames from 'classnames';
-import mainList from '@/pages/Bookkeeping/icon';
-
-console.log(mainList, '这是icon的数组');
+import { cateGoryApi } from '@/api';
+import { iconObj } from '@/api/category';
+import mm from '@/assets/images/mm.jpg';
 
 type changePropsFn = {
-  change: (index: number) => void;
+  change: (index: number, item: iconObj) => void;
 };
 
 const Main: FC<changePropsFn> = ({ change }) => {
   const [active, serActive] = useState(-1);
+  const [mainList, setMainList] = useState<iconObj[]>([]);
 
-  /* eslint-disable */
-  const isActive = (item: any, index: number) => {
-    // return index === active ? item.iconActive : item.icon;
-    return item.icon;
-  };
-  /* eslint-disable */
-
-  const changeMainFn = (index: number) => {
+  const changeMainFn = (index: number, item: iconObj) => {
     serActive(index);
-    change(index);
+    change(index, item);
   };
+
+  const cateFn = async () => {
+    const res = await cateGoryApi();
+    const data = res.data.data;
+    setMainList(data);
+  };
+
+  useEffect(() => {
+    void cateFn();
+  }, []);
 
   return (
     <div className={styles.context}>
@@ -32,17 +34,14 @@ const Main: FC<changePropsFn> = ({ change }) => {
           <div
             className={styles.wrapper_item}
             key={index}
-            onClick={() => changeMainFn(index)}
+            onClick={() => changeMainFn(index, item)}
           >
             <div
               className={
                 active === index ? styles.newClass_icon_backGround : ''
               }
             >
-              <Icon
-                name={isActive(item, index)}
-                className={classNames(['tab-icon', styles.newClass_icon])}
-              />
+              <img src={mm} alt="" className={styles.newClass_icon} />
             </div>
             <span>{item.name}</span>
           </div>

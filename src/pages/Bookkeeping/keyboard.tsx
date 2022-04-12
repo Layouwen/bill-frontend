@@ -10,9 +10,10 @@ import { Toast } from 'antd-mobile';
 type keyType = {
   keyToggle: number;
   type: string;
+  name: string;
 };
 
-const keyboard: FC<keyType> = ({ type, keyToggle }) => {
+const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
   const ArrayList = [
     {
       keys: 7,
@@ -363,9 +364,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle }) => {
     } else if (DateTimeValue !== 0) {
       time1 = new Date(DateTimeValue).toISOString();
     }
-
+    const remark = remarkValue === '' ? name : remarkValue;
     const res = await addRecord({
-      remark: remarkValue + '  ',
+      remark,
       categoryId: String(keyToggle),
       time: time1,
       type: String(type),
@@ -375,16 +376,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle }) => {
       // Touch('创建成功')
       Toast.show({ content: res.message });
       navigate('/detail');
-    } else if (Number(res.statusCode) === 403) {
-      Toast.show({ content: '登录过期,请重新登录!' });
-      setTimeout(() => {
-        navigate('/login');
-      }, 1000);
-    } else if (Number(res.statusCode) === 401) {
-      Toast.show({ content: '请先登录!' });
-      setTimeout(() => {
-        navigate('/login');
-      }, 1000);
     }
   };
 

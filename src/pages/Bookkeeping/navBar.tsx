@@ -11,14 +11,12 @@ const navBar: FC<navBarType> = ({ change }) => {
   const navigation = useNavigate();
 
   const handleChangeTab = (index: number) => {
-    console.log(index, '切换了');
     const type = index === 0 ? '-' : '+';
     change(type);
     setActive(index);
   };
 
   const backFn = () => {
-    console.log(11);
     navigation(-1);
   };
 
