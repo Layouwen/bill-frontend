@@ -35,6 +35,7 @@ const Top: FC<timedate> = ({ change, numExpendIncome }) => {
 
     const arrayDate = [String(Y), String(M)];
     setYearMoth(arrayDate);
+    console.log(numExpendIncome, 'numExpendIncome');
   }, []);
 
   return (
@@ -62,13 +63,14 @@ const Top: FC<timedate> = ({ change, numExpendIncome }) => {
         <div className={styles['middle-bottom']}>
           <div className={styles['bottom-wrapper']}>
             <span className={styles.big}>
-              {' '}
               {numExpendIncome[1] && numExpendIncome[1].length
                 ? numExpendIncome[1][0]
                 : '00'}
             </span>
             <span className={styles.bigNum}>
-              {numExpendIncome[1] && numExpendIncome[1].length
+              {numExpendIncome[1] &&
+              numExpendIncome[1].length &&
+              numExpendIncome[1][1] !== ''
                 ? '.' + numExpendIncome[1][1]
                 : '.00'}
             </span>
@@ -85,7 +87,9 @@ const Top: FC<timedate> = ({ change, numExpendIncome }) => {
                 : '00'}
             </span>
             <span className={styles.bigNum}>
-              {numExpendIncome[0] && numExpendIncome[0].length
+              {numExpendIncome[0] &&
+              numExpendIncome[0].length &&
+              numExpendIncome[0][1] !== ''
                 ? '.' + numExpendIncome[0][1]
                 : '.00'}
             </span>

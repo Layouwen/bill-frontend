@@ -55,9 +55,13 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
       let array2: Array<string> = [];
       if (String(expend).includes('.')) {
         array = leftNum.toString().split('.');
+      } else {
+        array = [leftNum + '', ''];
       }
       if (String(income).includes('.')) {
         array2 = leftNum2.toString().split('.');
+      } else {
+        array2 = [leftNum2 + '', ''];
       }
       change([array, array2]);
 
