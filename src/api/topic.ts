@@ -62,3 +62,7 @@ export const topicLike = (topicId: number) => {
     `/topic/like/${topicId}`,
   );
 };
+
+export const topicUserInfoApi = (userId: string) => {
+  return request.get<unknown, SuccessResponse<any>>(`/topic/user/${userId}`);
+};

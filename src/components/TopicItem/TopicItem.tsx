@@ -26,6 +26,7 @@ type TopicItemProps = {
   onLike?: (id: number) => void;
   onShare?: (id: number) => void;
   onComment?: (id: number) => void;
+  onAvatar?: (id: number) => void;
 };
 
 export const TopicItem: FC<TopicItemProps> = ({
@@ -35,6 +36,7 @@ export const TopicItem: FC<TopicItemProps> = ({
   onLike,
   onShare,
   onComment,
+  onAvatar,
 }) => {
   function stopPropagation<T extends (...p: any[]) => void>(
     e: MouseEvent,
@@ -48,7 +50,10 @@ export const TopicItem: FC<TopicItemProps> = ({
   return (
     <div className={styles.item} onClick={() => onClick?.(data.id)}>
       <div className={styles.head}>
-        <div className={classNames(styles.img, 'rounded-full overflow-hidden')}>
+        <div
+          className={classNames(styles.img, 'rounded-full overflow-hidden')}
+          onClick={(e) => stopPropagation(e, onAvatar!, data.user.id)}
+        >
           <img
             className="w-full h-full object-cover"
             src={data.user.avatar}

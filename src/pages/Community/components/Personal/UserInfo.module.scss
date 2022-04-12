@@ -1,0 +1,57 @@
+.wrapper {
+  display: flex;
+  padding: 13px 16px 30px;
+  background: #FFFFFF;
+  border-top: 1px solid #EBEBEB;
+  border-bottom: 1px solid #D9D9D9;
+
+  .avatar {
+    width: 70px;
+    height: 70px;
+    margin-right: 12px;
+    overflow: hidden;
+    background: #ACA3A3;
+  }
+
+  .middle {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .name {
+      color: #1C1D1F;
+      font-size: 18px;
+    }
+
+    .desc {
+      display: flex;
+      margin-top: 8px;
+      color: #888B92;
+      font-size: 13px;
+      > div {
+        margin-right: 20px;
+      }
+      span {
+        color: #1C1D1F;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > button {
+      width: 55px;
+      height: 22px;
+      line-height: 22px;
+      text-align: center;
+      font-size: 13px;
+      color: #1C1C1F;
+      background: #AEEEFF;
+      border-radius: 11px;
+    }
+  }
+}
+

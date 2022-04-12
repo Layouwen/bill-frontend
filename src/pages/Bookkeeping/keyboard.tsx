@@ -351,6 +351,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
     } else if (DateTimeValue !== 0) {
       time1 = new Date(DateTimeValue).toISOString();
     }
+
     const remark = remarkValue === '' ? name : remarkValue;
     const res = await addRecord({
       remark,
