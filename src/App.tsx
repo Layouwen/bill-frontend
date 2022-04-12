@@ -1,3 +1,4 @@
+import FollowList from '@/pages/Community/FollowList';
 import { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -22,6 +23,9 @@ import Bookkeeping from '@/pages/Bookkeeping';
 import TopicDetail from '@/pages/TopicDetail';
 import CateGory from '@/pages/Bookkeeping/CategorySettings';
 import Editing from '@/pages/Detail_editing';
+import Personal from '@/pages/Community/Personal';
+import Share from '@/pages/Share';
+import Message from '@/pages/Message';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +43,11 @@ const App = () => {
         <Route path="/community" element={<Community />} />
         <Route path="/cateGory" element={<CateGory />}></Route>
         <Route path="/editing" element={<Editing />}></Route>
+        <Route path="/community/personal/:id" element={<Personal />} />
+        <Route
+          path="/community/follow-list/:id/:type"
+          element={<FollowList />}
+        />
         <Route
           path="/user-info"
           element={
@@ -57,6 +66,7 @@ const App = () => {
         />
         <Route path="/sign" element={<Sign />} />
         <Route path="/mine" element={<Mine />} />
+        <Route path="/share" element={<Share />} />
         <Route
           path="/post-topic"
           element={
@@ -68,6 +78,7 @@ const App = () => {
         <Route path="/topic-detail/:id" element={<TopicDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
+        <Route path="/message" element={<Message />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

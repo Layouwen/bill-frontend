@@ -1,3 +1,4 @@
+import CheckInfo from '@/components/CheckInfo';
 import { FC } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@/components';
@@ -49,20 +50,7 @@ const UserInfo: FC<UserInfoProps> = ({
         </div>
         <span>{name || '未登录'}</span>
       </div>
-      <div className={classNames(styles.middle, 'flex absolute w-full')}>
-        <div className="grow flex flex-col justify-center items-center">
-          <span className="font-bold">{numberInfo.checkInKeep || 0}</span>
-          <p>已连续打卡</p>
-        </div>
-        <div className="grow flex flex-col justify-center items-center">
-          <span className="font-bold">{numberInfo.checkInAll || 0}</span>
-          <p>记账总天数</p>
-        </div>
-        <div className="grow flex flex-col justify-center items-center">
-          <span className="font-bold">{numberInfo.recordCount || 0}</span>
-          <p>记账总笔数</p>
-        </div>
-      </div>
+      <CheckInfo className="absolute" data={numberInfo} />
       {name && (
         <button
           className="absolute flex justify-center items-center"

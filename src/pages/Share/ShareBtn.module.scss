@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  padding: 20px;
+  .btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 25px;
+    button {
+      width: 46px;
+      height: 46px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      background: #6AC1F9;
+    }
+    span {
+      font-size: 11px;
+      color: #3F3B3C;
+    }
+  }
+}
