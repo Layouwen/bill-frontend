@@ -10,6 +10,7 @@ type UserInfo = {
   checkInKeep: number;
   checkInAll: number;
   recordCount: number;
+  billRecord: BillRecordType;
 };
 
 type UpdateUserInfo = {
@@ -20,6 +21,13 @@ type UpdateUserInfo = {
 type UpdatePassword = {
   password: string;
   newPassword: string;
+};
+
+export type BillRecordType = {
+  expend: number;
+  income: number;
+  month: number;
+  surplus: number;
 };
 
 export const getUserInfo = () => {

@@ -1,7 +1,8 @@
+import { spliceNumberByPoint, zeroFill } from '@/utils/time';
 import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { checkInPost, getUserInfo } from '@/api';
+import { BillRecordType, checkInPost, getUserInfo } from '@/api';
 import { Icon, TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
@@ -37,6 +38,7 @@ const Mine: FC = () => {
         recordCount: data.recordCount,
       });
       setCheckIn(data.checkIn);
+      setBillRecord(data.billRecord);
     }
   };
 
@@ -73,6 +75,8 @@ const Mine: FC = () => {
   const goTo = (path?: string) => {
     path && navigate(path);
   };
+
+  const [billRecord, setBillRecord] = useState<BillRecordType>();
 
   return (
     <div className={classNames('page', styles.wrapper)}>
@@ -113,20 +117,30 @@ const Mine: FC = () => {
             </div>
             <div className={classNames(styles.bottom, 'flex grow items-end')}>
               <div className={classNames(styles.big, 'flex-shrink-0 relative')}>
-                08<span>月</span>
+                {zeroFill(billRecord?.month)}
+                <span>月</span>
               </div>
               <div className={classNames('flex flex-grow')}>
                 <div className={'grow w-1/3'}>
                   <div className={classNames(styles.name)}>收入</div>
-                  <div className={classNames(styles.money)}>0.00</div>
+                  <div className={classNames(styles.money)}>
+                    {spliceNumberByPoint(billRecord?.income)[0]}.
+                    {spliceNumberByPoint(billRecord?.income)[1]}
+                  </div>
                 </div>
                 <div className={'grow w-1/3'}>
                   <div className={classNames(styles.name)}>支出</div>
-                  <div className={classNames(styles.money)}>1921.06</div>
+                  <div className={classNames(styles.money)}>
+                    {spliceNumberByPoint(billRecord?.expend)[0]}.
+                    {spliceNumberByPoint(billRecord?.expend)[1]}
+                  </div>
                 </div>
                 <div className={'grow w-1/3'}>
                   <div className={classNames(styles.name)}>结余</div>
-                  <div className={classNames(styles.money)}>-1921.06</div>
+                  <div className={classNames(styles.money)}>
+                    {spliceNumberByPoint(billRecord?.surplus)[0]}.
+                    {spliceNumberByPoint(billRecord?.surplus)[1]}
+                  </div>
                 </div>
               </div>
             </div>

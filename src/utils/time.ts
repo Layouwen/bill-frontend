@@ -31,3 +31,14 @@ export const showDate = (timestamp: string) => {
     ? dayjs().from(timestamp, now - before < 60 * 1000)
     : dayjs(timestamp).format('YYYY-MM-DD HH:mm');
 };
+
+export const spliceNumberByPoint = (n?: number) => {
+  if (!n) return ['00', '00'];
+  const sp = n.toString().split('.');
+  return sp.length === 1 ? [...sp, '00'] : sp;
+};
+
+export const zeroFill = (n?: number) => {
+  if (!n) n = 0;
+  return n < 10 ? `0${n}` : n.toString();
+};
