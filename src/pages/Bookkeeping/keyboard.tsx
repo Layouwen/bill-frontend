@@ -53,7 +53,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
     },
   ];
 
-  // const addText = useRef<HTMLDivElement>(null);
   const [inputToggle, setInputToggle] = useState(false);
   const [totals, setTotals] = useState('0.00'); //总数
   const [num, setNum] = useState(''); //加减号前面的数字
@@ -106,18 +105,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
       changeDian(item.keys);
     } else if (item.keys === 'x') {
       changeDelete(item.keys);
-    }
-  };
-
-  //数字键盘已经小数点和删除键
-  const changeKeys = () => {
-    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-      //苹果端
-    } else if (/(Android)/i.test(navigator.userAgent)) {
-      //安卓端
-    } else {
-      alert('请使用手机进入该网站！');
-      //pc端
     }
   };
 
@@ -360,7 +347,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
     let time1 = '';
     if (DateTimeValue === 0) {
       //当用户没有选择日期的时候，默认日期是当前的日期和时分秒
-      time1 = new Date().toISOString(); //iso保存时区
+      time1 = new Date().toISOString(); //ISOS保存时区
     } else if (DateTimeValue !== 0) {
       time1 = new Date(DateTimeValue).toISOString();
     }
@@ -387,11 +374,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
 
   const CustomRenderToggle = () => {
     //显示组件
-    // setActive1(-1);
-    // if (active === -2) {
-    //   setActive(-1);
-    //   return;
-    // }
     setValueDate(true);
   };
 
@@ -454,7 +436,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
                       styles.keys,
                       active === index ? styles.active : '',
                     ])}
-                    onClick={() => changeKeys()}
                     onTouchStart={() => changeStart(index)}
                     onTouchMove={changeMoves}
                     onTouchEnd={() => changeEnd(index, item)}
