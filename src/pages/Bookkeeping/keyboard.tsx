@@ -150,8 +150,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
         }
 
         if (Addition === '+') {
-          const NewTotals =
-            (Number(num) * 10 * 10 + Number(addNum) * 10 * 10) / 100;
+          const num1 = Number(num) * 10 * 10;
+          const num2 = Number(addNum) * 10 * 10;
+          const NewTotals = (num1 + num2) / 100;
           setNum(String(NewTotals));
           setAddNum('');
           setTotals(String(NewTotals) + keys);
@@ -159,8 +160,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
           setCompleteText('完成');
           return String(NewTotals);
         } else if (Addition === '-') {
-          const NewTotals =
-            (Number(num) * 10 * 10 - Number(addNum) * 10 * 10) / 100;
+          const num1 = Number(num) * 10 * 10;
+          const num2 = Number(addNum) * 10 * 10;
+          const NewTotals = (num1 - num2) / 100;
           setNum(String(NewTotals));
           setAddNum('');
           setTotals(String(NewTotals) + keys);
@@ -306,7 +308,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
     e.preventDefault();
   });
 
-  //加号
+  //加号 减号
   const changeAddFn = (str: string) => {
     setActive1(-1);
     if (active === -2) {
