@@ -13,13 +13,16 @@ interface TopicUserInfoData {
     name: string;
   };
   topics: {
-    id: number;
-    images: string[];
-    content: string;
-    isLike: boolean;
-    likeCount: number;
-    shareCount: number;
-  }[];
+    topics: {
+      id: number;
+      images: string[];
+      content: string;
+      isLike: boolean;
+      likeCount: number;
+      shareCount: number;
+    }[];
+    total: number;
+  };
   checkInfo: {
     checkInCount: number;
     checkInKeep: number;
@@ -38,6 +41,7 @@ const Personal = () => {
     const res = await topicUserInfoApi(routeParams.id as string);
     setData(res.data);
   };
+
   useEffect(() => {
     void topicUserInfo();
   }, []);
@@ -55,7 +59,7 @@ const Personal = () => {
         followCount={data?.follow}
         topicUserInfo={topicUserInfo}
       />
-      <Tabs checkInfo={data?.checkInfo} topics={data?.topics} />
+      <Tabs checkInfo={data?.checkInfo} topics={data?.topics.topics} />
     </div>
   );
 };

@@ -30,7 +30,13 @@ export type TopicDetail = {
 } & Topic;
 
 export const getTopics = (recommend?: boolean) => {
-  return request.get<unknown, SuccessResponse<Topic[]>>('/topic', {
+  return request.get<
+    unknown,
+    SuccessResponse<{
+      topics: Topic[];
+      total: number;
+    }>
+  >('/topic', {
     params: {
       recommend,
     },
