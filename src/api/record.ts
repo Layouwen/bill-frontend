@@ -31,7 +31,7 @@ export type getRecordChilder = {
 };
 
 export type getRecordResponse = {
-  count: number;
+  total: number;
   data: getRecordChilder[];
   expend: number;
   income: number;
