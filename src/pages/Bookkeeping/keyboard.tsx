@@ -74,7 +74,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
   };
   const changeMoves = (e: any) => {
     //拖动事件
-
     /*
      * pageX-光标的x轴距离
      * offsetWidth-这个元素的width的宽度
@@ -276,11 +275,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
         //存在点时候，后面就只能跟两个想小数
         const dianIndex = num.indexOf('.');
         if (num.length > dianIndex + 2) return;
-      }
+      } else if (num.length === 8) return;
       if (Index === 0 && !num.includes('.')) {
         if (num.length === 9) return;
-      } else {
-        if (num.length === 8) return;
       }
       changePing(keys, 1);
       return;
@@ -430,7 +427,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
             <div className={styles.main}>
               <div className={styles.numbers}>
                 {ArrayList.map((item, index) => (
-                  <div
+                  <button
                     key={index}
                     className={classNames([
                       styles.keys,
@@ -441,7 +438,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
                     onTouchEnd={() => changeEnd(index, item)}
                   >
                     {item.keys}
-                  </div>
+                  </button>
                 ))}
               </div>
               <div className={styles.right}>
