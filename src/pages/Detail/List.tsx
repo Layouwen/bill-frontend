@@ -15,7 +15,7 @@ type recordChilder = {
   createdAt: string;
   id: number;
   remark: string;
-  time: string;
+  time: number | string;
   type: string;
   updatedAt: string;
 };
@@ -103,6 +103,9 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
 
       const itemRecord = Object.keys(recordHash);
       itemRecord.forEach((item) => {
+        recordHash[item][3].forEach((item) => {
+          item.time = new Date(item.time).getTime(); //这是记账每条数据添加进去时候的时间
+        });
         record.push(recordHash[item]);
       });
       let max;
