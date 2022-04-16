@@ -25,21 +25,21 @@ const Community: FC = () => {
       name: '推荐',
       onClick: async () => {
         const { statusCode, data } = await getTopics(true);
-        if (statusCode === 200) setTopics(data);
+        if (statusCode === 200) setTopics(data.topics);
       },
     },
     {
       name: '最新',
       onClick: async () => {
         const { statusCode, data } = await getTopics();
-        if (statusCode === 200) setTopics(data);
+        if (statusCode === 200) setTopics(data.topics);
       },
     },
   ];
 
   const fetchData = async () => {
     const { statusCode, data } = await getTopics();
-    if (statusCode === 200) setTopics(data);
+    if (statusCode === 200) setTopics(data.topics);
   };
 
   const onChange = (key: number) => {

@@ -35,7 +35,6 @@ const Top: FC<timedate> = ({ change, numExpendIncome }) => {
 
     const arrayDate = [String(Y), String(M)];
     setYearMoth(arrayDate);
-    console.log(numExpendIncome, 'numExpendIncome');
   }, []);
 
   return (
