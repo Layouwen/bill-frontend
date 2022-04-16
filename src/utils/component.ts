@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 export const composeExportComponent = <C, O extends Record<string, any>>(
   com: C,
   otherCom: O,
@@ -9,4 +11,13 @@ export const composeExportComponent = <C, O extends Record<string, any>>(
     }
   }
   return res;
+};
+
+export const stopPropagation = (
+  e: MouseEvent<any>,
+  event?: (...params: any[]) => void,
+  ...params: any[]
+) => {
+  e.stopPropagation();
+  event?.(...params);
 };

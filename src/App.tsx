@@ -1,4 +1,5 @@
 import FollowList from '@/pages/Community/FollowList';
+import NewFollow from '@/pages/new-follow';
 import { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -79,6 +80,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="/message" element={<Message />} />
+        <Route path="/message/new-follow" element={<NewFollow />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
