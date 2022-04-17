@@ -21,3 +21,5 @@ export const stopPropagation = (
   e.stopPropagation();
   event?.(...params);
 };
+
+export const mergerProps = Object.assign;

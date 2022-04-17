@@ -13,6 +13,7 @@ const Message: FC = () => {
     {
       title: '评论',
       backgroundColor: '#63A2EB',
+      onClick: () => goTo('/message/comment-list'),
     },
     {
       title: '新增关注',

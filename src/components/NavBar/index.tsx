@@ -12,6 +12,7 @@ export type NavBarProps = {
   right?: ReactNode;
   onBack?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 };
 
 const defaultProps = {
@@ -24,7 +25,7 @@ const NavBar: FC<NavBarProps> = (p) => {
   const { back, backArrow, className } = props;
 
   return (
-    <div className={classNames(classPrefix, className)}>
+    <div className={classNames(classPrefix, className)} style={props.style}>
       <div className={`${classPrefix}-left`} role="button">
         {back !== null && (
           <div className={`${classPrefix}-back`} onClick={props.onBack}>

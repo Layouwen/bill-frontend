@@ -1,3 +1,4 @@
+import CommentList from '@/pages/comment-list';
 import FollowList from '@/pages/Community/FollowList';
 import NewFollow from '@/pages/new-follow';
 import { useEffect } from 'react';
@@ -81,6 +82,7 @@ const App = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/message" element={<Message />} />
         <Route path="/message/new-follow" element={<NewFollow />} />
+        <Route path="/message/comment-list" element={<CommentList />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
