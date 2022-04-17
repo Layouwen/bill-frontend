@@ -49,6 +49,7 @@ $class-prefix-comment-list-item: "bw-comment-list-item";
       p {
         font-size: 16px;
         color: #333233;
+        word-break: break-all;
       }
     }
   }
