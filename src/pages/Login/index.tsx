@@ -98,7 +98,9 @@ const Login: FC = () => {
             dangerouslySetInnerHTML={{ __html: svgCaption }}
           />
         </div>
-        <Button onClick={handleLogin}>登录</Button>
+        <Button block onClick={handleLogin}>
+          登录
+        </Button>
         <div className={styles.bottom}>
           <span className={styles.back} onClick={() => navigate(-1)}>
             返回

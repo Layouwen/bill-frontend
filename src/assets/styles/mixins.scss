@@ -3,3 +3,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin break-all {
+  word-break: break-all;
+}
