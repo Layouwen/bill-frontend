@@ -1,6 +1,7 @@
 import CommentList from '@/pages/comment-list';
 import FollowList from '@/pages/Community/FollowList';
 import NewFollow from '@/pages/new-follow';
+import SystemNotify from '@/pages/system-notify';
 import { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -83,6 +84,7 @@ const App = () => {
         <Route path="/message" element={<Message />} />
         <Route path="/message/new-follow" element={<NewFollow />} />
         <Route path="/message/comment-list" element={<CommentList />} />
+        <Route path="/message/system-notify" element={<SystemNotify />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

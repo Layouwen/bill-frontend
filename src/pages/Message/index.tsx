@@ -9,6 +9,7 @@ const Message: FC = () => {
     {
       title: '系统通知',
       backgroundColor: '#F0A83B',
+      onClick: () => goTo('/message/system-notify'),
     },
     {
       title: '评论',
