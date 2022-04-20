@@ -1,5 +1,6 @@
 import { getEmailCaptchaAPi, sign } from '@/api';
-import { Button, Input, NavBar } from '@/components';
+import { Input, NavBar } from '@/components';
+import { Button } from 'bw-mobile';
 import { useAppDispatch } from '@/store/hooks';
 import { setToken } from '@/store/slice';
 import { Toast } from 'antd-mobile';

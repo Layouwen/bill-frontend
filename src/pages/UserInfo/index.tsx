@@ -3,7 +3,8 @@ import { Toast } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
 import React, { FC, useCallback, useState } from 'react';
 import classNames from 'classnames';
-import { Button, List, NavBar, Modal as MyModal } from '@/components';
+import { List, NavBar, Modal as MyModal } from '@/components';
+import { Button } from 'bw-mobile';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logOut, updateUserInfo as updateInfo } from '@/store/slice';
 import { updateUserInfo, uploadFile } from '@/api';
@@ -109,7 +110,7 @@ const userInfo: FC = () => {
       <List style={{ margin: '10px 0' }}>
         <List.Item onClick={toPassword}>修改密码</List.Item>
       </List>
-      <Button block size="full" className={styles.out} onClick={handleLogOut}>
+      <Button size="full" className={styles.out} onClick={handleLogOut}>
         退出登录
       </Button>
     </div>

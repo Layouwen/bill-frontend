@@ -2,7 +2,8 @@ import { getCaptchaApi, login } from '@/api';
 import { useAppDispatch } from '@/store/hooks';
 import { setToken, setUserInfo } from '@/store/slice/userSlice';
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
-import { Button, Input } from '@/components';
+import { Input } from '@/components';
+import { Button } from 'bw-mobile';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
