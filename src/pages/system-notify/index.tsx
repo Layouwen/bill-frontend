@@ -1,5 +1,5 @@
-import { NavBar } from '@/components';
 import CommentListItem from '@/pages/comment-list/components';
+import { NavBar } from 'bw-mobile';
 import { useNavigate } from 'react-router-dom';
 
 const SystemNotify = () => {

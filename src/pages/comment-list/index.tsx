@@ -1,8 +1,8 @@
-import { NavBar } from '@/components';
 import CommentListItem from '@/pages/comment-list/components';
 import { useGetTopicQuery } from '@/service/topic';
 import { useAppSelector } from '@/store/hooks';
 import { showDate } from '@/utils/time';
+import { NavBar } from 'bw-mobile';
 import { useNavigate } from 'react-router-dom';
 
 const CommentList = () => {

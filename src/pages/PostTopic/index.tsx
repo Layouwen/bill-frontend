@@ -11,8 +11,7 @@ import {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { Icon, NavBar } from '@/components';
-import { Button } from 'bw-mobile';
+import { Button, Icon, NavBar } from 'bw-mobile';
 import styles from './index.module.scss';
 
 const PostTopic: FC = () => {

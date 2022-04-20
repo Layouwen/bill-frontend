@@ -1,9 +1,9 @@
 import CheckInfo from '@/components/CheckInfo';
 import { FC } from 'react';
 import classNames from 'classnames';
-import { Icon } from '@/components';
 import { useNavigate } from 'react-router-dom';
 import styles from './UserInfo.module.scss';
+import { Icon } from 'bw-mobile';
 
 type UserInfoProps = {
   avatar?: string;

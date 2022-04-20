@@ -1,7 +1,8 @@
 import { getTopics, Topic } from '@/api';
-import { TabBar, FixedPin } from '@/components';
+import { TabBar } from '@/components';
 import ItemList from '@/pages/Community/ItemList';
 import TopBar from '@/pages/Community/TopBar';
+import { FixedPin } from 'bw-mobile';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

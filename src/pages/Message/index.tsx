@@ -1,4 +1,4 @@
-import { Icon, NavBar } from '@/components';
+import { Icon, NavBar } from 'bw-mobile';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';

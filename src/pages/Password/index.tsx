@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ChangeEvent, FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { changePassword } from '@/api';
-import { Button, Input, NavBar } from '@/components';
+import { Button, Input, NavBar } from 'bw-mobile';
 import styles from './index.module.scss';
 
 const Password: FC = () => {

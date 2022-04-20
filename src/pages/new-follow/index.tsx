@@ -1,4 +1,3 @@
-import { NavBar } from '@/components';
 import UserFollowItem from '@/pages/new-follow/components';
 import {
   useDeleteFollowMutation,
@@ -7,6 +6,7 @@ import {
 } from '@/service/follow';
 import { useAppSelector } from '@/store/hooks';
 import { showDate } from '@/utils/time';
+import { NavBar } from 'bw-mobile';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 

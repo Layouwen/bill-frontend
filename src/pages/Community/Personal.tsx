@@ -1,7 +1,7 @@
 import { topicUserInfoApi } from '@/api';
-import { NavBar } from '@/components';
 import Tabs from '@/pages/Community/components/Personal/Tabs';
 import UserInfo from '@/pages/Community/components/Personal/UserInfo';
+import { NavBar } from 'bw-mobile';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './Personal.module.scss';

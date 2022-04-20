@@ -3,11 +3,12 @@ import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { BillRecordType, checkInPost, getUserInfo } from '@/api';
-import { Icon, TabBar } from '@/components';
+import { TabBar } from '@/components';
 import UserInfo from '@/pages/Mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
+import { Icon } from 'bw-mobile';
 
 const Mine: FC = () => {
   const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import { Topic } from '@/api';
-import { FixedPin, ImagePreview, TopicItem, Share } from '@/components';
+import { TopicItem } from '@/components';
+import { ImagePreview, Share, FixedPin } from 'bw-mobile';
 import ReplyArea from '@/pages/TopicDetail/ReplyArea';
 import { FC, useState } from 'react';
 
