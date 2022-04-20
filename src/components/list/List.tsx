@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 
-const classPrefix = `bw-list`;
+const classPrefix = `bwm-list`;
 
 export type ListProps = {
   style?: React.CSSProperties;

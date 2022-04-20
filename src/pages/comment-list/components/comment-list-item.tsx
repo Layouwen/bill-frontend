@@ -1,7 +1,7 @@
 import { mergerProps } from '@/utils';
 import { FC } from 'react';
 
-const classPrefix = 'bw-comment-list-item';
+const classPrefix = 'bwm-comment-list-item';
 
 interface CommentListItemProps {
   avatar?: string;

@@ -2,7 +2,7 @@ import Button from '../Button';
 import { FC } from 'react';
 import Mask from '../Mask';
 
-const classPrefix = 'bw-share';
+const classPrefix = 'bwm-share';
 
 type ShareProps = {
   visible?: boolean;

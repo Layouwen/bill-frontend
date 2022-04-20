@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { CSSProperties, FC } from 'react';
 import './index.scss';
 
-const classPrefix = 'bw-icon';
+const classPrefix = 'bwm-icon';
 
 type IconProps = {
   className?: string;

@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react';
 
-const classPrefix = 'bw-mask';
+const classPrefix = 'bwm-mask';
 
 type MaskProps = {
   visible?: boolean;

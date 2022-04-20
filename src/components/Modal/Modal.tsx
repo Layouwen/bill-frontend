@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react';
 import Mask from '../Mask';
 
-const classPrefix = 'bw-modal';
+const classPrefix = 'bwm-modal';
 
 type ModalProps = {
   visible?: boolean;

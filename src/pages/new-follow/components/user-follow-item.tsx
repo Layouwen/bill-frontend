@@ -18,7 +18,7 @@ const defaultProps = {
   isFollow: false,
 };
 
-const classPrefix = 'bw-user-follow-item';
+const classPrefix = 'bwm-user-follow-item';
 
 export const UserFollowItem: FC<UserFollowItem> = (p) => {
   const props = Object.assign({ ...defaultProps }, p);

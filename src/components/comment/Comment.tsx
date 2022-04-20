@@ -2,7 +2,7 @@ import { Icon } from '@/components';
 import classNames from 'classnames';
 import { ChangeEvent, FC, useRef, useState } from 'react';
 
-const classPrefix = 'bw-comment';
+const classPrefix = 'bwm-comment';
 
 type CommentProps = {
   data: {

@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 import { Icon } from '@/components';
 
-const classPrefix = `bw-list-item`;
+const classPrefix = `bwm-list-item`;
 
 export type ListItemProps = {
   children?: ReactNode;

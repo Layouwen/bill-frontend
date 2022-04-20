@@ -1,7 +1,7 @@
 import { CSSProperties, MouseEvent, FC } from 'react';
 import './index.scss';
 
-const classPrefix = 'bw-fixed-pin';
+const classPrefix = 'bwm-fixed-pin';
 
 type FixedPinProps = {
   className?: string;

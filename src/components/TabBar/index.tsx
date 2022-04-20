@@ -56,7 +56,7 @@ const TabBar: FC<TabBarProps> = ({ active }) => {
   };
 
   return (
-    <div className={classNames(['bw-tab-bar'])}>
+    <div className={classNames(['bwm-tab-bar'])}>
       {tabBarList.map((tab, index) => (
         <div
           key={tab.name}

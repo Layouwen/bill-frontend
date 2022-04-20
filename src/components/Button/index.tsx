@@ -2,7 +2,7 @@ import { CSSProperties, FC } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
-const classPrefix = 'bw-button';
+const classPrefix = 'bwm-button';
 
 type ButtonProps = {
   onClick?: () => void;

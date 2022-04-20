@@ -1,7 +1,7 @@
 import Mask from '../Mask';
 import React, { FC } from 'react';
 
-const classPrefix = `bw-image-preview`;
+const classPrefix = `bwm-image-preview`;
 
 export type ImagePreviewProps = {
   image?: string;

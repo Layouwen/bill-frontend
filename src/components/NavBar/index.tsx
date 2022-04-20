@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Icon } from '@/components';
 import './index.scss';
 
-const classPrefix = `bw-nav-bar`;
+const classPrefix = `bwm-nav-bar`;
 
 export type NavBarProps = {
   back?: string | null;

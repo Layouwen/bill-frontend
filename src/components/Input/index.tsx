@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FC } from 'react';
 import './index.scss';
 
-const classPrefix = `bw-input`;
+const classPrefix = `bwm-input`;
 
 type InputProps = {
   className?: string;

@@ -146,7 +146,11 @@ const Sign: FC = () => {
               <span onClick={handleEmail}>发送邮箱验证码</span>
             )}
           </div>
-          <Button style={{ margin: '40px 0 14px 0' }} onClick={handleSign}>
+          <Button
+            block
+            style={{ margin: '40px 0 14px 0' }}
+            onClick={handleSign}
+          >
             注册
           </Button>
         </div>

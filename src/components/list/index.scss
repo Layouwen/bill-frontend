@@ -1,4 +1,4 @@
-$class-prefix-list: "bw-list";
+$class-prefix-list: "bwm-list";
 
 .#{$class-prefix-list} {
   &-body {
@@ -27,7 +27,7 @@ $class-prefix-list: "bw-list";
 
 }
 
-$class-prefix-list-item: "bw-list-item";
+$class-prefix-list-item: "bwm-list-item";
 
 .#{$class-prefix-list-item} {
   display: block;
