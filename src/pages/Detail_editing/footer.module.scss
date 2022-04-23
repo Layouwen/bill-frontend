@@ -1,0 +1,32 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  .main {
+    display: flex;
+    height: 50px;
+    background: #FFFFFF;
+    align-items: center;
+    border-top: 1px solid #C8C8C8;
+
+    span {
+      width: 1px;
+      height: 20px;
+      background: #C8C8C8;
+      opacity: 1;
+    }
+
+    div {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 33px;
+      font-size: 15px;
+      font-weight: normal;
+      color: #333233;
+    }
+  }
+}

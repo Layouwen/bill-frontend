@@ -5,16 +5,21 @@ import { iconObj } from '@/api/category';
 import mm from '@/assets/images/mm.jpg';
 
 type changePropsFn = {
-  change: (index: number, item: iconObj) => void;
+  change: (item: iconObj) => void;
+  keyToggle: number;
 };
 
-const Main: FC<changePropsFn> = ({ change }) => {
-  const [active, serActive] = useState(-1);
+const Main: FC<changePropsFn> = ({ change, keyToggle }) => {
+  const [active, setActive] = useState(-1);
   const [mainList, setMainList] = useState<iconObj[]>([]);
 
-  const changeMainFn = (index: number, item: iconObj) => {
-    serActive(index);
-    change(index, item);
+  const changeMainFn = (item: iconObj) => {
+    setActive(item.id);
+    change(item);
+  };
+
+  const changKeyFn = (num: number) => {
+    setActive(num);
   };
 
   const cateFn = async () => {
@@ -24,8 +29,10 @@ const Main: FC<changePropsFn> = ({ change }) => {
   };
 
   useEffect(() => {
+    console.log(keyToggle, 'keyToggle');
+    changKeyFn(Number(keyToggle));
     void cateFn();
-  }, []);
+  }, [keyToggle]);
 
   return (
     <div className={styles.context}>
@@ -34,11 +41,11 @@ const Main: FC<changePropsFn> = ({ change }) => {
           <div
             className={styles.wrapper_item}
             key={index}
-            onClick={() => changeMainFn(index, item)}
+            onClick={() => changeMainFn(item)}
           >
             <div
               className={
-                active === index ? styles.newClass_icon_backGround : ''
+                active === item.id ? styles.newClass_icon_backGround : ''
               }
             >
               <img src={mm} alt="" className={styles.newClass_icon} />

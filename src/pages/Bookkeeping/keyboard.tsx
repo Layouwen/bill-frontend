@@ -1,19 +1,22 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './keyboard.module.scss';
 import { Icon } from '@/components';
-import { addRecord } from '@/api';
+import { addRecord, cateGoryApi, editRecord } from '@/api';
 import { useNavigate } from 'react-router-dom';
 import CustomRender from '@/pages/Bookkeeping/component';
 import classNames from 'classnames';
 import { Toast } from 'antd-mobile';
+import { getShowTime } from '@/utils/DataTime';
+import { stateType } from '@/pages/Bookkeeping/index';
 
 type keyType = {
   keyToggle: number;
   type: string;
   name: string;
+  stateList: stateType;
 };
 
-const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
+const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList }) => {
   const ArrayList = [
     {
       keys: 7,
@@ -63,7 +66,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
   const [valueDate, setValueDate] = useState(false); //日期的显示和隐藏
   const [DateValue, setDateValue] = useState('今天'); //选择的日期
   const [DateTimeValue, setDateTimeValue] = useState(0); //选择的日期的时间戳
-  const [active, setActive] = useState(-1); //选择键盘样式高亮
+  const [active, setActive] = useState(-1); //
   const [active1, setActive1] = useState(-1); //选择键盘样式高亮
   const navigate = useNavigate();
 
@@ -85,7 +88,8 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
     ) {
       setActive(-2);
       setActive1(-1);
-    } else if (
+    }
+    if (
       e.touches[0].pageX - e.touches[0].target.offsetLeft < 0 ||
       e.touches[0].pageX - e.touches[0].target.offsetLeft > 80
     ) {
@@ -199,7 +203,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
         return;
       }
     } else if (toggle === 5) {
-      //点击了删除
       //点击了删除
       if (!Addition.includes('+') && !Addition.includes('-')) {
         const newNum = num.slice(0, num.length - 1);
@@ -351,17 +354,37 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
       time1 = new Date(DateTimeValue).toISOString();
     }
     const remark = remarkValue === '' ? name : remarkValue;
-    const res = await addRecord({
+
+    const data = {
       remark,
-      categoryId: String(keyToggle),
+      categoryId: Number(keyToggle),
       time: time1,
       type: String(type),
       amount: String(str),
-    });
-    if (res.statusCode === 200) {
-      // Touch('创建成功')
-      Toast.show({ content: res.message });
-      navigate('/detail');
+    };
+
+    if (stateList[0] !== '') {
+      //编辑
+      if (DateTimeValue !== 0) {
+        data.time = time1;
+      } else {
+        data.time = stateList[1];
+      }
+      const edit = await editRecord(data, Number(stateList[2]));
+      if (edit.statusCode === 200) {
+        // Touch('创建成功')
+        Toast.show({ content: edit.message });
+        navigate('/detail');
+      }
+    } else if (stateList[0] === '') {
+      //新增
+      data.time = time1;
+      const res = await addRecord(data);
+      if (res.statusCode === 200) {
+        // Touch('创建成功')
+        Toast.show({ content: res.message });
+        navigate('/detail');
+      }
     }
   };
 
@@ -391,6 +414,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
 
   // TODO: any
   const changeRemark = (e: any) => {
+    console.log(e, '输入了');
     //备注
     setRemarkValue(e.target.value);
   };
@@ -401,12 +425,46 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
     //time 这是子组件返回的时间戳的参数
 
     setDateTimeValue(time);
+    console.log(time, 'time');
     if (new Date(value).toDateString() == new Date().toDateString()) {
       setDateValue('今天');
     } else {
+      console.log(value, 'value');
       setDateValue(value);
     }
   };
+
+  const changShow = async () => {
+    console.log(stateList, '回显的数据');
+    //回显
+    if (name) {
+      console.log(name, 'name');
+      const res = await cateGoryApi();
+      const data: any = res.data.data;
+      console.log(data, '回显数据');
+      console.log(totals, '总价');
+      const iconNameArr: Array<string> = [];
+      data.forEach((item: any) => {
+        iconNameArr.push(item.name);
+      });
+      if (iconNameArr.includes(name)) {
+        setRemarkValue('');
+      } else {
+        setRemarkValue(name);
+      }
+    }
+    if (stateList[0] !== '') {
+      setNum(stateList[0]);
+      setTotals(stateList[0]);
+      const time = new Date(stateList[1]);
+      const value = getShowTime(time);
+      setDateValue(value);
+    }
+  };
+
+  useEffect(() => {
+    void changShow();
+  }, [stateList]);
 
   return (
     <>
@@ -418,9 +476,16 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
               <input
                 type="text"
                 placeholder="点击写备注..."
+                value={remarkValue}
                 onChange={changeRemark}
                 onBlur={() => inputOnBlur()}
                 onFocus={() => inputOnFocus()}
+                onKeyDown={async (e) => {
+                  if (e.key === 'Enter') {
+                    e.stopPropagation();
+                    await changeCompleteFn();
+                  }
+                }}
               />
             </div>
             <span className={styles.total}>{totals}</span>
@@ -491,8 +556,8 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name }) => {
                   ])}
                   onTouchStart={() => changeStart1(3)}
                   onTouchMove={changeMoves}
-                  onTouchEnd={() => {
-                    changeCompleteFn();
+                  onTouchEnd={async () => {
+                    await changeCompleteFn();
                   }}
                 >
                   {completeText}

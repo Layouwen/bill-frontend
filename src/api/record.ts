@@ -2,7 +2,7 @@ import request from '@/utils/request';
 
 type recordType = {
   remark: string;
-  categoryId: string;
+  categoryId: number;
   type: string;
   amount: string;
   time: string;
@@ -38,6 +38,7 @@ export type getRecordResponse = {
 };
 
 export const addRecord = (body?: recordType) => {
+  //新增记录
   return request.post<
     unknown,
     SuccessResponse<{ data: string; message: string; statusCode: number }[]>
@@ -45,7 +46,16 @@ export const addRecord = (body?: recordType) => {
 };
 
 export const getRecord = (params?: getRecordType) => {
+  //获取记录
   return request.get<unknown, SuccessResponse<getRecordResponse>>('/record', {
     params: params,
   });
+};
+
+export const editRecord = (params?: recordType, id?: number) => {
+  //获取记录
+  return request.put<
+    unknown,
+    SuccessResponse<{ data: string; message: string; statusCode: number }[]>
+  >(`/record/${id}`, params);
 };

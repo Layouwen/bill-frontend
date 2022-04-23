@@ -1,12 +1,13 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './navBar.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 type navBarType = {
   change: (type: string) => void;
+  type: string;
 };
 
-const navBar: FC<navBarType> = ({ change }) => {
+const navBar: FC<navBarType> = ({ change, type }) => {
   const [active, setActive] = useState(0);
   const navigation = useNavigate();
 
@@ -19,6 +20,11 @@ const navBar: FC<navBarType> = ({ change }) => {
   const backFn = () => {
     navigation(-1);
   };
+
+  useEffect(() => {
+    const index = type === '-' ? 0 : 1;
+    handleChangeTab(index);
+  }, [type]);
 
   return (
     <div className={styles.top}>

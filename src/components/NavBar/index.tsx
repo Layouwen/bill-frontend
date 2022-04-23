@@ -21,6 +21,7 @@ const defaultProps = {
 
 const NavBar: FC<NavBarProps> = (p) => {
   const props = Object.assign({ ...defaultProps }, p);
+  console.log(props, 'prop');
   const { back, backArrow, className } = props;
 
   return (

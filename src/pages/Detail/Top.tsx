@@ -4,12 +4,12 @@ import styles from './top.module.scss';
 import Precision from './component';
 import { numType } from '@/pages/Detail/index';
 
-type timedate = {
+type timeDate = {
   change: (val: string) => void;
   numExpendIncome: numType | [];
 };
 
-const Top: FC<timedate> = ({ change, numExpendIncome }) => {
+const Top: FC<timeDate> = ({ change, numExpendIncome }) => {
   const [visible1, setVisible1] = useState(false);
   const [yearMoth, setYearMoth] = useState<string[]>([]);
   const PrecisionFn = () => {

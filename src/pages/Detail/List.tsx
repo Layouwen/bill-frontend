@@ -2,8 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import styles from './list.module.scss';
 import { getRecord } from '@/api';
 import { getWeekByDay, getTimeValueFn, getTimedate } from '@/utils/DataTime';
+import { useNavigate } from 'react-router-dom';
 
-type recordChilder = {
+export type recordChildren = {
   amount: string;
   category: {
     createdAt: string;
@@ -15,7 +16,7 @@ type recordChilder = {
   createdAt: string;
   id: number;
   remark: string;
-  time: number | string;
+  time: string;
   type: string;
   updatedAt: string;
 };
@@ -24,7 +25,7 @@ type recordType = [
   string,
   string,
   number,
-  Array<recordChilder>,
+  Array<recordChildren>,
   number,
   number,
 ];
@@ -38,6 +39,7 @@ type timeDateProp = {
 
 const List: FC<timeDateProp> = ({ timeProp, change }) => {
   const [record, setRecord] = useState<recordType[]>([]);
+  const navigate = useNavigate();
 
   const Recording = async () => {
     const time = new Date();
@@ -71,7 +73,7 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
           string,
           string,
           number,
-          recordChilder[],
+          recordChildren[],
           number,
           number,
         ];
@@ -103,9 +105,9 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
 
       const itemRecord = Object.keys(recordHash);
       itemRecord.forEach((item) => {
-        recordHash[item][3].forEach((item) => {
-          item.time = new Date(item.time).getTime(); //这是记账每条数据添加进去时候的时间
-        });
+        // recordHash[item][3].forEach((item) => {
+        //   item.time = new Date(item.time).getTime(); //这是记账每条数据添加进去时候的时间
+        // });
         record.push(recordHash[item]);
       });
       let max;
@@ -137,6 +139,10 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
     }
   };
 
+  const recordFn = (chunk: recordChildren) => {
+    navigate(`/editing/${chunk.id}`, { state: chunk });
+  };
+
   useEffect(() => {
     void Recording();
   }, [timeProp]);
@@ -159,7 +165,11 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
                 <div className={styles.right}>支出：{item[4]}</div>
               </div>
               {item[3].map((chunk, index) => (
-                <div className={styles.record} key={index}>
+                <div
+                  className={styles.record}
+                  key={index}
+                  onClick={() => recordFn(chunk)}
+                >
                   <div className={styles.left}>
                     <div className={styles.icon} />
                   </div>
