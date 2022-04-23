@@ -1,4 +1,5 @@
 import { followApi } from '@/service/follow';
+import { systemNotifyApi } from '@/service/systemNotify';
 import { topicApi } from '@/service/topic';
 import { userSlice, i18nSlice } from '@/store/slice';
 import { configureStore } from '@reduxjs/toolkit';
@@ -10,9 +11,14 @@ const store = configureStore({
     user: userSlice.reducer,
     [followApi.reducerPath]: followApi.reducer,
     [topicApi.reducerPath]: topicApi.reducer,
+    [systemNotifyApi.reducerPath]: systemNotifyApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(followApi.middleware, topicApi.middleware),
+    getDefaultMiddleware().concat(
+      followApi.middleware,
+      topicApi.middleware,
+      systemNotifyApi.middleware,
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
