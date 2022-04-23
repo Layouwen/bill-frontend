@@ -18,7 +18,7 @@ const Settings = () => {
     },
     {
       title: '导出数据',
-      path: '',
+      path: '/export-data',
     },
   ];
   const groupThree = [
@@ -78,19 +78,31 @@ const Settings = () => {
           ))}
           <Gap />
           {groupTwo.map((item) => (
-            <List.Item key={item.title} clickable>
+            <List.Item
+              key={item.title}
+              clickable
+              onClick={() => goTo(item.path)}
+            >
               {item.title}
             </List.Item>
           ))}
           <Gap />
           {groupThree.map((item) => (
-            <List.Item key={item.title} clickable>
+            <List.Item
+              key={item.title}
+              clickable
+              onClick={() => goTo(item.path)}
+            >
               {item.title}
             </List.Item>
           ))}
           <Gap />
           {groupFour.map((item) => (
-            <List.Item key={item.title} clickable>
+            <List.Item
+              key={item.title}
+              clickable
+              onClick={() => goTo(item.path)}
+            >
               {item.title}
             </List.Item>
           ))}
