@@ -1,4 +1,5 @@
-import { exportData } from '@/utils/exportData';
+import { getRecord } from '@/api';
+import { exportRecordData } from '@/utils/exportData';
 import { DatePicker } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
@@ -9,8 +10,13 @@ import styles from './index.module.scss';
 const ExportData = () => {
   const navigate = useNavigate();
 
-  const handleExportData = () => {
-    exportData();
+  const handleExportData = async () => {
+    const { startTime, endTime } = exportTimeRange;
+    const res = await getRecord({
+      startDate: startTime,
+      endDate: endTime,
+    });
+    exportRecordData(res.data.data, exportTimeRange);
   };
 
   const init = () => {

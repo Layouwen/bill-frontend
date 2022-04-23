@@ -46,6 +46,6 @@ export const addRecord = (body?: recordType) => {
 
 export const getRecord = (params?: getRecordType) => {
   return request.get<unknown, SuccessResponse<getRecordResponse>>('/record', {
-    params: params,
+    params,
   });
 };
