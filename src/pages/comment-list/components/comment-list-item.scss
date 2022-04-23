@@ -4,7 +4,7 @@ $class-prefix-comment-list-item: "bwm-comment-list-item";
   position: relative;
   display: flex;
   min-height: 109px;
-  padding: 0 16px;
+  padding: 0 15px;
   &::before {
     content: "";
     display: block;
@@ -16,7 +16,7 @@ $class-prefix-comment-list-item: "bwm-comment-list-item";
     background: #E9EBEE;
   }
   &-left {
-    padding-top: 19px;
+    padding-top: 20px;
     padding-right: 10px;
     &-img {
       width: 36px;
@@ -28,13 +28,14 @@ $class-prefix-comment-list-item: "bwm-comment-list-item";
   }
   &-middle {
     flex-grow: 1;
-    padding-top: 21px;
-    padding-right: 16px;
+    padding-top: 20px;
+    padding-right: 15px;
     padding-bottom: 25px;
     &-top {
       display: flex;
       flex-direction: column;
       &-name {
+        margin-bottom: 4px;
         font-size: 14px;
         font-weight: bold;
         color: #333233;
