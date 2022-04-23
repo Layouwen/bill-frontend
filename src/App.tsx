@@ -1,6 +1,7 @@
 import CommentList from '@/pages/comment-list';
 import FollowList from '@/pages/Community/FollowList';
 import NewFollow from '@/pages/new-follow';
+import Settings from '@/pages/settings';
 import SystemNotify from '@/pages/system-notify';
 import { useEffect } from 'react';
 import {
@@ -19,7 +20,7 @@ import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/Sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
-import Mine from '@/pages/Mine';
+import Mine from '@/pages/mine';
 import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
@@ -85,6 +86,7 @@ const App = () => {
         <Route path="/message/new-follow" element={<NewFollow />} />
         <Route path="/message/comment-list" element={<CommentList />} />
         <Route path="/message/system-notify" element={<SystemNotify />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

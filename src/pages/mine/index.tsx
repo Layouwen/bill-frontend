@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { BillRecordType, checkInPost, getUserInfo } from '@/api';
 import { TabBar } from '@/components';
-import UserInfo from '@/pages/Mine/UserInfo';
+import UserInfo from '@/pages/mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
@@ -70,6 +70,7 @@ const Mine: FC = () => {
     {
       icon: 'setting',
       name: '设置',
+      path: '/settings',
     },
   ];
 
@@ -196,6 +197,7 @@ const Mine: FC = () => {
               styles.setting,
               'flex items-center justify-between font-bold',
             )}
+            onClick={() => goTo('/settings')}
           >
             设置
             <Icon name="right" style={{ fontSize: 12 }} />
