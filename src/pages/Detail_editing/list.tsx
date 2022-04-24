@@ -49,6 +49,9 @@ const List: FC<stateType> = ({ state }) => {
           <span className={styles.listKeys}>{listKeys[index]}</span>
         </div>
       ))}
+      <div className={styles.share}>
+        <span>分享</span>
+      </div>
     </div>
   );
 };

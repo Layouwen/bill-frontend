@@ -1,0 +1,49 @@
+$class-popup: "bw-popup";
+
+.#{$class-popup} {
+  background: red;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.3);
+
+  &-content {
+    padding: 20px;
+    background: #FFFFFF;
+    width: 80%;
+    height: 18%;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 6px 20px -15px #000000;
+    >h4{
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    >span{
+
+    }
+  }
+    &-but{
+      width: 100%;
+      color: green;
+      display: flex;
+      flex-direction: row-reverse;
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      >span:last-child{
+        margin-right: 32px;
+      }
+      >span:first-child{
+        margin-right: 25px;
+      }
+    }
+}
+

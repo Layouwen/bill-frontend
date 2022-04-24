@@ -53,9 +53,17 @@ export const getRecord = (params?: getRecordType) => {
 };
 
 export const editRecord = (params?: recordType, id?: number) => {
-  //获取记录
+  //编辑记录
   return request.put<
     unknown,
     SuccessResponse<{ data: string; message: string; statusCode: number }[]>
   >(`/record/${id}`, params);
+};
+
+export const deleteRecord = (id: number) => {
+  //删除记录
+  return request.delete<
+    unknown,
+    SuccessResponse<{ data: string; message: string; statusCode: number }[]>
+  >(`/record/${id}`);
 };

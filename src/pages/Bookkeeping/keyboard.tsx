@@ -372,7 +372,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList }) => {
       }
       const edit = await editRecord(data, Number(stateList[2]));
       if (edit.statusCode === 200) {
-        // Touch('创建成功')
+        // Touch('编辑成功')
         Toast.show({ content: edit.message });
         navigate('/detail');
       }
