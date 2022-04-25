@@ -1,9 +1,20 @@
-import { List, NavBar, Gap } from 'bw-mobile';
+import { List, NavBar, Gap, Switch } from 'bw-mobile';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
 const Settings = () => {
   const navigate = useNavigate();
+
+  const [hideTotalAmount, setHideTotalAmount] = useState(false);
+  const handleToggleTotalAmount = (val: boolean) => {
+    setHideTotalAmount(val);
+  };
+
+  const [soundSwitch, setSoundSwitch] = useState(false);
+  const handleSoundSwitch = (val: boolean) => {
+    setSoundSwitch(val);
+  };
 
   const groupOne = [
     {
@@ -25,10 +36,14 @@ const Settings = () => {
     {
       title: '隐藏总金额',
       path: '',
+      arrow: (
+        <Switch checked={hideTotalAmount} onChange={handleToggleTotalAmount} />
+      ),
     },
     {
       title: '声音开关',
       path: '',
+      arrow: <Switch checked={soundSwitch} onChange={handleSoundSwitch} />,
     },
   ];
   const groupFour = [
@@ -90,8 +105,13 @@ const Settings = () => {
           {groupThree.map((item) => (
             <List.Item
               key={item.title}
-              clickable
+              clickable={false}
               onClick={() => goTo(item.path)}
+              arrow={item.arrow}
+              style={{
+                paddingTop: 5,
+                paddingBottom: 5,
+              }}
             >
               {item.title}
             </List.Item>
