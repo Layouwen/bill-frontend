@@ -1,3 +1,4 @@
+import { playSound } from '@/modules';
 import { List, NavBar, Gap, Switch } from 'bw-mobile';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,11 +9,13 @@ const Settings = () => {
 
   const [hideTotalAmount, setHideTotalAmount] = useState(false);
   const handleToggleTotalAmount = (val: boolean) => {
+    playSound.ding();
     setHideTotalAmount(val);
   };
 
   const [soundSwitch, setSoundSwitch] = useState(false);
   const handleSoundSwitch = (val: boolean) => {
+    playSound.click();
     setSoundSwitch(val);
   };
 
