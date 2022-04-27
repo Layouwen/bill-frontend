@@ -1,4 +1,6 @@
 import { playSound } from '@/modules';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { closePlay, openPlay } from '@/store/slice';
 import { List, NavBar, Gap, Switch } from 'bw-mobile';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -6,17 +8,23 @@ import styles from './index.module.scss';
 
 const Settings = () => {
   const navigate = useNavigate();
+  const setting = useAppSelector((state) => state.setting);
+  const dispatch = useAppDispatch();
 
   const [hideTotalAmount, setHideTotalAmount] = useState(false);
+
   const handleToggleTotalAmount = (val: boolean) => {
     playSound.ding();
     setHideTotalAmount(val);
   };
 
-  const [soundSwitch, setSoundSwitch] = useState(false);
   const handleSoundSwitch = (val: boolean) => {
+    if (val) {
+      dispatch(openPlay());
+    } else {
+      dispatch(closePlay());
+    }
     playSound.click();
-    setSoundSwitch(val);
   };
 
   const groupOne = [
@@ -46,7 +54,7 @@ const Settings = () => {
     {
       title: '声音开关',
       path: '',
-      arrow: <Switch checked={soundSwitch} onChange={handleSoundSwitch} />,
+      arrow: <Switch checked={setting.canPlay} onChange={handleSoundSwitch} />,
     },
   ];
   const groupFour = [
