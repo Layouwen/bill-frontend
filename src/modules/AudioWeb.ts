@@ -7,22 +7,22 @@ export class AudioWeb {
   private bufferMap = new Map<string, AudioBuffer>();
 
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const AudioContext: { new (): AudioContext } =
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
   }
 
-  close() {
+  public close() {
     this.canPlay = false;
   }
 
-  open() {
+  public open() {
     this.canPlay = true;
   }
 
-  async play(id: string) {
+  public async play(id: string) {
     const buffer = this.bufferMap.get(id);
     if (!buffer || !this.canPlay) return;
     const source = this.audioContext.createBufferSource();
@@ -31,7 +31,7 @@ export class AudioWeb {
     source.start();
   }
 
-  download() {
+  public download() {
     return new Promise((resolve) => {
       const res = {
         success: 0,
@@ -60,7 +60,7 @@ export class AudioWeb {
     });
   }
 
-  loadCache() {
+  public loadCache() {
     const cacheString = localStorage.getItem('audioCache');
     if (!cacheString) return;
     const cache = JSON.parse(cacheString);
@@ -72,7 +72,7 @@ export class AudioWeb {
     });
   }
 
-  clearCache() {
+  public clearCache() {
     if (!this.bufferMap.size) this.bufferMap.clear();
     localStorage.removeItem('audioCache');
   }
