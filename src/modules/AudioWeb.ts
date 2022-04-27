@@ -7,9 +7,9 @@ export class AudioWeb {
   private bufferMap = new Map<string, AudioBuffer>();
 
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const AudioContext: { new (): AudioContext } =
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
   }

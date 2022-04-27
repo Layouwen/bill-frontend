@@ -1,4 +1,4 @@
-import { AudioWeb } from './BwAudio';
+import { AudioWeb } from './AudioWeb';
 
 export const audioWeb = new AudioWeb();
 void audioWeb.download();
