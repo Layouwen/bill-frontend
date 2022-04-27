@@ -9,4 +9,14 @@ export const AUDIO_LIST = [
     name: '叮按钮点击音效',
     url: '/static/sound/02.wav',
   },
+  {
+    id: 3,
+    name: '按钮点击音效',
+    url: '/static/sound/03.wav',
+  },
+  {
+    id: 4,
+    name: '翻页',
+    url: '/static/sound/04.mp3',
+  },
 ];

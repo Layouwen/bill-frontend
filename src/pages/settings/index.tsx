@@ -7,14 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
 const Settings = () => {
-  const navigate = useNavigate();
   const setting = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleBack = () => {
+    playSound.back();
+    navigate(-1);
+  };
 
   const [hideTotalAmount, setHideTotalAmount] = useState(false);
 
   const handleToggleTotalAmount = (val: boolean) => {
-    playSound.ding();
+    playSound.click();
     setHideTotalAmount(val);
   };
 
@@ -87,7 +91,7 @@ const Settings = () => {
 
   return (
     <div className="page">
-      <NavBar back="返回" onBack={() => navigate(-1)}>
+      <NavBar back="返回" onBack={handleBack}>
         设置
       </NavBar>
       <div className={styles.wrapper}>
