@@ -1,3 +1,4 @@
+import { audioWeb } from '@/modules/playSound';
 import CommentList from '@/pages/comment-list';
 import FollowList from '@/pages/Community/FollowList';
 import ExportData from '@/pages/export-data';
@@ -11,8 +12,8 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { openPlay, setUserInfo } from '@/store/slice';
+import { useAppDispatch } from '@/store/hooks';
+import { setUserInfo, syncAudioWebData } from '@/store/slice';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
 import Detail from '@/pages/Detail';
@@ -33,14 +34,13 @@ import Share from '@/pages/Share';
 import Message from '@/pages/Message';
 
 const App = () => {
-  const setting = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) dispatch(setUserInfo(JSON.parse(userInfo)));
-    if (setting.canPlay) {
-      dispatch(openPlay());
-    }
+
+    audioWeb.loadCache();
+    dispatch(syncAudioWebData());
   }, []);
 
   return (

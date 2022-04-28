@@ -1,13 +1,20 @@
 import { playSound } from '@/modules';
+import { audioWeb } from '@/modules/playSound';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { closePlay, openPlay } from '@/store/slice';
-import { List, NavBar, Gap, Switch } from 'bw-mobile';
+import {
+  clearStorage,
+  closePlay,
+  openPlay,
+  setStorageSize,
+} from '@/store/slice';
+import { Toast } from 'antd-mobile';
+import { List, NavBar, Gap, Switch, Icon } from 'bw-mobile';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
 const Settings = () => {
-  const setting = useAppSelector((state) => state.setting);
+  const system = useAppSelector((state) => state.system);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleBack = () => {
@@ -24,11 +31,24 @@ const Settings = () => {
 
   const handleSoundSwitch = (val: boolean) => {
     if (val) {
+      if (system.hasAudioCache) {
+        audioWeb.loadCache();
+      } else {
+        void audioWeb.download();
+      }
       dispatch(openPlay());
     } else {
       dispatch(closePlay());
     }
+    setTimeout(() => {
+      dispatch(setStorageSize());
+    }, 100);
     playSound.click();
+  };
+
+  const clearCache = () => {
+    dispatch(clearStorage());
+    Toast.show('清除成功');
   };
 
   const groupOne = [
@@ -58,13 +78,19 @@ const Settings = () => {
     {
       title: '声音开关',
       path: '',
-      arrow: <Switch checked={setting.canPlay} onChange={handleSoundSwitch} />,
+      arrow: <Switch checked={system.canPlay} onChange={handleSoundSwitch} />,
     },
   ];
   const groupFour = [
     {
       title: '清楚缓存',
       path: '',
+      onClick: clearCache,
+      arrow: (
+        <div>
+          <span>{system.localStorageSize}</span> <Icon name="right" />
+        </div>
+      ),
     },
     {
       title: '邀请好友',
@@ -136,7 +162,8 @@ const Settings = () => {
             <List.Item
               key={item.title}
               clickable
-              onClick={() => goTo(item.path)}
+              onClick={item.onClick}
+              arrow={item.arrow}
             >
               {item.title}
             </List.Item>

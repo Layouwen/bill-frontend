@@ -1,7 +1,7 @@
 import { followApi } from '@/service/follow';
 import { systemNotifyApi } from '@/service/systemNotify';
 import { topicApi } from '@/service/topic';
-import { userSlice, i18nSlice, settingSlice } from '@/store/slice';
+import { userSlice, i18nSlice, systemSlice } from '@/store/slice';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
@@ -9,7 +9,7 @@ const store = configureStore({
   reducer: {
     i18n: i18nSlice.reducer,
     user: userSlice.reducer,
-    setting: settingSlice.reducer,
+    system: systemSlice.reducer,
     [followApi.reducerPath]: followApi.reducer,
     [topicApi.reducerPath]: topicApi.reducer,
     [systemNotifyApi.reducerPath]: systemNotifyApi.reducer,

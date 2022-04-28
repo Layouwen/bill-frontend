@@ -60,6 +60,10 @@ export class AudioWeb {
     });
   }
 
+  public hasCache() {
+    return localStorage.getItem('audioCache') !== null;
+  }
+
   public loadCache() {
     const cacheString = localStorage.getItem('audioCache');
     if (!cacheString) return;
