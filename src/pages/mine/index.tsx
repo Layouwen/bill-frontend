@@ -1,3 +1,4 @@
+import BwPieChart from '@/pages/mine/components/PieChart';
 import { spliceNumberByPoint, zeroFill } from '@/utils/time';
 import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
@@ -7,6 +8,7 @@ import { TabBar } from '@/components';
 import UserInfo from '@/pages/mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
 import { useNavigate } from 'react-router-dom';
+import { Line, LineChart } from 'recharts';
 import styles from './index.module.scss';
 import { Icon } from 'bw-mobile';
 
@@ -80,8 +82,22 @@ const Mine: FC = () => {
 
   const [billRecord, setBillRecord] = useState<BillRecordType>();
 
+  const data = [
+    { name: 'Page A', uv: 400, pv: 2400, amt: 2400 },
+    { name: 'Page B', uv: 300, pv: 1400, amt: 2400 },
+    { name: 'Page C', uv: 420, pv: 2900, amt: 2400 },
+    { name: 'Page D', uv: 392, pv: 1110, amt: 2400 },
+  ];
+
+  const renderLineChart = (
+    <LineChart width="100%" height="100%" data={data}>
+      <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+    </LineChart>
+  );
+
   return (
     <div className={classNames('page', styles.wrapper)}>
+      {renderLineChart}
       <main className="overflow-auto flex flex-col grow">
         <UserInfo
           name={name}
@@ -163,8 +179,8 @@ const Mine: FC = () => {
                 className="flex justify-center items-center h-full"
                 style={{ width: '40%', transform: 'translate(-16px)' }}
               >
-                <p>剩余</p>
-                <p>76%</p>
+                <BwPieChart />
+                {/*<p>剩余</p> <p>76%</p>*/}
               </div>
               <div
                 className="grow flex flex-col h-full justify-end"

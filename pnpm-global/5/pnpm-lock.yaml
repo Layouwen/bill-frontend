@@ -2,3 +2,6 @@ lockfileVersion: 5.3
 
 specifiers:
   bw-mobile: ^0.0.4
+
+dependencies:
+  bw-mobile: link:../../../../../../pnpm-global/5/node_modules/bw-mobile
