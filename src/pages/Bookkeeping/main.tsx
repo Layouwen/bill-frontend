@@ -29,7 +29,6 @@ const Main: FC<changePropsFn> = ({ change, keyToggle }) => {
   };
 
   useEffect(() => {
-    console.log(keyToggle, 'keyToggle');
     changKeyFn(Number(keyToggle));
     void cateFn();
   }, [keyToggle]);

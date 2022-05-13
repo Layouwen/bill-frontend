@@ -55,6 +55,7 @@ const Bookkeeping: FC = () => {
         name={name}
         type={type1}
         stateList={stateList}
+        state={state}
       ></KeyBoard>
     </div>
   );

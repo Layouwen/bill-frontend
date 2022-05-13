@@ -16,7 +16,7 @@ const Dditing: FC = () => {
 
   return (
     <div className="page">
-      <Top></Top>
+      <Top state={state}></Top>
       <List state={state} />
       <Footer state={state}></Footer>
     </div>

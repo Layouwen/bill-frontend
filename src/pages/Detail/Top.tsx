@@ -21,20 +21,28 @@ const Top: FC<timeDate> = ({ change, numExpendIncome }) => {
   };
 
   const ChangeTimeDate = async (time: string, arr: Array<string>) => {
+    sessionStorage.setItem('setYearMoth', JSON.stringify(arr));
+    sessionStorage.setItem('timeDate', JSON.stringify(time));
     setYearMoth(arr);
     change(time);
   };
 
   useEffect(() => {
-    const time2 = new Date();
-    const Y = time2.getFullYear() + '年';
-    const M =
-      time2.getMonth() + 1 < 10
-        ? '0' + (time2.getMonth() + 1)
-        : time2.getMonth() + 1;
+    const getYearMoth = sessionStorage.getItem('setYearMoth');
+    const timeDate = sessionStorage.getItem('timeDate');
+    getYearMoth && setYearMoth(JSON.parse(getYearMoth));
+    timeDate && change(timeDate);
+    if (!getYearMoth) {
+      const time2 = new Date();
+      const Y = time2.getFullYear() + '年';
+      const M =
+        time2.getMonth() + 1 < 10
+          ? '0' + (time2.getMonth() + 1)
+          : time2.getMonth() + 1;
 
-    const arrayDate = [String(Y), String(M)];
-    setYearMoth(arrayDate);
+      const arrayDate = [String(Y), String(M)];
+      setYearMoth(arrayDate);
+    }
   }, []);
 
   return (

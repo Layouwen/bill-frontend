@@ -8,15 +8,17 @@ import classNames from 'classnames';
 import { Toast } from 'antd-mobile';
 import { getShowTime } from '@/utils/DataTime';
 import { stateType } from '@/pages/Bookkeeping/index';
+import { recordChildren } from '@/pages/Detail/List';
 
 type keyType = {
   keyToggle: number;
   type: string;
   name: string;
   stateList: stateType;
+  state: recordChildren;
 };
 
-const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList }) => {
+const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
   const ArrayList = [
     {
       keys: 7,
@@ -374,7 +376,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList }) => {
       if (edit.statusCode === 200) {
         // Touch('编辑成功')
         Toast.show({ content: edit.message });
-        navigate('/detail');
+        const chunk = Object.assign(state, data);
+        chunk.status = true;
+        navigate(`/editing/${state.id}`, { state: chunk });
       }
     } else if (stateList[0] === '') {
       //新增
@@ -414,7 +418,6 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList }) => {
 
   // TODO: any
   const changeRemark = (e: any) => {
-    console.log(e, '输入了');
     //备注
     setRemarkValue(e.target.value);
   };
@@ -425,24 +428,18 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList }) => {
     //time 这是子组件返回的时间戳的参数
 
     setDateTimeValue(time);
-    console.log(time, 'time');
     if (new Date(value).toDateString() == new Date().toDateString()) {
       setDateValue('今天');
     } else {
-      console.log(value, 'value');
       setDateValue(value);
     }
   };
 
   const changShow = async () => {
-    console.log(stateList, '回显的数据');
     //回显
     if (name) {
-      console.log(name, 'name');
       const res = await cateGoryApi();
       const data: any = res.data.data;
-      console.log(data, '回显数据');
-      console.log(totals, '总价');
       const iconNameArr: Array<string> = [];
       data.forEach((item: any) => {
         iconNameArr.push(item.name);

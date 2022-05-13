@@ -19,6 +19,7 @@ export type recordChildren = {
   time: string;
   type: string;
   updatedAt: string;
+  status?: boolean;
 };
 
 type recordType = [
