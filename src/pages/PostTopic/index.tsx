@@ -11,7 +11,7 @@ import {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { Button, Icon, NavBar } from '@/components';
+import { Button, Icon, NavBar } from 'bw-mobile';
 import styles from './index.module.scss';
 
 const PostTopic: FC = () => {
@@ -157,7 +157,7 @@ const PostTopic: FC = () => {
           <Icon name="left" />
         </footer>
       </main>
-      <Button size="full" block onClick={handleAddTopic}>
+      <Button size="full" onClick={handleAddTopic}>
         发表
       </Button>
     </div>

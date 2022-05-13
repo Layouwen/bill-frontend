@@ -1,5 +1,5 @@
 import { FollowListType, getFollowList } from '@/api/follow';
-import { NavBar } from '@/components';
+import { NavBar } from 'bw-mobile';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './FollowList.module.scss';

@@ -1,0 +1,48 @@
+$class-prefix-user-follow-item: "bwm-user-follow-item";
+
+.#{$class-prefix-user-follow-item} {
+  display: flex;
+  align-items: center;
+  padding: 11px 16px 13px;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 360px;
+    height: 1px;
+    background: #E9EBEE;
+  }
+  img {
+    width: 47px;
+    height: 47px;
+    margin-right: 11px;
+    border-radius: 50%;
+    border: 1px solid #dedede;
+  }
+  &-box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    &-username {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1C1C1F;
+    }
+    &-desc {
+      font-size: 12px;
+      color: #888B92;
+    }
+  }
+  button {
+    width: 54px;
+    height: 25px;
+    background: #FFFFFF;
+    border-radius: 13px 13px 13px 13px;
+    border: 1px solid #E8E8E8;
+    &.follow {
+      color: #92979F;
+    }
+  }
+}

@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 import classNames from 'classnames';
-import { Icon } from '@/components';
-import './index.scss';
+import './tab-bar.scss';
+import { Icon } from 'bw-mobile';
 
 type TabBarProps = {
   active: number;
 };
 
-const TabBar: FC<TabBarProps> = ({ active }) => {
+export const TabBar: FC<TabBarProps> = ({ active }) => {
   const navigate = useNavigate();
 
   const tabBarList = [
@@ -56,7 +56,7 @@ const TabBar: FC<TabBarProps> = ({ active }) => {
   };
 
   return (
-    <div className={classNames(['bw-tab-bar'])}>
+    <div className={classNames(['bwm-tab-bar'])}>
       {tabBarList.map((tab, index) => (
         <div
           key={tab.name}
@@ -70,5 +70,3 @@ const TabBar: FC<TabBarProps> = ({ active }) => {
     </div>
   );
 };
-
-export default TabBar;

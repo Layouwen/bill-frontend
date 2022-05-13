@@ -1,5 +1,6 @@
 export { default as request } from './request';
 export * from './component';
+export * from './system';
 
 export const downloadCanvas = (
   canvas: HTMLCanvasElement,
