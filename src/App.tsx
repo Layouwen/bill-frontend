@@ -1,4 +1,10 @@
+import { audioWeb } from '@/modules/playSound';
+import CommentList from '@/pages/comment-list';
 import FollowList from '@/pages/Community/FollowList';
+import ExportData from '@/pages/export-data';
+import NewFollow from '@/pages/new-follow';
+import Settings from '@/pages/settings';
+import SystemNotify from '@/pages/system-notify';
 import { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -7,7 +13,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useAppDispatch } from '@/store/hooks';
-import { setUserInfo } from '@/store/slice';
+import { setUserInfo, syncAudioWebData } from '@/store/slice';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/Community';
 import Detail from '@/pages/Detail';
@@ -16,7 +22,7 @@ import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/Sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
-import Mine from '@/pages/Mine';
+import Mine from '@/pages/mine';
 import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/Bookkeeping';
@@ -32,6 +38,9 @@ const App = () => {
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) dispatch(setUserInfo(JSON.parse(userInfo)));
+
+    audioWeb.loadCache();
+    dispatch(syncAudioWebData());
   }, []);
 
   return (
@@ -79,6 +88,11 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="/message" element={<Message />} />
+        <Route path="/message/new-follow" element={<NewFollow />} />
+        <Route path="/message/comment-list" element={<CommentList />} />
+        <Route path="/message/system-notify" element={<SystemNotify />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/export-data" element={<ExportData />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

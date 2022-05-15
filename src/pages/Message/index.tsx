@@ -1,4 +1,4 @@
-import { Icon, NavBar } from '@/components';
+import { Icon, NavBar } from 'bw-mobile';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
@@ -9,16 +9,21 @@ const Message: FC = () => {
     {
       title: '系统通知',
       backgroundColor: '#F0A83B',
+      onClick: () => goTo('/message/system-notify'),
     },
     {
       title: '评论',
       backgroundColor: '#63A2EB',
+      onClick: () => goTo('/message/comment-list'),
     },
     {
       title: '新增关注',
       backgroundColor: '#77BFC0',
+      onClick: () => goTo('/message/new-follow'),
     },
   ];
+
+  const goTo = (path: string) => navigate(path);
   return (
     <div className="page">
       <NavBar
@@ -40,6 +45,7 @@ const Message: FC = () => {
 interface ItemProps {
   title: string;
   backgroundColor: string;
+  onClick?: () => void;
 }
 
 const Item: FC<ItemProps> = (p) => {
@@ -47,7 +53,7 @@ const Item: FC<ItemProps> = (p) => {
     return { backgroundColor };
   };
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={p.onClick}>
       <div className={styles.img} style={styleComputed(p)}>
         <Icon name="right" />
       </div>

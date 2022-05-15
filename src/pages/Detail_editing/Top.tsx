@@ -1,6 +1,6 @@
+import { NavBar } from 'bw-mobile';
 import { FC } from 'react';
 import styles from './top.module.scss';
-import NavBar from '@/components/NavBar';
 import { useNavigate } from 'react-router-dom';
 import { recordChildren } from '@/pages/Detail/List';
 

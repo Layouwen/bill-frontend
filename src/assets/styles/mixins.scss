@@ -1,0 +1,9 @@
+@mixin one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin break-all {
+  word-break: break-all;
+}

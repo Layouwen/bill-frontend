@@ -2,7 +2,7 @@ import { getCaptchaApi, login } from '@/api';
 import { useAppDispatch } from '@/store/hooks';
 import { setToken, setUserInfo } from '@/store/slice/userSlice';
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
-import { Button, Input } from '@/components';
+import { Button, Input } from 'bw-mobile';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
@@ -98,7 +98,9 @@ const Login: FC = () => {
             dangerouslySetInnerHTML={{ __html: svgCaption }}
           />
         </div>
-        <Button onClick={handleLogin}>登录</Button>
+        <Button block onClick={handleLogin}>
+          登录
+        </Button>
         <div className={styles.bottom}>
           <span className={styles.back} onClick={() => navigate(-1)}>
             返回

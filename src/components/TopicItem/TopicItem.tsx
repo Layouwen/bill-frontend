@@ -1,8 +1,8 @@
 import { showDate } from '@/utils/time';
+import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC, MouseEvent } from 'react';
 import styles from './TopicItem.module.scss';
-import Icon from '../Icon';
 
 type TopicItemProps = {
   data: {

@@ -1,9 +1,10 @@
 import { FC, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { Topic, topicLike } from '@/api';
-import { Icon, ImagePreview, TopicItem } from '@/components';
+import { TopicItem } from '@/components';
 import { useNavigate } from 'react-router-dom';
 import styles from './ItemList.module.scss';
+import { ImagePreview, Icon } from 'bw-mobile';
 
 type ItemListProps = {
   data?: Topic[];

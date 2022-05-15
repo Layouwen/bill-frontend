@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { defaultHost } from './src/config';
 
+const srcPath = resolve(__dirname, 'src');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,14 +19,22 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src/'),
+      '@': srcPath,
       '~normalize.css': 'normalize.css',
+      '~mixin': srcPath + '/assets/styles',
       classnames: 'classnames-es-ts',
     },
   },
   test: {
     global: true, // 添加全局变量
     environment: 'jsdom', // node环境下dom
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "~mixin/mixins.scss";`,
+      },
+    },
   },
   plugins: [react()],
 });

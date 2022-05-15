@@ -5,10 +5,10 @@ import {
   topicLike,
 } from '@/api';
 import { FC, useEffect, useState } from 'react';
-import { Comment, NavBar } from '@/components';
 import Main from './Main';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './index.module.scss';
+import { NavBar, Comment } from 'bw-mobile';
 
 const TopicDetail: FC = () => {
   const [topic, setTopic] = useState<Detail>();
