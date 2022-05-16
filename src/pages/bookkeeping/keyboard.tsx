@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { FC, useEffect, useState } from 'react';
 import styles from './keyboard.module.scss';
 import { addRecord, cateGoryApi, editRecord } from '@/api';
@@ -426,14 +427,13 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
     //选择的时间
     //value 这是子组件返回的渲染的日期
     //time 这是子组件返回的时间戳的参数
-
     setDateTimeValue(time);
-    if (new Date(value).toDateString() == new Date().toDateString()) {
-      setDateValue('今天');
-    } else {
-      setDateValue(value);
-    }
+    setDateValue(value);
   };
+
+  function isToday(value: string) {
+    return new Date(value).toDateString() === new Date().toDateString();
+  }
 
   const changShow = async () => {
     //回显
@@ -461,6 +461,7 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
 
   useEffect(() => {
     void changShow();
+    setDateValue(dayjs(new Date()).format('YYYY/MM/DD'));
   }, [stateList]);
 
   return (
@@ -521,8 +522,14 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
                     change={() => ChangeDateRender()}
                     changeTime={changeTime}
                   ></CustomRender>
-                  <Icon name={'community-fill'} className="tab-icon" />
-                  <span>{DateValue}</span>
+                  {isToday(DateValue) ? (
+                    <>
+                      <Icon name="today" style={{ fontSize: 21 }} />
+                      <span>今天</span>
+                    </>
+                  ) : (
+                    <span>{DateValue}</span>
+                  )}
                 </div>
                 <div
                   className={classNames([
