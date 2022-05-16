@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import NavBar from './navBar';
 import Main from './main';
-import KeyBoard from '@/pages/Bookkeeping/keyboard';
+import KeyBoard from '@/pages/bookkeeping/keyboard';
 import { iconObj } from '@/api/category';
 import { useLocation } from 'react-router-dom';
 import { recordChildren } from '@/pages/Detail/List';

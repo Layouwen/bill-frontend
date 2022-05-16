@@ -4,12 +4,12 @@ import { cateGoryApi } from '@/api';
 import { iconObj } from '@/api/category';
 import mm from '@/assets/images/mm.jpg';
 
-type changePropsFn = {
+type ChangePropsFn = {
   change: (item: iconObj) => void;
   keyToggle: number;
 };
 
-const Main: FC<changePropsFn> = ({ change, keyToggle }) => {
+const Main: FC<ChangePropsFn> = ({ change, keyToggle }) => {
   const [active, setActive] = useState(-1);
   const [mainList, setMainList] = useState<iconObj[]>([]);
 
