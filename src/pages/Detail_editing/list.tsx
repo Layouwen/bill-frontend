@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { FixedPin } from 'bw-mobile';
 import styles from './list.module.scss';
 import { recordChildren } from '../Detail/List';
 import { getTimedate, getTimeDateYear, getWeekByDay } from '@/utils/DataTime';
@@ -49,9 +50,7 @@ const List: FC<stateType> = ({ state }) => {
           <span className={styles.listKeys}>{listKeys[index]}</span>
         </div>
       ))}
-      <div className={styles.share}>
-        <span>分享</span>
-      </div>
+      <FixedPin>分享</FixedPin>
     </div>
   );
 };
