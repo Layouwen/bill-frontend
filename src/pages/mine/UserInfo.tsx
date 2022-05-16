@@ -73,7 +73,8 @@ const UserInfo: FC<UserInfoProps> = ({
         >
           <Icon name="vip" className={styles.icon} />
           <span className="grow" style={{ lineHeight: '15px' }}>
-            升级为VIP
+            {/*升级为VIP*/}
+            暂不支持VIP功能
           </span>
           <Icon name="right" className={classNames(styles.right)} />
         </div>
