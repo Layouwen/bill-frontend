@@ -32,10 +32,10 @@
 
       > input {
         border: none;
-        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-        -webkit-user-select: none;
+        //-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        //-webkit-user-select: none;
         -moz-user-select: none;
-        -webkit-appearance: none;
+        //-webkit-appearance: none;
         outline: none;
         min-width: 100px;
         flex: 1;
