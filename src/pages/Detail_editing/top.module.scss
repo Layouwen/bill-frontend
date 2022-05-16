@@ -1,21 +1,21 @@
-.top{
+.top {
   width: 100%;
   height: 114-46px;
   background: #AEEEFF;
   opacity: 1;
   position: relative;
 
-  >.main {
+  > .main {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: -35px;
     z-index: 10;
     text-align: center;
-    >div {
+    .icon {
       width: 60px;
       height: 60px;
-      background: pink;
+      background: #fff;
       border-radius: 50%;
       margin: 0 auto;
     }

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Icon } from '../../../../bwm-ui';
+import { Icon } from 'bw-mobile';
 import styles from './main.module.scss';
 import { cateGoryApi } from '@/api';
 import { iconObj } from '@/api/category';
