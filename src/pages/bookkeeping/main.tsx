@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
+import { Icon } from '../../../../bwm-ui';
 import styles from './main.module.scss';
 import { cateGoryApi } from '@/api';
 import { iconObj } from '@/api/category';
-import mm from '@/assets/images/mm.jpg';
 
 type ChangePropsFn = {
   change: (item: iconObj) => void;
@@ -47,7 +47,7 @@ const Main: FC<ChangePropsFn> = ({ change, keyToggle }) => {
                 active === item.id ? styles.newClass_icon_backGround : ''
               }
             >
-              <img src={mm} alt="" className={styles.newClass_icon} />
+              <Icon name={item.icon} style={{ fontSize: 30 }} />
             </div>
             <span>{item.name}</span>
           </div>
