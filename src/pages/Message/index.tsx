@@ -9,15 +9,18 @@ const Message: FC = () => {
     {
       title: '系统通知',
       backgroundColor: '#F0A83B',
+      icon: 'message',
       onClick: () => goTo('/message/system-notify'),
     },
     {
       title: '评论',
+      icon: 'comment',
       backgroundColor: '#63A2EB',
       onClick: () => goTo('/message/comment-list'),
     },
     {
       title: '新增关注',
+      icon: 'follow',
       backgroundColor: '#77BFC0',
       onClick: () => goTo('/message/new-follow'),
     },
@@ -45,6 +48,7 @@ const Message: FC = () => {
 interface ItemProps {
   title: string;
   backgroundColor: string;
+  icon: string;
   onClick?: () => void;
 }
 
@@ -55,7 +59,7 @@ const Item: FC<ItemProps> = (p) => {
   return (
     <div className={styles.item} onClick={p.onClick}>
       <div className={styles.img} style={styleComputed(p)}>
-        <Icon name="right" />
+        <Icon name={p.icon} style={{ fontSize: 24, color: 'fff' }} />
       </div>
       <div className={styles.title}>{p.title}</div>
       <Icon name="right" />
