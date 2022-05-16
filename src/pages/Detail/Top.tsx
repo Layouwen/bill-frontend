@@ -1,15 +1,34 @@
+import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import styles from './top.module.scss';
 import Precision from './component';
 import { numType } from '@/pages/Detail/index';
 
-type timeDate = {
+type TopProps = {
   change: (val: string) => void;
   numExpendIncome: numType | [];
 };
 
-const Top: FC<timeDate> = ({ change, numExpendIncome }) => {
+const Top: FC<TopProps> = ({ change, numExpendIncome }) => {
+  const tabs = [
+    {
+      name: '账单',
+      iconName: 'bill',
+      click: () => null,
+    },
+    {
+      name: '资产',
+      iconName: 'budget',
+      click: () => null,
+    },
+    {
+      name: '资产管家',
+      iconName: 'asset-steward',
+      click: () => null,
+    },
+  ];
+
   const [visible1, setVisible1] = useState(false);
   const [yearMoth, setYearMoth] = useState<string[]>([]);
   const PrecisionFn = () => {
@@ -109,7 +128,21 @@ const Top: FC<timeDate> = ({ change, numExpendIncome }) => {
           'w-full absolute bottom-0 left-1/2 -translate-x-1/2',
         )}
       >
-        <div className={classNames(styles.list, 'h-full')}></div>
+        <div className={classNames(styles.list, 'h-full flex')}>
+          {tabs.map((tab) => (
+            <div
+              className={classNames(
+                styles.tab,
+                'flex-shrink-0 flex-grow flex flex-col justify-center items-center',
+              )}
+              key={tab.name}
+              onClick={tab.click}
+            >
+              <Icon name={tab.iconName} />
+              <span>{tab.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
