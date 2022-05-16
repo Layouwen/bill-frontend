@@ -1,3 +1,4 @@
+import { Icon } from 'bw-mobile';
 import { FC, useEffect, useState } from 'react';
 import styles from './list.module.scss';
 import { getRecord } from '@/api';
@@ -186,7 +187,10 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
           ))}
         </>
       ) : (
-        <div className={styles.aotuMain}>暂无数据</div>
+        <div className={styles['not-data']}>
+          <Icon name="not-data" />
+          <span>暂无数据</span>
+        </div>
       )}
     </div>
   );
