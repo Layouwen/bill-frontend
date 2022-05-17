@@ -42,7 +42,7 @@ export const exportRecordData = (
       createdAt,
       updatedAt,
       category: { id: categoryId, name: categoryName },
-    }) => ({
+    }: SheetData) => ({
       记录ID: id,
       备注: remark,
       记账时间: dayjs(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -58,4 +58,17 @@ export const exportRecordData = (
     fileName: `蓝鲸记账 - ${range.startTime}~${range.endTime}记录数据`,
     sheetName: `${range.startTime}~${range.endTime}`,
   });
+};
+
+type SheetData = {
+  id: string;
+  remark: string;
+  time: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  category: {
+    id: string;
+    name: string;
+  };
 };
