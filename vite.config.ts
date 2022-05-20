@@ -37,4 +37,5 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  publicDir: 'static',
 });
