@@ -1,3 +1,4 @@
+import { playSound } from '@/modules';
 import { spliceNumberByPoint, zeroFill } from '@/utils/time';
 import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
@@ -75,6 +76,7 @@ const Mine: FC = () => {
   ];
 
   const goTo = (path?: string) => {
+    playSound.turnPage();
     path && navigate(path);
   };
 

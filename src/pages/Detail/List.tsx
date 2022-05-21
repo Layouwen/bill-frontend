@@ -1,3 +1,4 @@
+import { playSound } from '@/modules';
 import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
@@ -143,6 +144,7 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
   };
 
   const recordFn = (chunk: recordChildren) => {
+    playSound.turnPage();
     navigate(`/editing/${chunk.id}`, { state: chunk });
   };
 

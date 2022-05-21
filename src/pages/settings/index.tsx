@@ -18,7 +18,7 @@ const Settings = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleBack = () => {
-    playSound.back();
+    playSound.turnPage();
     navigate(-1);
   };
 

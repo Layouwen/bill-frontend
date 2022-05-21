@@ -1,3 +1,4 @@
+import { playSound } from '@/modules';
 import { useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 import classNames from 'classnames';
@@ -52,6 +53,7 @@ export const TabBar: FC<TabBarProps> = ({ active }) => {
 
   const changeRoute = (index: number, router: string) => {
     if (index === active) return;
+    playSound.turnPage();
     navigate(router);
   };
 

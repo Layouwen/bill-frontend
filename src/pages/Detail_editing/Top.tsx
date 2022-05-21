@@ -1,3 +1,4 @@
+import { playSound } from '@/modules';
 import { Icon, NavBar } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC } from 'react';
@@ -12,6 +13,7 @@ type stateType = {
 const Top: FC<stateType> = ({ state }) => {
   const navigate = useNavigate();
   const back = () => {
+    playSound.turnPage();
     if (state?.status) {
       navigate('/detail');
     } else {
