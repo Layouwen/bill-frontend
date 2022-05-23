@@ -17,3 +17,5 @@ coverage
 
 package-lock.json
 yarn-lock.json
+
+/pnpm-global/
