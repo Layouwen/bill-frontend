@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 import NavBar from './navBar';
 import Main from './main';
 import KeyBoard from '@/pages/bookkeeping/keyboard';
-import { iconObj } from '@/api/category';
+import { CategoryAmountType, cateGoryApi, iconObj } from '@/api/category';
 import { useLocation } from 'react-router-dom';
 import { recordChildren } from '@/pages/Detail/List';
 
@@ -12,7 +12,7 @@ export type stateType = [amount: string, time: string, id: number];
 const Bookkeeping: FC = () => {
   const [keyToggle, setKeyToggle] = useState<number>(-1); //图标的id
   const [name, setName] = useState(''); //图标选项的名称
-  const [type1, setType1] = useState('-'); //切换支出和收入
+  const [type1, setType1] = useState<CategoryAmountType>('-'); //切换支出和收入
   const navParams = useLocation();
   const list: recordChildren = navParams.state as recordChildren;
   const state = list;
@@ -25,8 +25,8 @@ const Bookkeeping: FC = () => {
     }
   };
 
-  const navBarType = (type: string) => {
-    setType1(String(type));
+  const navBarType = (type: CategoryAmountType) => {
+    setType1(type);
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Bookkeeping: FC = () => {
       //回显
       const chunkKey: stateType = [state.amount, state.time, state.id];
       setSateList(chunkKey);
-      navBarType(String(state.type));
+      navBarType(state.type as CategoryAmountType);
       const list = {
         createdAt: state.createdAt,
         icon: state.category.icon,
@@ -46,10 +46,26 @@ const Bookkeeping: FC = () => {
     }
   }, []);
 
+  const [mainList, setMainList] = useState<iconObj[]>([]);
+
+  const cateFn = async (type: CategoryAmountType) => {
+    const res = await cateGoryApi(type);
+    const data = res.data.data;
+    setMainList(data);
+  };
+
+  useEffect(() => {
+    void cateFn(type1);
+  }, [type1]);
+
   return (
     <div className={styles.bookkeeping}>
       <NavBar change={navBarType} type={type1}></NavBar>
-      <Main change={handleChangeTab} keyToggle={keyToggle}></Main>
+      <Main
+        change={handleChangeTab}
+        keyToggle={keyToggle}
+        categoryList={mainList}
+      ></Main>
       <KeyBoard
         keyToggle={keyToggle}
         name={name}

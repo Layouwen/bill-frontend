@@ -13,6 +13,12 @@ export type iconType = {
   data: iconObj[];
 };
 
-export const cateGoryApi = () => {
-  return request.get<unknown, SuccessResponse<iconType>>('/category');
+export type CategoryAmountType = '+' | '-';
+
+export const cateGoryApi = (type: CategoryAmountType = '-') => {
+  return request.get<unknown, SuccessResponse<iconType>>(`/category`, {
+    params: {
+      type,
+    },
+  });
 };

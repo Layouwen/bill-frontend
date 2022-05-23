@@ -1,17 +1,16 @@
 import { FC, useEffect, useState } from 'react';
 import { Icon } from 'bw-mobile';
 import styles from './main.module.scss';
-import { cateGoryApi } from '@/api';
 import { iconObj } from '@/api/category';
 
 type ChangePropsFn = {
   change: (item: iconObj) => void;
   keyToggle: number;
+  categoryList: iconObj[];
 };
 
-const Main: FC<ChangePropsFn> = ({ change, keyToggle }) => {
+const Main: FC<ChangePropsFn> = ({ change, keyToggle, categoryList }) => {
   const [active, setActive] = useState(-1);
-  const [mainList, setMainList] = useState<iconObj[]>([]);
 
   const changeMainFn = (item: iconObj) => {
     setActive(item.id);
@@ -22,21 +21,14 @@ const Main: FC<ChangePropsFn> = ({ change, keyToggle }) => {
     setActive(num);
   };
 
-  const cateFn = async () => {
-    const res = await cateGoryApi();
-    const data = res.data.data;
-    setMainList(data);
-  };
-
   useEffect(() => {
     changKeyFn(Number(keyToggle));
-    void cateFn();
   }, [keyToggle]);
 
   return (
     <div className={styles.context}>
       <div className={styles.main_wrapper}>
-        {mainList.map((item, index) => (
+        {categoryList.map((item, index) => (
           <div
             className={styles.wrapper_item}
             key={index}

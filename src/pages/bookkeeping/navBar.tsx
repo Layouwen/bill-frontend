@@ -1,10 +1,11 @@
+import { CategoryAmountType } from '@/api';
 import { playSound } from '@/modules';
 import { FC, useEffect, useState } from 'react';
 import styles from './navBar.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 type navBarType = {
-  change: (type: string) => void;
+  change: (type: CategoryAmountType) => void;
   type: string;
 };
 
