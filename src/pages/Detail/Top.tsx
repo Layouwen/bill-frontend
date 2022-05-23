@@ -91,7 +91,7 @@ const Top: FC<TopProps> = ({ change, numExpendIncome }) => {
             <span className={styles.big}>
               {numExpendIncome[1] && numExpendIncome[1].length
                 ? numExpendIncome[1][0]
-                : '00'}
+                : '0'}
             </span>
             <span className={styles.bigNum}>
               {numExpendIncome[1] &&
@@ -110,7 +110,7 @@ const Top: FC<TopProps> = ({ change, numExpendIncome }) => {
             <span className={styles.big}>
               {numExpendIncome[0] && numExpendIncome[0].length
                 ? numExpendIncome[0][0]
-                : '00'}
+                : '0'}
             </span>
             <span className={styles.bigNum}>
               {numExpendIncome[0] &&
