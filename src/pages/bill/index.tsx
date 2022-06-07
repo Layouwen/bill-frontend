@@ -30,11 +30,11 @@ const Bill = () => {
   }
 
   if (isLoading) {
-    return 'loading';
+    return <div>loading</div>;
   }
 
   if (!isSuccess) {
-    return 'loading fail';
+    return <div>loading fail</div>;
   }
   return (
     <div className="page">
