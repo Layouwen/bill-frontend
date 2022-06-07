@@ -1,4 +1,5 @@
 import { audioWeb } from '@/modules/playSound';
+import Bill from '@/pages/bill';
 import CommentList from '@/pages/comment-list';
 import FollowList from '@/pages/Community/FollowList';
 import ExportData from '@/pages/export-data';
@@ -93,6 +94,7 @@ const App = () => {
         <Route path="/message/system-notify" element={<SystemNotify />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/export-data" element={<ExportData />} />
+        <Route path="/bill" element={<Bill />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

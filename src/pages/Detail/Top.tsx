@@ -1,6 +1,7 @@
 import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './top.module.scss';
 import Precision from './component';
 import { numType } from '@/pages/Detail/index';
@@ -11,11 +12,12 @@ type TopProps = {
 };
 
 const Top: FC<TopProps> = ({ change, numExpendIncome }) => {
+  const navigate = useNavigate();
   const tabs = [
     {
       name: '账单',
       iconName: 'bill',
-      click: () => null,
+      click: () => navigate('/bill'),
     },
     {
       name: '资产',

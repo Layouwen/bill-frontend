@@ -21,7 +21,7 @@
         bottom: 4px;
         left: 50%;
         transform: translateX(-50%);
-        background: #AEEEFF;
+        background: var(--theme-color);
         border-radius: 2px;
       }
     }

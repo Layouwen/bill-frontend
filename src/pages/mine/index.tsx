@@ -119,7 +119,10 @@ const Mine: FC = () => {
               账单
               <Icon name="right" style={{ fontSize: 12 }} />
             </div>
-            <div className={classNames(styles.bottom, 'flex grow items-end')}>
+            <div
+              className={classNames(styles.bottom, 'flex grow items-end')}
+              onClick={() => goTo('/bill')}
+            >
               <div className={classNames(styles.big, 'flex-shrink-0 relative')}>
                 {zeroFill(billRecord?.month)}
                 <span>月</span>

@@ -1,0 +1,48 @@
+.wrapper {
+  background-color: var(--background-color);
+  > ul {
+    .header {
+      height: 32px;
+      font-size: 10px;
+      color: #969696;
+    }
+    > li {
+      display: flex;
+      color: #333233;
+      height: 55px;
+      font-size: 13px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #EBEBEB;
+      .month {
+        font-size: 14px;
+        color: #6C6C6C;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > div {
+          align-items: flex-end;
+          > span {
+            font-size: 11px;
+          }
+        }
+      }
+      > div:nth-child(1) {
+        width: 12%;
+      }
+      > div:nth-child(2) {
+        width: 26%;
+      }
+      > div:nth-child(3) {
+        width: 26%;
+      }
+      > div:nth-child(4) {
+        width: 26%;
+      }
+      > div:nth-child(5) {
+        width: 10%;
+      }
+    }
+  }
+}
