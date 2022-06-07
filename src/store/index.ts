@@ -1,4 +1,5 @@
 import { followApi } from '@/service/follow';
+import { recordApi } from '@/service/record';
 import { systemNotifyApi } from '@/service/systemNotify';
 import { topicApi } from '@/service/topic';
 import { userSlice, i18nSlice, systemSlice } from '@/store/slice';
@@ -13,12 +14,14 @@ const store = configureStore({
     [followApi.reducerPath]: followApi.reducer,
     [topicApi.reducerPath]: topicApi.reducer,
     [systemNotifyApi.reducerPath]: systemNotifyApi.reducer,
+    [recordApi.reducerPath]: recordApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       followApi.middleware,
       topicApi.middleware,
       systemNotifyApi.middleware,
+      recordApi.middleware,
     ),
 });
 

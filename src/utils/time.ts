@@ -33,7 +33,7 @@ export const showDate = (timestamp: string) => {
 };
 
 export const spliceNumberByPoint = (n?: number) => {
-  if (!n) return ['00', '00'];
+  if (!n) return ['0', '00'];
   const sp = n.toString().split('.');
   return sp.length === 1 ? [...sp, '00'] : sp;
 };

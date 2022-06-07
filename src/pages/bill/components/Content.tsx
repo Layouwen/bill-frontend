@@ -1,18 +1,23 @@
 import { spliceNumberByPoint } from '@/utils/time';
 import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
+import { FC } from 'react';
 import styles from './Content.module.scss';
 
-const Content = () => {
-  const list = [
-    {
-      id: 0,
-      month: 8,
-      income: '123123.31',
-      expand: '43212.45',
-      balance: '-288.08',
-    },
-  ];
+type DataItem = {
+  month: string;
+} & BillItemDto;
+
+type ContentProps = {
+  data: DataItem[];
+};
+
+const Content: FC<ContentProps> = ({ data }) => {
+  function showData(data: DataItem[]) {
+    if (data.length > 0) return data;
+    return [{ month: '1月', income: 0, expand: 0, balance: 0 }];
+  }
+
   return (
     <div className={classNames(styles.wrapper, 'flex-grow overflow-auto')}>
       <ul>
@@ -23,25 +28,25 @@ const Content = () => {
           <div>结束</div>
           <div />
         </li>
-        {list.map((i) => (
-          <li key={i.id}>
-            <div className={styles.month}>{i.month}月</div>
+        {showData(data).map((i) => (
+          <li key={i.month}>
+            <div className={styles.month}>{i.month}</div>
             <div>
               <div>
-                {spliceNumberByPoint(Number(i.income))[0]}.
-                <span>{spliceNumberByPoint(Number(i.income))[1]}</span>
+                {spliceNumberByPoint(i.income)[0]}.
+                <span>{spliceNumberByPoint(i.income)[1]}</span>
               </div>
             </div>
             <div>
               <div>
-                {spliceNumberByPoint(Number(i.expand))[0]}.
-                <span>{spliceNumberByPoint(Number(i.expand))[1]}</span>
+                {spliceNumberByPoint(i.expand)[0]}.
+                <span>{spliceNumberByPoint(i.expand)[1]}</span>
               </div>
             </div>
             <div>
               <div>
-                {spliceNumberByPoint(Number(i.balance))[0]}.
-                <span>{spliceNumberByPoint(Number(i.balance))[1]}</span>
+                {spliceNumberByPoint(i.balance)[0]}.
+                <span>{spliceNumberByPoint(i.balance)[1]}</span>
               </div>
             </div>
             <div>

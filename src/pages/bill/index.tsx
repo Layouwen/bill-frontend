@@ -1,18 +1,45 @@
 import Content from '@/pages/bill/components/Content';
+import { useGetBillQuery } from '@/service/record';
 import { Button } from 'bw-mobile';
+import dayjs from 'dayjs';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Top from './components/Top';
 import classNames from 'classnames';
 
 const Bill = () => {
+  const [selectDate, setSelectDate] = useState(new Date());
+  const { data, isLoading, isSuccess } = useGetBillQuery(
+    dayjs(selectDate).year(),
+  );
   const navigate = useNavigate();
-  const onBack = () => {
+
+  function onBack() {
     navigate(-1);
-  };
+  }
+
+  function getList(data: any) {
+    return Object.keys(data)
+      .sort((a, b) => +b - +a)
+      .map((m) => ({
+        month: `${m}月`,
+        income: data[m].income,
+        expand: data[m].expand,
+        balance: data[m].balance,
+      }));
+  }
+
+  if (isLoading) {
+    return 'loading';
+  }
+
+  if (!isSuccess) {
+    return 'loading fail';
+  }
   return (
     <div className="page">
-      <Top />
-      <Content />
+      <Top data={data?.data.all} date={selectDate} setDate={setSelectDate} />
+      <Content data={getList(data?.data.month)} />
       <div className={classNames('flex-shrink-0')}>
         <Button size="full" onClick={onBack}>
           返回

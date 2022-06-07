@@ -1,11 +1,41 @@
+import { mergerProps } from '@/utils';
+import { spliceNumberByPoint } from '@/utils/time';
+import { DatePicker } from 'antd-mobile';
 import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
+import React, { FC, useCallback } from 'react';
 import styles from './Top.module.scss';
 
-const Top = () => {
+type TopProps = {
+  data?: BillItemDto;
+  date: Date;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
+};
+
+const defaultProps = {
+  data: {
+    income: 0,
+    expand: 0,
+    balance: 0,
+  },
+};
+
+const Top: FC<TopProps> = (p) => {
+  const { data, setDate, date } = mergerProps({ ...defaultProps }, p);
+
   const onSelectYear = () => {
-    console.log('选择时间');
+    DatePicker.prompt({
+      precision: 'year',
+      defaultValue: date,
+      renderLabel: (t, v) => `${v}年`,
+      onConfirm: setDate,
+    });
   };
+
+  const showYear = useCallback(() => {
+    return dayjs(date).format('YYYY年');
+  }, [date]);
 
   return (
     <div className={classNames(styles.wrapper, 'flex flex-col flex-shrink-0')}>
@@ -14,7 +44,7 @@ const Top = () => {
       >
         <span>
           <div className="flex items-center" onClick={onSelectYear}>
-            2021年
+            {showYear()}
             <Icon name="show-bottom" style={{ fontSize: 12, marginLeft: 4 }} />
           </div>
         </span>
@@ -29,7 +59,8 @@ const Top = () => {
       >
         <span>结余</span>
         <div>
-          -3904.<span>67</span>
+          {spliceNumberByPoint(data.balance)[0]}.
+          <span>{spliceNumberByPoint(data.balance)[1]}</span>
         </div>
       </div>
       <div className={classNames(styles.bottom, 'flex flex-shrink-0')}>
@@ -37,7 +68,8 @@ const Top = () => {
           <div>
             <span>收入</span>
             <div>
-              7730.<span>59</span>
+              {spliceNumberByPoint(data.income)[0]}.
+              <span>{spliceNumberByPoint(data.income)[1]}</span>
             </div>
           </div>
         </div>
@@ -45,7 +77,8 @@ const Top = () => {
           <div>
             <span>支出</span>
             <div>
-              11635.<span>59</span>
+              {spliceNumberByPoint(data.expand)[0]}.
+              <span>{spliceNumberByPoint(data.expand)[1]}</span>
             </div>
           </div>
         </div>
