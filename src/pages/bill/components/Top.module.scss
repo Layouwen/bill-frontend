@@ -22,7 +22,10 @@
       color: #71673E;
     }
     > div {
-      font-size: 28px;
+      font-size: 36px;
+      > span {
+        font-size: 28px;
+      }
     }
   }
   .bottom {

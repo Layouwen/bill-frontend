@@ -28,7 +28,9 @@ const Top = () => {
         )}
       >
         <span>结余</span>
-        <div>-3904.67</div>
+        <div>
+          -3904.<span>67</span>
+        </div>
       </div>
       <div className={classNames(styles.bottom, 'flex flex-shrink-0')}>
         <div className={styles.income}>
