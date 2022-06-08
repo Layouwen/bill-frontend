@@ -2,9 +2,9 @@ import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Precision from '@/pages/detail/component';
 import styles from './top.module.scss';
-import Precision from './component';
-import { numType } from '@/pages/Detail/index';
+import { numType } from './index';
 
 type TopProps = {
   change: (val: string) => void;

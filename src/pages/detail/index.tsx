@@ -1,6 +1,6 @@
 import { TabBar } from '@/components';
-import List from '@/pages/Detail/List';
-import Top from '@/pages/Detail/Top';
+import List from '@/pages/detail/List';
+import Top from '@/pages/detail/Top';
 import { FC, useState } from 'react';
 
 export type numType = [Array<string>, Array<string>];
