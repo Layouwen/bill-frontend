@@ -37,12 +37,13 @@
       flex-grow: 1;
       > div {
         display: flex;
-        align-items: flex-end;
+        align-items: baseline;
         > span {
           width: 24px;
           font-size: 12px;
           color: #6E643E;
           margin-right: 4px;
+          white-space: nowrap;
         }
         > div {
           font-size: 18px;
