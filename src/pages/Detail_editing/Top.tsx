@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import styles from './top.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { recordChildren } from '@/pages/Detail/List';
+import { recordChildren } from '@/pages/detail/List';
 
 type stateType = {
   state: recordChildren;

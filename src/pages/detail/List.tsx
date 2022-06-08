@@ -1,9 +1,9 @@
 import { playSound } from '@/modules';
+import { useRecordQuery } from '@/service/record';
 import { Icon } from 'bw-mobile';
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import styles from './list.module.scss';
-import { getRecord } from '@/api';
 import { getWeekByDay, getTimeValueFn, getTimedate } from '@/utils/DataTime';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,15 +45,14 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
   const [record, setRecord] = useState<recordType[]>([]);
   const navigate = useNavigate();
 
-  const Recording = async () => {
-    const time = new Date();
-    const time2 = getTimedate(time);
+  const time = new Date();
+  const time2 = getTimedate(time);
+  const { data } = useRecordQuery({ startDate: timeProp || time2 });
 
-    const res = await getRecord({
-      startDate: timeProp ? timeProp : time2,
-    });
-    if (res.statusCode === 200) {
-      const { data: lists, expend, income } = res.data;
+  const Recording = async () => {
+    if (!data) return;
+    if (data.statusCode === 200) {
+      const { data: lists, expend, income } = data.data;
 
       const leftNum: number = expend;
       const leftNum2: number = income;
@@ -82,6 +81,8 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
           number,
         ];
       } = {};
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       lists.forEach((item) => {
         const time2 = new Date(item.time).getTime(); //这条数据添加进去时候的时间
         //时间戳转换为普通时间
@@ -150,7 +151,7 @@ const List: FC<timeDateProp> = ({ timeProp, change }) => {
 
   useEffect(() => {
     void Recording();
-  }, [timeProp]);
+  }, [timeProp, data]);
 
   return (
     <div className={styles.wrapper}>

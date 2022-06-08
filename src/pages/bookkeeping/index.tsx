@@ -5,7 +5,7 @@ import Main from './main';
 import KeyBoard from '@/pages/bookkeeping/keyboard';
 import { CategoryAmountType, cateGoryApi, iconObj } from '@/api/category';
 import { useLocation } from 'react-router-dom';
-import { recordChildren } from '@/pages/Detail/List';
+import { recordChildren } from '@/pages/detail/List';
 
 export type stateType = [amount: string, time: string, id: number];
 

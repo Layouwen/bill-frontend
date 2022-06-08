@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { BillRecordType, checkInPost, getUserInfo } from '@/api';
 import { TabBar } from '@/components';
-import UserInfo from '@/pages/mine/UserInfo';
+import UserInfo from '@/pages/Mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';

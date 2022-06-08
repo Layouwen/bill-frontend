@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { FixedPin } from 'bw-mobile';
 import styles from './list.module.scss';
-import { recordChildren } from '../Detail/List';
+import { recordChildren } from '../detail/List';
 import { getTimedate, getTimeDateYear, getWeekByDay } from '@/utils/DataTime';
 
 type stateType = {

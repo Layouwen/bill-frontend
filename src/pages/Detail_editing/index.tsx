@@ -3,7 +3,7 @@ import Top from '@/pages/Detail_editing/Top';
 import List from '@/pages/Detail_editing/list';
 import Footer from '@/pages/Detail_editing/footer';
 import { useLocation } from 'react-router-dom';
-import { recordChildren } from '../Detail/List';
+import { recordChildren } from '../detail/List';
 
 const Dditing: FC = () => {
   const navParams = useLocation();

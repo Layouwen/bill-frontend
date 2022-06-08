@@ -10,3 +10,16 @@ type BillDto = {
   };
   all: BillItemDto;
 };
+
+type GetRecordType = {
+  startDate: string;
+  endDate?: string;
+};
+
+type RecordType = {
+  remark: string;
+  categoryId: number;
+  type: string;
+  amount: string;
+  time: string;
+};

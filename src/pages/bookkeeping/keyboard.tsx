@@ -1,7 +1,11 @@
+import {
+  useAddRecordMutation,
+  useUpdateRecordMutation,
+} from '@/service/record';
 import dayjs from 'dayjs';
 import { FC, useEffect, useState } from 'react';
 import styles from './keyboard.module.scss';
-import { addRecord, cateGoryApi, editRecord } from '@/api';
+import { cateGoryApi } from '@/api';
 import { useNavigate } from 'react-router-dom';
 import CustomRender from '@/pages/bookkeeping/component';
 import classNames from 'classnames';
@@ -9,7 +13,7 @@ import { Toast } from 'antd-mobile';
 import { Icon } from 'bw-mobile';
 import { getShowTime } from '@/utils/DataTime';
 import { stateType } from '@/pages/bookkeeping/index';
-import { recordChildren } from '@/pages/Detail/List';
+import { recordChildren } from '@/pages/detail/List';
 
 type keyType = {
   keyToggle: number;
@@ -327,6 +331,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
     changePing(str, 3);
   };
 
+  const [addRecord] = useAddRecordMutation();
+  const [updateRecord] = useUpdateRecordMutation();
+
   //完成
   const changeCompleteFn = async () => {
     setActive1(-1);
@@ -373,10 +380,13 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
       } else {
         data.time = stateList[1];
       }
-      const edit = await editRecord(data, Number(stateList[2]));
-      if (edit.statusCode === 200) {
+      const edit = await updateRecord({
+        params: data,
+        id: Number(stateList[2]),
+      });
+      if ('data' in edit && edit.data.statusCode === 200) {
         // Touch('编辑成功')
-        Toast.show({ content: edit.message });
+        Toast.show({ content: edit.data.message });
         const chunk = Object.assign(state, data);
         chunk.status = true;
         navigate(`/editing/${state.id}`, { state: chunk });
@@ -385,9 +395,9 @@ const keyboard: FC<keyType> = ({ type, keyToggle, name, stateList, state }) => {
       //新增
       data.time = time1;
       const res = await addRecord(data);
-      if (res.statusCode === 200) {
+      if ('data' in res && res.data.statusCode === 200) {
         // Touch('创建成功')
-        Toast.show({ content: res.message });
+        Toast.show({ content: res.data.message });
         navigate('/detail');
       }
     }

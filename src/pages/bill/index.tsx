@@ -1,5 +1,5 @@
 import Content from '@/pages/bill/components/Content';
-import { useGetBillQuery } from '@/service/record';
+import { useBillQuery } from '@/service/record';
 import { Button } from 'bw-mobile';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -9,9 +9,7 @@ import classNames from 'classnames';
 
 const Bill = () => {
   const [selectDate, setSelectDate] = useState(new Date());
-  const { data, isLoading, isSuccess } = useGetBillQuery(
-    dayjs(selectDate).year(),
-  );
+  const { data, isLoading, isSuccess } = useBillQuery(dayjs(selectDate).year());
   const navigate = useNavigate();
 
   function onBack() {
