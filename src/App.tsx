@@ -1,7 +1,7 @@
 import { audioWeb } from '@/modules/playSound';
 import Bill from '@/pages/bill';
 import CommentList from '@/pages/comment-list';
-import FollowList from '@/pages/Community/FollowList';
+import FollowList from '@/pages/community/FollowList';
 import ExportData from '@/pages/export-data';
 import NewFollow from '@/pages/new-follow';
 import Settings from '@/pages/settings';
@@ -16,7 +16,7 @@ import {
 import { useAppDispatch } from '@/store/hooks';
 import { setUserInfo, syncAudioWebData } from '@/store/slice';
 import { LoginGuard } from '@/components';
-import Community from '@/pages/Community';
+import Community from '@/pages/community';
 import Detail from '@/pages/detail';
 import NotFound from '@/pages/NotFound';
 import PostTopic from '@/pages/PostTopic';
@@ -30,7 +30,7 @@ import Bookkeeping from '@/pages/bookkeeping';
 import TopicDetail from '@/pages/TopicDetail';
 import CateGory from '@/pages/bookkeeping/CategorySettings';
 import Editing from '@/pages/Detail_editing';
-import Personal from '@/pages/Community/Personal';
+import Personal from '@/pages/community/Personal';
 import Share from '@/pages/Share';
 import Message from '@/pages/Message';
 

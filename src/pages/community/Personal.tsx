@@ -1,6 +1,6 @@
 import { topicUserInfoApi } from '@/api';
-import Tabs from '@/pages/Community/components/Personal/Tabs';
-import UserInfo from '@/pages/Community/components/Personal/UserInfo';
+import Tabs from '@/pages/community/components/Personal/Tabs';
+import UserInfo from '@/pages/community/components/Personal/UserInfo';
 import { NavBar } from 'bw-mobile';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
