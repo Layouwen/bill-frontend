@@ -32,7 +32,7 @@ import CateGory from '@/pages/bookkeeping/CategorySettings';
 import Editing from '@/pages/Detail_editing';
 import Personal from '@/pages/community/Personal';
 import Share from '@/pages/Share';
-import Message from '@/pages/Message';
+import Message from '@/pages/message';
 
 const App = () => {
   const dispatch = useAppDispatch();
