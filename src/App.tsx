@@ -27,7 +27,7 @@ import Mine from '@/pages/mine';
 import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/bookkeeping';
-import TopicDetail from '@/pages/TopicDetail';
+import TopicDetail from '@/pages/topic-detail';
 import CateGory from '@/pages/bookkeeping/CategorySettings';
 import Editing from '@/pages/Detail_editing';
 import Personal from '@/pages/community/Personal';

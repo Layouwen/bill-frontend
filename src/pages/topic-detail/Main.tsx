@@ -1,7 +1,7 @@
 import { Topic } from '@/api';
 import { TopicItem } from '@/components';
 import { ImagePreview, Share, FixedPin } from 'bw-mobile';
-import ReplyArea from '@/pages/TopicDetail/ReplyArea';
+import ReplyArea from '@/pages/topic-detail/ReplyArea';
 import { FC, useState } from 'react';
 
 type MainProps = {
