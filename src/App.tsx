@@ -19,7 +19,7 @@ import { LoginGuard } from '@/components';
 import Community from '@/pages/community';
 import Detail from '@/pages/detail';
 import NotFound from '@/pages/NotFound';
-import PostTopic from '@/pages/PostTopic';
+import PostTopic from '@/pages/post-topic';
 import Sign from '@/pages/sign';
 import FirstScreen from '@/pages/first-screen';
 import Login from '@/pages/Login';
