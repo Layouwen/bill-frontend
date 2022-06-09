@@ -25,7 +25,7 @@ import FirstScreen from '@/pages/first-screen';
 import Login from '@/pages/Login';
 import Mine from '@/pages/mine';
 import UserInfo from '@/pages/userinfo';
-import Password from '@/pages/Password';
+import Password from '@/pages/password';
 import Bookkeeping from '@/pages/bookkeeping';
 import TopicDetail from '@/pages/topic-detail';
 import CateGory from '@/pages/bookkeeping/CategorySettings';
