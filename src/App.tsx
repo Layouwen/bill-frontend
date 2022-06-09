@@ -22,7 +22,7 @@ import NotFound from '@/pages/not-found';
 import PostTopic from '@/pages/post-topic';
 import Sign from '@/pages/sign';
 import FirstScreen from '@/pages/first-screen';
-import Login from '@/pages/Login';
+import Login from '@/pages/login';
 import Mine from '@/pages/mine';
 import UserInfo from '@/pages/userinfo';
 import Password from '@/pages/password';
