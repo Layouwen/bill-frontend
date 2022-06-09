@@ -31,7 +31,7 @@ import TopicDetail from '@/pages/topic-detail';
 import CateGory from '@/pages/bookkeeping/CategorySettings';
 import Editing from '@/pages/detail-edit';
 import Personal from '@/pages/community/Personal';
-import Share from '@/pages/Share';
+import Share from '@/pages/share';
 import Message from '@/pages/message';
 
 const App = () => {

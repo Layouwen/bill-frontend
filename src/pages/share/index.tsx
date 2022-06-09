@@ -1,5 +1,5 @@
-import ShareBtn from '@/pages/Share/ShareBtn';
-import ShareCanvas from '@/pages/Share/ShareCanvas';
+import ShareBtn from '@/pages/share/ShareBtn';
+import ShareCanvas from '@/pages/share/ShareCanvas';
 import { downloadCanvas } from '@/utils';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
