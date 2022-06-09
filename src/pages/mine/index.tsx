@@ -1,9 +1,10 @@
 import { playSound } from '@/modules';
+import { useUserinfoQuery } from '@/service/mine';
 import { spliceNumberByPoint, zeroFill } from '@/utils/time';
 import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { BillRecordType, checkInPost, getUserInfo } from '@/api';
+import { checkInPost } from '@/api';
 import { TabBar } from '@/components';
 import UserInfo from '@/pages/mine/UserInfo';
 import { setUserInfo } from '@/store/slice';
@@ -25,22 +26,23 @@ const Mine: FC = () => {
     token: state.user.token,
   }));
   const dispatch = useAppDispatch();
+  const { data: userInfo, isLoading } = useUserinfoQuery();
 
   useEffect(() => {
     token && void getInfo();
-  }, []);
+  }, [userInfo]);
 
   const getInfo = async () => {
-    const { data, statusCode } = await getUserInfo();
-    if (statusCode === 200) {
-      dispatch(setUserInfo(data));
+    if (!userInfo) return;
+    if (userInfo.statusCode === 200) {
+      dispatch(setUserInfo(userInfo.data));
       setNumberInfo({
-        checkInAll: data.checkInAll,
-        checkInKeep: data.checkInKeep,
-        recordCount: data.recordCount,
+        checkInAll: userInfo.data.checkInAll,
+        checkInKeep: userInfo.data.checkInKeep,
+        recordCount: userInfo.data.recordCount,
       });
-      setCheckIn(data.checkIn);
-      setBillRecord(data.billRecord);
+      setCheckIn(userInfo.data.checkIn);
+      setBillRecord(userInfo.data.billRecord);
     }
   };
 
@@ -84,6 +86,7 @@ const Mine: FC = () => {
 
   return (
     <div className={classNames('page', styles.wrapper)}>
+      {isLoading && <div>loading...</div>}
       <main className="overflow-auto flex flex-col grow">
         <UserInfo
           name={name}

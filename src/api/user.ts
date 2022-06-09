@@ -1,18 +1,5 @@
 import { request } from '@/utils';
 
-type UserInfo = {
-  id: number;
-  userId: string;
-  name: string;
-  username: string;
-  avatar: string;
-  checkIn: boolean;
-  checkInKeep: number;
-  checkInAll: number;
-  recordCount: number;
-  billRecord: BillRecordType;
-};
-
 type UpdateUserInfo = {
   avatar: string;
   name: string;
@@ -21,17 +8,6 @@ type UpdateUserInfo = {
 type UpdatePassword = {
   password: string;
   newPassword: string;
-};
-
-export type BillRecordType = {
-  expend: number;
-  income: number;
-  month: number;
-  surplus: number;
-};
-
-export const getUserInfo = () => {
-  return request.get<unknown, SuccessResponse<UserInfo>>('/user/userInfo');
 };
 
 export const updateUserInfo = (data: UpdateUserInfo, loading = true) => {
