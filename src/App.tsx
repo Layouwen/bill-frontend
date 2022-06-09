@@ -18,7 +18,7 @@ import { setUserInfo, syncAudioWebData } from '@/store/slice';
 import { LoginGuard } from '@/components';
 import Community from '@/pages/community';
 import Detail from '@/pages/detail';
-import NotFound from '@/pages/NotFound';
+import NotFound from '@/pages/not-found';
 import PostTopic from '@/pages/post-topic';
 import Sign from '@/pages/sign';
 import FirstScreen from '@/pages/first-screen';
