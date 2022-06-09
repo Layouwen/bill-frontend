@@ -21,7 +21,7 @@ import Detail from '@/pages/detail';
 import NotFound from '@/pages/NotFound';
 import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/sign';
-import FirstScreen from '@/pages/FirstScreen';
+import FirstScreen from '@/pages/first-screen';
 import Login from '@/pages/Login';
 import Mine from '@/pages/mine';
 import UserInfo from '@/pages/userinfo';
