@@ -20,7 +20,7 @@ import Community from '@/pages/community';
 import Detail from '@/pages/detail';
 import NotFound from '@/pages/NotFound';
 import PostTopic from '@/pages/PostTopic';
-import Sign from '@/pages/Sign';
+import Sign from '@/pages/sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
 import Mine from '@/pages/mine';
