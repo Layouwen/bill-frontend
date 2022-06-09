@@ -23,7 +23,7 @@ import PostTopic from '@/pages/PostTopic';
 import Sign from '@/pages/Sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
-import Mine from '@/pages/Mine';
+import Mine from '@/pages/mine';
 import UserInfo from '@/pages/UserInfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/bookkeeping';
