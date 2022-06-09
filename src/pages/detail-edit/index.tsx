@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
-import Top from '@/pages/Detail_editing/Top';
-import List from '@/pages/Detail_editing/list';
-import Footer from '@/pages/Detail_editing/footer';
+import Top from '@/pages/detail-edit/Top';
+import List from '@/pages/detail-edit/list';
+import Footer from '@/pages/detail-edit/footer';
 import { useLocation } from 'react-router-dom';
 import { recordChildren } from '../detail/List';
 
