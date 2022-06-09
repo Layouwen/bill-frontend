@@ -24,7 +24,7 @@ import Sign from '@/pages/Sign';
 import FirstScreen from '@/pages/FirstScreen';
 import Login from '@/pages/Login';
 import Mine from '@/pages/mine';
-import UserInfo from '@/pages/UserInfo';
+import UserInfo from '@/pages/userinfo';
 import Password from '@/pages/Password';
 import Bookkeeping from '@/pages/bookkeeping';
 import TopicDetail from '@/pages/topic-detail';
