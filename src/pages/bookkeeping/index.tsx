@@ -12,7 +12,7 @@ export type stateType = [amount: string, time: string, id: number];
 const Bookkeeping: FC = () => {
   const [keyToggle, setKeyToggle] = useState<number>(-1); //图标的id
   const [name, setName] = useState(''); //图标选项的名称
-  const [type1, setType1] = useState<CategoryAmountType>('-'); //切换支出和收入
+  const [type1, setType1] = useState<CategoryAmountType>('sub'); //切换支出和收入
   const navParams = useLocation();
   const list: recordChildren = navParams.state as recordChildren;
   const state = list;

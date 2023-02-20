@@ -13,9 +13,9 @@ export type iconType = {
   data: iconObj[];
 };
 
-export type CategoryAmountType = '+' | '-';
+export type CategoryAmountType = 'add' | 'sub';
 
-export const cateGoryApi = (type: CategoryAmountType = '-') => {
+export const cateGoryApi = (type: CategoryAmountType = 'sub') => {
   return request.get<unknown, SuccessResponse<iconType>>(`/category`, {
     params: {
       type,

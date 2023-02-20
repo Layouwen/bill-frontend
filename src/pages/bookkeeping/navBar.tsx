@@ -14,7 +14,7 @@ const navBar: FC<navBarType> = ({ change, type }) => {
   const navigation = useNavigate();
 
   const handleChangeTab = (index: number) => {
-    const type = index === 0 ? '-' : '+';
+    const type = index === 0 ? 'sub' : 'add';
     change(type);
     setActive(index);
   };
@@ -25,7 +25,7 @@ const navBar: FC<navBarType> = ({ change, type }) => {
   };
 
   useEffect(() => {
-    const index = type === '-' ? 0 : 1;
+    const index = type === 'sub' ? 0 : 1;
     handleChangeTab(index);
   }, [type]);
 
